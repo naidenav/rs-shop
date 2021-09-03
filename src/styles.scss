@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(./reset.css);
+
+:root {
+  --theme-color: #009688;
+  --bg-color: #f7f8fa;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--theme-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: var(--theme-color);
+  }
+}
+
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 95%;
+  @media screen and (min-width: 600px) {
+    width: 90%;
+  }
+  @media screen and (min-width: 1920px) {
+    width: 1400px;
+  }
+}

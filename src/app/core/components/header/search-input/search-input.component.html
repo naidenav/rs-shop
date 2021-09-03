@@ -1,0 +1,9 @@
+<input
+  class="search-input"
+  type="text"
+  placeholder="Поиск товаров"
+  [(ngModel)]="searchInput"
+  (input)="updateSearchRequest()"
+/>
+<mat-icon>search</mat-icon>
+<ul class="search-result-list"></ul>
