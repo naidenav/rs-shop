@@ -3,6 +3,12 @@
 
 :root {
   --theme-color: #009688;
+  --color-1: #61b989;
+  --color-2: #acd988;
+  --color-3: #fcf491;
+  --color-4: #faba62;
+  --color-5: #ee7e4f;
+  --color-6: #de425b;
   --bg-color: #f7f8fa;
 }
 
@@ -35,6 +41,9 @@ a {
     outline: none;
   }
   &:hover {
+    color: var(--theme-color);
+  }
+  &:hover .mat-icon {
     color: var(--theme-color);
   }
 }
