@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
-import { LocationResponse } from 'src/app/core/models/location-response.model';
+import { ILocationResponse } from 'src/app/core/models/location-response.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,7 +20,7 @@ export class LocationComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<LocationResponse>(environment.GEO_API)
+      .get<ILocationResponse>(environment.GEO_API)
       .subscribe((response) => {
         this.location.next(response.city.name_ru);
         console.log(this.location);

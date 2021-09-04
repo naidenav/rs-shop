@@ -1,0 +1,53 @@
+<form
+  *ngIf="isLoginForm"
+  class="login-form"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  #loginForm
+>
+  <p class="login-title">Вход</p>
+  <p class="login-subtitle">Логин</p>
+  <input class="login-input" type="text" formControlName="login" />
+  <div class="error-validation">
+    <p
+      *ngIf="form.get('login')?.errors?.required && form.get('login')?.touched"
+      class="error-validation-message"
+    >
+      Пожалуйста, введите логин!
+    </p>
+  </div>
+  <p class="login-subtitle">Пароль</p>
+  <input class="login-input" type="password" formControlName="password" />
+  <div class="error-validation">
+    <p
+      *ngIf="
+        form.get('password')?.errors?.required && form.get('password')?.touched
+      "
+      class="error-validation-message"
+    >
+      Пожалуйста, введите пароль!
+    </p>
+  </div>
+  <div class="buttons-wrapper">
+    <button mat-flat-button class="registration-button">Регистрация</button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="login-button"
+      type="submit"
+      [disabled]="form.invalid"
+      (click)="toRegistrationForm()"
+    >
+      Войти
+    </button>
+  </div>
+</form>
+<form
+  *ngIf="!isLoginForm"
+  class="login-form"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  #registrationForm
+>
+  <button (click)="toLoginForm()">back</button>
+</form>

@@ -1,4 +1,4 @@
-export interface LocationResponse {
+export interface ILocationResponse {
   ip: string;
   city: {
     name_ru: string;

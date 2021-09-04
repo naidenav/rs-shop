@@ -1,0 +1,36 @@
+<app-header-nav-button
+  (menuOpened)="arrowUp()"
+  (menuClosed)="arrowDown()"
+  icon="login"
+  title="Аккаунт"
+  [matMenuTriggerFor]="accountMenu"
+></app-header-nav-button>
+<div class="arrow" #arrow></div>
+<mat-menu #accountMenu="matMenu" xPosition="before">
+  <div class="mat-menu-wrapper">
+    <button
+      mat-raised-button
+      color="primary"
+      class="login-btn"
+      (click)="openModal()"
+    >
+      Войти
+    </button>
+    <p class="user-name">Yo bitch</p>
+    <a class="account-menu-link" mat-menu-item>
+      <mat-icon>shopping_cart</mat-icon>Корзина
+    </a>
+    <a class="account-menu-link" mat-menu-item>
+      <mat-icon>favorite_border</mat-icon>Избранные товары
+    </a>
+    <a class="account-menu-link" mat-menu-item>
+      <mat-icon>visibility</mat-icon>Просмотренные
+    </a>
+    <a class="account-menu-link" mat-menu-item>
+      <mat-icon>hourglass_bottom</mat-icon>Лист ожидания
+    </a>
+    <button class="logout-btn" mat-menu-item>
+      <mat-icon>logout</mat-icon>Выход
+    </button>
+  </div>
+</mat-menu>

@@ -7,10 +7,10 @@
   height: 40px;
   color: white;
   background: linear-gradient(
-    to right,
-    #338881 20%,
-    var(--theme-color) 50%,
-    #39bbaa 80%
+    45deg,
+    var(--theme-color),
+    #39bbaa,
+    var(--theme-color)
   );
 }
 .wrapper {
@@ -36,7 +36,10 @@
     width: 100%;
     &:hover {
       color: unset;
-      background-color: opacify($color: transparent, $amount: 0.15);
+      background-color: opacify(
+        $color: rgba(255, 255, 255, 0.05),
+        $amount: 0.15
+      );
     }
   }
 }

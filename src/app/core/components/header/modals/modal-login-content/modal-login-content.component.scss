@@ -1,0 +1,75 @@
+.login-form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 290px;
+  width: 350px;
+}
+
+.login-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 24px;
+  color: #4f4f4f;
+}
+
+.login-subtitle {
+  margin: 5px 0;
+  align-self: flex-start;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 12px;
+  color: #828282;
+}
+
+.login-input {
+  padding: 4px 15px 0;
+  height: 40px;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  transition-duration: 0.2s;
+  &:focus {
+    outline: none;
+  }
+  &.ng-invalid.ng-touched {
+    border-color: #eb5757;
+  }
+  &.ng-valid {
+    border-color: var(--theme-color);
+  }
+}
+
+.error-validation {
+  align-self: flex-start;
+  margin-top: 2px;
+  height: 14px;
+}
+
+.error-validation-message {
+  font-size: 10px;
+  color: #eb5757;
+}
+
+.buttons-wrapper {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: flex-end;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.login-button {
+  width: 120px;
+  background-color: var(--theme-color);
+}
+
+.registration-button {
+  color: var(--theme-color);
+}

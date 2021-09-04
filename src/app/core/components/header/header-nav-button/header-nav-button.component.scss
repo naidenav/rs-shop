@@ -8,10 +8,11 @@
   color: var(--theme-color);
   border-radius: 20px;
   border: 1px solid #e0e0e0;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   &:hover {
-    background-color: white;
-    border: 1px solid white;
+    background-color: var(--color-4);
+    color: white;
+    border: 1px solid transparent;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
   }

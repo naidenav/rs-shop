@@ -1,9 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
-import { MaterialModule } from '../shared/material/material.module';
+import { SharedModule } from '../shared/shared.module';
+import { AccountBtnComponent } from './components/header/account-btn/account-btn.component';
+import {
+    HeaderCategoriesComponent
+} from './components/header/header-categories/header-categories.component';
 import {
     HeaderContactsComponent
 } from './components/header/header-contacts/header-contacts.component';
@@ -13,8 +15,10 @@ import {
 import { HeaderComponent } from './components/header/header.component';
 import { LocationComponent } from './components/header/location/location.component';
 import { MainNavComponent } from './components/header/main-nav/main-nav.component';
+import {
+    ModalLoginContentComponent
+} from './components/header/modals/modal-login-content/modal-login-content.component';
 import { SearchInputComponent } from './components/header/search-input/search-input.component';
-import { HeaderCategoriesComponent } from './components/header/header-categories/header-categories.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +29,10 @@ import { HeaderCategoriesComponent } from './components/header/header-categories
     HeaderNavButtonComponent,
     SearchInputComponent,
     HeaderCategoriesComponent,
+    AccountBtnComponent,
+    ModalLoginContentComponent,
   ],
-  imports: [CommonModule, MaterialModule, HttpClientModule, FormsModule],
+  imports: [HttpClientModule, SharedModule],
   exports: [HeaderComponent],
 })
 export class CoreModule {}

@@ -1,2 +1,5 @@
-<mat-icon>location_on</mat-icon>
-<p class="city-name">{{ location | async }}</p>
+<button mat-button>
+  <p class="city-name">
+    <mat-icon>location_on</mat-icon>{{ location | async }}
+  </p>
+</button>
