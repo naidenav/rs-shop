@@ -7,8 +7,8 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/services/http.service';
 
 import {
-    fetchedUserInfo, getUserInfo, getUserInfoFailed, registerUser, registrationFailed,
-    registrationSuccessful
+    fetchedUserInfo, getUserInfo, getUserInfoFailed, loginFalied, loginSuccessful, loginUser,
+    registerUser, registrationFailed, registrationSuccessful
 } from '../actions/user-profile.actions';
 
 @Injectable()
@@ -27,9 +27,21 @@ export class UserProfileEffects {
     )
   );
 
+  login: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loginUser),
+      switchMap((props) =>
+        this.httpService.loginUser(props).pipe(
+          map((token) => loginSuccessful(token)),
+          catchError((error) => of(loginFalied({ error })))
+        )
+      )
+    )
+  );
+
   saveToken: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType(registrationSuccessful),
+      ofType(registrationSuccessful, loginSuccessful),
       tap((token) => localStorage.setItem('token', token.token)),
       switchMap((token) => of(getUserInfo(token)))
     )
@@ -46,9 +58,4 @@ export class UserProfileEffects {
       )
     )
   );
-
-  // registrationSuccessful: Observable<Action> = createEffect(() =>
-  //   ofType(registerSuccess),
-  //   switchMap((token) => of(loginUser()))
-  // )
 }

@@ -33,6 +33,11 @@ export const userProfileReducer = createReducer(
     loading: false,
     isLogged: true,
   })),
+  on(UserProfileActions.getUserInfoFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
   on(UserProfileActions.setUserInfo, (state, { userInfo }) => ({
     ...state,
     ...userInfo,

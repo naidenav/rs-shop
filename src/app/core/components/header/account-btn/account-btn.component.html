@@ -9,6 +9,7 @@
 <mat-menu #accountMenu="matMenu" xPosition="before">
   <div class="mat-menu-wrapper">
     <button
+      *ngIf="!(userInfo$ | async)?.isLogged"
       mat-raised-button
       color="primary"
       class="login-btn"
@@ -16,7 +17,9 @@
     >
       Войти
     </button>
-    <p class="user-name">Yo bitch</p>
+    <p *ngIf="(userInfo$ | async)?.isLogged" class="user-name">
+      {{ (userInfo$ | async)?.firstName }} {{ (userInfo$ | async)?.lastName }}
+    </p>
     <a class="account-menu-link" mat-menu-item>
       <mat-icon>shopping_cart</mat-icon>Корзина
     </a>
@@ -29,7 +32,12 @@
     <a class="account-menu-link" mat-menu-item>
       <mat-icon>hourglass_bottom</mat-icon>Лист ожидания
     </a>
-    <button class="logout-btn" mat-menu-item>
+    <button
+      *ngIf="(userInfo$ | async)?.isLogged"
+      class="logout-btn"
+      mat-menu-item
+      (click)="logout()"
+    >
       <mat-icon>logout</mat-icon>Выход
     </button>
   </div>

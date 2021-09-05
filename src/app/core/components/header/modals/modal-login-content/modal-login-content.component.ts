@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { registerUser } from 'src/app/redux/actions/user-profile.actions';
+import { loginUser, registerUser } from 'src/app/redux/actions/user-profile.actions';
 import { AppState } from 'src/app/redux/state/app.state';
 
 @Component({
@@ -35,7 +35,13 @@ export class ModalLoginContentComponent implements OnInit {
 
   ngAfterViewInit() {}
 
-  loginSubmit() {}
+  loginSubmit() {
+    const user = {
+      login: this.loginForm.get('login')?.value,
+      password: this.loginForm.get('password')?.value,
+    };
+    this.store.dispatch(loginUser(user));
+  }
 
   registrationSubmit() {
     const userInfo = {

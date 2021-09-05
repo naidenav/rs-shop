@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 
+import { CategoriesEffects } from '../redux/effects/categories.effect';
 import { UserProfileEffects } from '../redux/effects/user-profile.effects';
 import { SharedModule } from '../shared/shared.module';
 import { AccountBtnComponent } from './components/header/account-btn/account-btn.component';
@@ -37,7 +38,7 @@ import { SearchInputComponent } from './components/header/search-input/search-in
   imports: [
     HttpClientModule,
     SharedModule,
-    EffectsModule.forFeature([UserProfileEffects]),
+    EffectsModule.forFeature([UserProfileEffects, CategoriesEffects]),
   ],
   exports: [HeaderComponent],
 })

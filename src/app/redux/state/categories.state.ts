@@ -1,5 +1,11 @@
 import { ICategory } from 'src/app/shared/models/categories.model';
 
-export type ICategoriesState = ICategory[];
+export interface ICategoriesState {
+  categories: ICategory[];
+  loading: boolean;
+}
 
-export const initialCategoriesState: ICategoriesState = [];
+export const initialCategoriesState: ICategoriesState = {
+  categories: [],
+  loading: false,
+};

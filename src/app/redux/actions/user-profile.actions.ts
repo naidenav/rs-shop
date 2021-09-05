@@ -31,7 +31,7 @@ export const loginUser = createAction(
 
 export const loginSuccessful = createAction(
   'LOGIN_SUCCESSFUL',
-  props<{ userInfo: IUserProfile }>()
+  props<{ token: string }>()
 );
 
 export const loginFalied = createAction(

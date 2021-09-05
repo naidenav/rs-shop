@@ -1,37 +1,9 @@
 <nav class="wrapper">
   <ul class="header-cat-list">
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
-    </li>
-    <li class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">Item</a>
+    <li *ngFor="let item of categories$ | async" class="header-cat-list__item">
+      <a class="header-cat-list__link" href="#">{{
+        item.subCategories[0].name
+      }}</a>
     </li>
   </ul>
 </nav>

@@ -1,36 +1,22 @@
 import { createReducer, on } from '@ngrx/store';
 
-import * as YoutubeActions from '../actions/categories.actions';
-import { initialYoutubeState } from '../state/categories.state';
+import * as CategoriesActions from '../actions/categories.actions';
+import { initialCategoriesState } from '../state/categories.state';
 
-export const youtubeReducer = createReducer(
-  initialYoutubeState,
-  on(YoutubeActions.getSearchResults, (state) => ({
+export const categoriesReducer = createReducer(
+  initialCategoriesState,
+  on(CategoriesActions.getCategories, (state) => ({
     ...state,
     loading: true,
-    error: null,
   })),
-  on(YoutubeActions.getVideoItemsSuccessful, (state, { videoItems }) => ({
+  on(CategoriesActions.fetchedCategories, (state, { categories }) => ({
     ...state,
+    categories,
     loading: false,
-    loaded: true,
-    searchResults: videoItems,
   })),
-  on(YoutubeActions.getVideoItemsFailed, (state, { error }) => ({
+  on(CategoriesActions.getCategoriesFailed, (state, { error }) => ({
     ...state,
-    loading: false,
     error,
-  })),
-  on(YoutubeActions.getVideoItem, (state) => ({ ...state, loading: true })),
-  on(YoutubeActions.getVideoItemSuccessful, (state, { videoItem }) => ({
-    ...state,
     loading: false,
-    loaded: true,
-    currentVideo: videoItem,
-  })),
-  on(YoutubeActions.getVideoItemFailed, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
   }))
 );

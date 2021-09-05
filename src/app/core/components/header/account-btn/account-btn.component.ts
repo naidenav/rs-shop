@@ -2,9 +2,11 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
-import { Subscription } from 'rxjs';
-import { token } from 'src/app/redux/selectors/user-profile.selectors';
+import { Observable } from 'rxjs';
+import { clearUserInfo } from 'src/app/redux/actions/user-profile.actions';
+import { userProfileSelector } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
+import { IUserProfileState } from 'src/app/redux/state/user-profile.state';
 
 import {
     ModalLoginContentComponent
@@ -18,14 +20,13 @@ import {
 })
 export class AccountBtnComponent implements OnInit {
   @ViewChild('arrow', { read: ElementRef }) arrow?: ElementRef;
-  private token: Subscription = new Subscription();
+
+  public userInfo$!: Observable<IUserProfileState>;
 
   constructor(public modal: MatDialog, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.token = this.store
-      .select(token)
-      .subscribe((token) => console.log(token));
+    this.userInfo$ = this.store.select(userProfileSelector);
   }
 
   public openModal() {
@@ -40,5 +41,10 @@ export class AccountBtnComponent implements OnInit {
 
   public arrowDown() {
     this.arrow?.nativeElement.classList.remove('arrow-up');
+  }
+
+  public logout() {
+    setTimeout(() => this.store.dispatch(clearUserInfo()), 300);
+    localStorage.removeItem('token');
   }
 }

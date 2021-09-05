@@ -8,6 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { categoriesReducer } from './redux/reducers/categories.reducers';
 import { userProfileReducer } from './redux/reducers/user-profile.reducers';
 
 @NgModule({
@@ -18,7 +19,10 @@ import { userProfileReducer } from './redux/reducers/user-profile.reducers';
     BrowserAnimationsModule,
     CoreModule,
     StoreModule.forRoot(
-      { userProfileState: userProfileReducer },
+      {
+        userProfileState: userProfileReducer,
+        categoriesState: categoriesReducer,
+      },
       {
         runtimeChecks: {
           strictActionImmutability: true,

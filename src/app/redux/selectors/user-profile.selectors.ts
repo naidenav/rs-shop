@@ -8,7 +8,14 @@ export const userProfileSelector = createFeatureSelector<
   IUserProfileState
 >('userProfileState');
 
+export const userInfo = createSelector(userProfileSelector, (state) => state);
+
 export const token = createSelector(
   userProfileSelector,
   (state) => state.token
+);
+
+export const isLogged = createSelector(
+  userProfileSelector,
+  (state) => state.isLogged
 );

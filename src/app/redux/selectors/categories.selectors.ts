@@ -1,28 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppState } from '../state/app.state';
-import { YoutubeState } from '../state/categories.state';
+import { ICategoriesState } from '../state/categories.state';
 
-export const youtubeSelector = createFeatureSelector<AppState, YoutubeState>(
-  'youtubeState'
-);
+export const categoriesSelector = createFeatureSelector<
+  AppState,
+  ICategoriesState
+>('categoriesState');
 
-export const searchResults = createSelector(
-  youtubeSelector,
-  (youtubeState) => youtubeState.searchResults
-);
-
-export const youtubeLoading = createSelector(
-  youtubeSelector,
-  (youtubeState) => youtubeState.loading
-);
-
-export const youtubeError = createSelector(
-  youtubeSelector,
-  (youtubeState) => youtubeState.error
-);
-
-export const currentVideo = createSelector(
-  youtubeSelector,
-  (youtubeState) => youtubeState.currentVideo
+export const categories = createSelector(
+  categoriesSelector,
+  (state) => state.categories
 );

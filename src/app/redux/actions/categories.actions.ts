@@ -1,33 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
-import { VideoItem } from 'src/app/shared/models/videos-item';
+import { ICategory } from 'src/app/shared/models/categories.model';
 
-export const getSearchResults = createAction(
-  'GET SEARCH RESULTS BY TEXT FRAGMENT',
-  props<{ textFragment: string }>()
+export const getCategories = createAction('GET_CATEGORIES');
+
+export const fetchedCategories = createAction(
+  'FETCHED_CATEGORIES',
+  props<{ categories: ICategory[] }>()
 );
 
-export const getVideoItemsSuccessful = createAction(
-  'SET FETCHED VIDEO ITEMS',
-  props<{ videoItems: VideoItem[] }>()
-);
-
-export const getVideoItemsFailed = createAction(
-  'GET VIDEO ITEMS FAILED',
-  props<{ error: Error }>()
-);
-
-export const getVideoItem = createAction(
-  'GET VIDEO ITEM BY ID',
-  props<{ id: string }>()
-);
-
-export const getVideoItemSuccessful = createAction(
-  'SET FETCHED VIDEO ITEM',
-  props<{ videoItem: VideoItem }>()
-);
-
-export const getVideoItemFailed = createAction(
-  'GET VIDEO ITEM FAILED',
+export const getCategoriesFailed = createAction(
+  'GET_CATEGORIES_FAILED',
   props<{ error: Error }>()
 );

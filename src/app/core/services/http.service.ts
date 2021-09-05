@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { PATH } from 'src/app/constants';
+import { ICategory } from 'src/app/shared/models/categories.model';
 import { IUserProfile } from 'src/app/shared/models/user-profile.model';
 import { environment } from 'src/environments/environment';
 
@@ -31,6 +32,16 @@ export class HttpService {
       );
   }
 
+  public loginUser(user: { login: string; password: string }) {
+    return this.http
+      .post<{ token: string }>(`${environment.SERVER_URL}${PATH.login}`, user)
+      .pipe(
+        catchError((error) => {
+          return this.handleError(error);
+        })
+      );
+  }
+
   public getUserInfo(token: string) {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
@@ -40,6 +51,16 @@ export class HttpService {
       .get<IUserProfile>(`${environment.SERVER_URL}${PATH.userInfo}`, {
         headers,
       })
+      .pipe(
+        catchError((error) => {
+          return this.handleError(error);
+        })
+      );
+  }
+
+  public getCategories() {
+    return this.http
+      .get<ICategory[]>(`${environment.SERVER_URL}${PATH.categories}`)
       .pipe(
         catchError((error) => {
           return this.handleError(error);
