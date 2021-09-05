@@ -1,6 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
 
+import { UserProfileEffects } from '../redux/effects/user-profile.effects';
 import { SharedModule } from '../shared/shared.module';
 import { AccountBtnComponent } from './components/header/account-btn/account-btn.component';
 import {
@@ -32,7 +34,11 @@ import { SearchInputComponent } from './components/header/search-input/search-in
     AccountBtnComponent,
     ModalLoginContentComponent,
   ],
-  imports: [HttpClientModule, SharedModule],
+  imports: [
+    HttpClientModule,
+    SharedModule,
+    EffectsModule.forFeature([UserProfileEffects]),
+  ],
   exports: [HeaderComponent],
 })
 export class CoreModule {}

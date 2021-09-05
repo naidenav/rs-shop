@@ -23,7 +23,6 @@ export class LocationComponent implements OnInit {
       .get<ILocationResponse>(environment.GEO_API)
       .subscribe((response) => {
         this.location.next(response.city.name_ru);
-        console.log(this.location);
       });
   }
 }

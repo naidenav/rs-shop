@@ -1,8 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { PATH } from 'src/app/constants';
+import { IUserProfile } from 'src/app/shared/models/user-profile.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,18 +13,32 @@ import { environment } from 'src/environments/environment';
 export class HttpService {
   constructor(private http: HttpClient) {}
 
-  public register(
-    firstName: string,
-    lastName: string,
-    login: string,
-    password: string
-  ) {
+  public registerUser(user: {
+    firstName: string;
+    lastName: string;
+    login: string;
+    password: string;
+  }) {
     return this.http
-      .post(environment.SERVER_URL, {
-        firstName,
-        lastName,
-        login,
-        password,
+      .post<{ token: string }>(
+        `${environment.SERVER_URL}${PATH.register}`,
+        user
+      )
+      .pipe(
+        catchError((error) => {
+          return this.handleError(error);
+        })
+      );
+  }
+
+  public getUserInfo(token: string) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+
+    console.log(headers);
+
+    return this.http
+      .get<IUserProfile>(`${environment.SERVER_URL}${PATH.userInfo}`, {
+        headers,
       })
       .pipe(
         catchError((error) => {

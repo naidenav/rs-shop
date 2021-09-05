@@ -1,14 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { AppState } from '../state/app.state';
-import { CustomCardsState } from '../state/user-profile.state';
+import { IUserProfileState } from '../state/user-profile.state';
 
-export const customCardsSelector = createFeatureSelector<
+export const userProfileSelector = createFeatureSelector<
   AppState,
-  CustomCardsState
->('customCardsState');
+  IUserProfileState
+>('userProfileState');
 
-export const customCards = createSelector(
-  customCardsSelector,
-  (customCardsState) => customCardsState.customCards
+export const token = createSelector(
+  userProfileSelector,
+  (state) => state.token
 );

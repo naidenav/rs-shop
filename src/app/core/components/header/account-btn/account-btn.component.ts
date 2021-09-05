@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+
+import { Subscription } from 'rxjs';
+import { token } from 'src/app/redux/selectors/user-profile.selectors';
+import { AppState } from 'src/app/redux/state/app.state';
 
 import {
     ModalLoginContentComponent
@@ -13,13 +18,20 @@ import {
 })
 export class AccountBtnComponent implements OnInit {
   @ViewChild('arrow', { read: ElementRef }) arrow?: ElementRef;
+  private token: Subscription = new Subscription();
 
-  constructor(public modal: MatDialog) {}
+  constructor(public modal: MatDialog, private store: Store<AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.token = this.store
+      .select(token)
+      .subscribe((token) => console.log(token));
+  }
 
   public openModal() {
-    const modalRef = this.modal.open(ModalLoginContentComponent);
+    const modalRef = this.modal.open(ModalLoginContentComponent, {
+      autoFocus: false,
+    });
   }
 
   public arrowUp() {
