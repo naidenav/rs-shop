@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { clearUserInfo } from 'src/app/redux/actions/user-profile.actions';
-import { userProfileSelector } from 'src/app/redux/selectors/user-profile.selectors';
+import { userProfileStateSelector } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IUserProfileState } from 'src/app/redux/state/user-profile.state';
 
@@ -23,10 +23,15 @@ export class AccountBtnComponent implements OnInit {
 
   public userInfo$!: Observable<IUserProfileState>;
 
+  public icon$: BehaviorSubject<string> = new BehaviorSubject<string>('login');
+
   constructor(public modal: MatDialog, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.userInfo$ = this.store.select(userProfileSelector);
+    this.userInfo$ = this.store.select(userProfileStateSelector);
+    this.userInfo$.subscribe((userInfo) => {
+      this.icon$.next(userInfo.isLogged ? 'person' : 'login');
+    });
   }
 
   public openModal() {

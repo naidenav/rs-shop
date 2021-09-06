@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 import { getCategories } from 'src/app/redux/actions/categories.actions';
-import { categories } from 'src/app/redux/selectors/categories.selectors';
+import { categoriesSelector } from 'src/app/redux/selectors/categories.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { ICategory } from 'src/app/shared/models/categories.model';
 
@@ -21,6 +21,6 @@ export class HeaderCategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categories$ = this.store.select(categories);
+    this.categories$ = this.store.select(categoriesSelector);
   }
 }

@@ -34,6 +34,11 @@ body {
   color: var(--theme-color);
 }
 
+.mat-snack-bar-container {
+  color: white;
+  background-color: var(--theme-color);
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -56,6 +61,11 @@ img {
   width: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
 }
 
 .wrapper {

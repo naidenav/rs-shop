@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  grid-template: minmax(180px, auto) 1fr minmax(100px, auto) / 1fr;
+  min-height: 100%;
+  width: 100%;
+}
+
+.main {
+}

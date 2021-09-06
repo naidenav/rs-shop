@@ -3,19 +3,27 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppState } from '../state/app.state';
 import { IUserProfileState } from '../state/user-profile.state';
 
-export const userProfileSelector = createFeatureSelector<
+export const userProfileStateSelector = createFeatureSelector<
   AppState,
   IUserProfileState
 >('userProfileState');
 
-export const userInfo = createSelector(userProfileSelector, (state) => state);
+export const userInfoSelector = createSelector(
+  userProfileStateSelector,
+  (state) => state
+);
 
-export const token = createSelector(
-  userProfileSelector,
+export const tokenSelector = createSelector(
+  userProfileStateSelector,
   (state) => state.token
 );
 
-export const isLogged = createSelector(
-  userProfileSelector,
+export const isLoggedSelector = createSelector(
+  userProfileStateSelector,
   (state) => state.isLogged
+);
+
+export const errorSelector = createSelector(
+  userProfileStateSelector,
+  (state) => state.error
 );

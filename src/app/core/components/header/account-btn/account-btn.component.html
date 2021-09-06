@@ -1,7 +1,7 @@
 <app-header-nav-button
   (menuOpened)="arrowUp()"
   (menuClosed)="arrowDown()"
-  icon="login"
+  [icon]="(icon$ | async) || 'login'"
   title="Аккаунт"
   [matMenuTriggerFor]="accountMenu"
 ></app-header-nav-button>

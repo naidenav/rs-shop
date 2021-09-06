@@ -20,7 +20,7 @@ export const userProfileReducer = createReducer(
   })),
   on(UserProfileActions.registrationFailed, (state, { error }) => ({
     ...state,
-    error,
+    error: error.message,
     loading: false,
   })),
   on(UserProfileActions.getUserInfo, (state) => ({
@@ -36,11 +36,12 @@ export const userProfileReducer = createReducer(
   on(UserProfileActions.getUserInfoFailed, (state, { error }) => ({
     ...state,
     loading: false,
-    error,
+    error: error.message,
   })),
   on(UserProfileActions.setUserInfo, (state, { userInfo }) => ({
     ...state,
     ...userInfo,
+    error: '',
   })),
   on(UserProfileActions.clearUserInfo, (state) => ({
     ...state,

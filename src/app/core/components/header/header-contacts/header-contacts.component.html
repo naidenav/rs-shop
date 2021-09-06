@@ -9,7 +9,7 @@
 </button>
 <mat-menu #contactsMenu="matMenu" xPosition="before">
   <a href="tel:+375290000000" mat-menu-item>
-    <div class="contacts-list__icon">
+    <div class="mat-menu__icon">
       <svg>
         <use xlink:href="../../../../assets/icons/sprite.svg#a1-icon"></use>
       </svg>
@@ -34,7 +34,12 @@
     </div>
     +375290000000
   </a>
-  <a href="https://t.me/" mat-menu-item>
+  <a
+    href="https://t.me/"
+    target="_blank"
+    rel="noopener noreferer"
+    mat-menu-item
+  >
     <div class="mat-menu__icon">
       <svg>
         <use
@@ -44,8 +49,13 @@
     </div>
     Telegram
   </a>
-  <a href="https://chats.viber.com/" mat-menu-item>
-    <div class="contacts-list__icon">
+  <a
+    href="https://chats.viber.com/"
+    target="_blank"
+    rel="noopener noreferer"
+    mat-menu-item
+  >
+    <div class="mat-menu__icon">
       <svg>
         <use xlink:href="../../../../assets/icons/sprite.svg#viber-icon"></use>
       </svg>

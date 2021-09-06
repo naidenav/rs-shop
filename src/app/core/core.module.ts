@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from '../redux/effects/categories.effect';
 import { UserProfileEffects } from '../redux/effects/user-profile.effects';
 import { SharedModule } from '../shared/shared.module';
+import { FooterComponent } from './components/footer/footer.component';
 import { AccountBtnComponent } from './components/header/account-btn/account-btn.component';
 import {
     HeaderCategoriesComponent
@@ -34,12 +35,13 @@ import { SearchInputComponent } from './components/header/search-input/search-in
     HeaderCategoriesComponent,
     AccountBtnComponent,
     ModalLoginContentComponent,
+    FooterComponent,
   ],
   imports: [
     HttpClientModule,
     SharedModule,
     EffectsModule.forFeature([UserProfileEffects, CategoriesEffects]),
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {}
