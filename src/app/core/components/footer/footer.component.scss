@@ -13,14 +13,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    border-top: 1px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(
-      to left,
-      var(--bg-color),
-      #cce5e0,
-      var(--bg-color)
-    );
+    border-top: 1px solid #c0dfdd;
   }
 }
 
