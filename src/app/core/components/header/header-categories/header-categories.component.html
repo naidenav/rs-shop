@@ -1,9 +1,16 @@
 <nav class="wrapper">
   <ul class="header-cat-list">
     <li *ngFor="let item of categories$ | async" class="header-cat-list__item">
-      <a class="header-cat-list__link" href="#">{{
-        item.subCategories[0].name
-      }}</a>
+      <a
+        [routerLink]="[
+          serverUrl,
+          path.category,
+          item.id,
+          item.subCategories[0]
+        ]"
+        class="header-cat-list__link"
+        >{{ item.subCategories[0].name }}</a
+      >
     </li>
   </ul>
 </nav>

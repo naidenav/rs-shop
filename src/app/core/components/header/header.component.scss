@@ -20,10 +20,14 @@
     width: 100%;
     height: 40px;
     background-color: var(--bg-color);
-    .wrapper {
-      justify-content: flex-end;
-      border-bottom: 1px solid #c0dfdd;
-    }
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(
+      to left,
+      var(--bg-color),
+      #59aea6,
+      var(--bg-color)
+    );
   }
 }
 

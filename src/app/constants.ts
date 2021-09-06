@@ -3,4 +3,5 @@ export const PATH = {
   login: '/users/login',
   userInfo: '/users/userInfo',
   categories: '/categories',
+  category: '/goods/category',
 };

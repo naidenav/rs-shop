@@ -1,0 +1,10 @@
+<ul class="categories-sidebar__list">
+  <li
+    class="categories-sidebar__item"
+    *ngFor="let category of categories | async"
+  >
+    <app-categories-sidebar-item
+      [category]="category"
+    ></app-categories-sidebar-item>
+  </li>
+</ul>

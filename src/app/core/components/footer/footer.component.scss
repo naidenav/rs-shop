@@ -1,4 +1,5 @@
 :host {
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +14,6 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    border-top: 1px solid #c0dfdd;
   }
 }
 
@@ -24,7 +24,14 @@
   justify-content: center;
   width: 100%;
   height: 60px;
-
+  border-top: 3px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to left,
+    var(--bg-color),
+    var(--theme-color),
+    var(--bg-color)
+  );
   &__link {
     padding-left: 15px;
     padding-right: 15px;
@@ -33,8 +40,10 @@
     align-items: center;
     justify-content: center;
     font-size: 14px;
+    color: var(--theme-color);
+
     &:hover {
-      color: var(--theme-color);
+      color: #e97f1b;
     }
   }
   &__icon {
@@ -52,7 +61,14 @@
   justify-content: center;
   width: 100%;
   height: 80px;
-
+  border-top: 1px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to left,
+    var(--bg-color),
+    #59aea6,
+    var(--bg-color)
+  );
   .vk {
     &:hover {
       color: var(--bg-color);
