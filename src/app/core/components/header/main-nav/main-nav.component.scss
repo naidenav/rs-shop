@@ -23,6 +23,8 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;
+  user-select: none;
+
   &__icon {
     position: relative;
     display: flex;

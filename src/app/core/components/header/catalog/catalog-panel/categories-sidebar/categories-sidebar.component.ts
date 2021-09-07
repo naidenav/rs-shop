@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
+import { changeActiveCategory } from 'src/app/redux/actions/catalog.actions';
+import { activeCategorySelector } from 'src/app/redux/selectors/catalog.selectors';
 import { categoriesSelector } from 'src/app/redux/selectors/categories.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { ICategory } from 'src/app/shared/models/categories.model';
@@ -13,11 +15,18 @@ import { ICategory } from 'src/app/shared/models/categories.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesSidebarComponent implements OnInit {
-  public categories!: Observable<ICategory[]>;
+  public categories$!: Observable<ICategory[]>;
+
+  public activeCategory$!: Observable<string>;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.categories = this.store.select(categoriesSelector);
+    this.categories$ = this.store.select(categoriesSelector);
+    this.activeCategory$ = this.store.select(activeCategorySelector);
+  }
+
+  changeActiveCategory(category: string) {
+    this.store.dispatch(changeActiveCategory({ category }));
   }
 }

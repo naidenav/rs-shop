@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <nav class="categories-nav">
+    <app-categories-sidebar></app-categories-sidebar>
+  </nav>
+  <div class="subcategories">
+    <h2 class="subcategories__title">{{ (activeCategory | async)?.name }}</h2>
+    <ul class="subcategories__list">
+      <li
+        *ngFor="let subcategory of (activeCategory | async)?.subCategories"
+        class="subcategories__item"
+      >
+        <a class="subcategories__link">{{ subcategory.name }}</a>
+      </li>
+    </ul>
+  </div>
+</div>

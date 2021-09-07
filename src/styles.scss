@@ -35,6 +35,19 @@ body {
   background-color: var(--bg-color);
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+// ::-webkit-scrollbar-thumb {
+//   background-color: var(--bg-sidebar);
+// }
+// ::-webkit-scrollbar-button:vertical:start:decrement {
+//   display: none;
+// }
+// ::-webkit-scrollbar-button:vertical:end:increment {
+//   display: none;
+// }
+
 .mat-snack-bar-container {
   color: white;
   background-color: var(--theme-color);

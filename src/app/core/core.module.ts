@@ -5,15 +5,18 @@ import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from '../redux/effects/categories.effect';
 import { UserProfileEffects } from '../redux/effects/user-profile.effects';
 import { SharedModule } from '../shared/shared.module';
-import { CatalogPanelComponent } from './components/catalog-panel/catalog-panel.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AccountPanelComponent } from './components/header/account-panel/account-panel.component';
+import {
+    CatalogPanelComponent
+} from './components/header/catalog/catalog-panel/catalog-panel.component';
 import {
     CategoriesSidebarItemComponent
-} from './components/catalog-panel/categories-sidebar/categories-sidebar-item/categories-sidebar-item.component';
+} from './components/header/catalog/catalog-panel/categories-sidebar/categories-sidebar-item/categories-sidebar-item.component';
 import {
     CategoriesSidebarComponent
-} from './components/catalog-panel/categories-sidebar/categories-sidebar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { AccountBtnComponent } from './components/header/account-btn/account-btn.component';
+} from './components/header/catalog/catalog-panel/categories-sidebar/categories-sidebar.component';
+import { CatalogComponent } from './components/header/catalog/catalog.component';
 import {
     HeaderCategoriesComponent
 } from './components/header/header-categories/header-categories.component';
@@ -40,19 +43,19 @@ import { SearchInputComponent } from './components/header/search-input/search-in
     HeaderNavButtonComponent,
     SearchInputComponent,
     HeaderCategoriesComponent,
-    AccountBtnComponent,
+    AccountPanelComponent,
     ModalLoginContentComponent,
     FooterComponent,
     CatalogPanelComponent,
     CategoriesSidebarComponent,
     CategoriesSidebarItemComponent,
-    CatalogPanelComponent,
+    CatalogComponent,
   ],
   imports: [
     HttpClientModule,
     SharedModule,
     EffectsModule.forFeature([UserProfileEffects, CategoriesEffects]),
   ],
-  exports: [HeaderComponent, FooterComponent, CatalogPanelComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {}

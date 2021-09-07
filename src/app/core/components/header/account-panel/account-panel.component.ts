@@ -13,12 +13,12 @@ import {
 } from '../modals/modal-login-content/modal-login-content.component';
 
 @Component({
-  selector: 'app-account-btn',
-  templateUrl: './account-btn.component.html',
-  styleUrls: ['./account-btn.component.scss'],
+  selector: 'app-account-panel',
+  templateUrl: './account-panel.component.html',
+  styleUrls: ['./account-panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountBtnComponent implements OnInit {
+export class AccountPanelComponent implements OnInit {
   @ViewChild('arrow', { read: ElementRef }) arrow?: ElementRef;
 
   public userInfo$!: Observable<IUserProfileState>;

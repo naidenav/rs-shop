@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   width: 48%;
+  user-select: none;
+
   .mat-icon {
     z-index: 1;
     position: absolute;
