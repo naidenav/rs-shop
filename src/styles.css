@@ -1,0 +1,119 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(./reset.css);
+:root {
+  --theme-color: #009688;
+  --color-1: #61b989;
+  --color-2: #acd988;
+  --color-3: #fcf491;
+  --color-4: #faba62;
+  --color-5: #ee7e4f;
+  --color-6: #de425b;
+  --bg-color: #f7f8fa;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--theme-color);
+  background-color: var(--bg-color);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.mat-snack-bar-container {
+  color: white;
+  background-color: var(--theme-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+a:hover {
+  color: var(--theme-color);
+}
+
+a:hover .mat-icon {
+  color: var(--theme-color);
+}
+
+button {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 95%;
+}
+
+@media screen and (min-width: 600px) {
+  .wrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .wrapper {
+    width: 1400px;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

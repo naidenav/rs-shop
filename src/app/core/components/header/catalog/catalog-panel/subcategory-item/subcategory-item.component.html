@@ -1,0 +1,8 @@
+<a class="subcategory-link">
+  <div class="subcategory-image">
+    <img
+      [src]="(imageUrl$ | async) || '../../../../../../../assets/white.png'"
+    />
+  </div>
+  <p class="subcategory-title">{{ subcategory.name }}</p>
+</a>

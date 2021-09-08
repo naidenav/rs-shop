@@ -33,6 +33,7 @@ import {
     ModalLoginContentComponent
 } from './components/header/modals/modal-login-content/modal-login-content.component';
 import { SearchInputComponent } from './components/header/search-input/search-input.component';
+import { SubcategoryItemComponent } from './components/header/catalog/catalog-panel/subcategory-item/subcategory-item.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SearchInputComponent } from './components/header/search-input/search-in
     CategoriesSidebarComponent,
     CategoriesSidebarItemComponent,
     CatalogComponent,
+    SubcategoryItemComponent,
   ],
   imports: [
     HttpClientModule,

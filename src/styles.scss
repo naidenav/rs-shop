@@ -56,6 +56,7 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+  user-select: none;
   &:focus {
     outline: none;
   }
@@ -65,6 +66,10 @@ a {
   &:hover .mat-icon {
     color: var(--theme-color);
   }
+}
+
+button {
+  user-select: none;
 }
 
 img {

@@ -100,11 +100,6 @@
 }
 
 .logout-btn:hover::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background-color: var(--theme-color);
 }

@@ -9,7 +9,10 @@
         *ngFor="let subcategory of (activeCategory | async)?.subCategories"
         class="subcategories__item"
       >
-        <a class="subcategories__link">{{ subcategory.name }}</a>
+        <app-subcategory-item
+          [subcategory]="subcategory"
+        ></app-subcategory-item>
+        <!-- <a class="subcategories__link">{{ subcategory.name }}</a> -->
       </li>
     </ul>
   </div>
