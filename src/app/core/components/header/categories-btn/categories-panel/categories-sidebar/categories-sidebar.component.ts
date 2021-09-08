@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
-import { changeActiveCategory } from 'src/app/redux/actions/catalog.actions';
-import { activeCategorySelector } from 'src/app/redux/selectors/catalog.selectors';
-import { categoriesSelector } from 'src/app/redux/selectors/categories.selectors';
+import { changeActiveCategory } from 'src/app/redux/actions/categories.actions';
+import {
+    activeCategorySelector, categoriesSelector
+} from 'src/app/redux/selectors/categories.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { ICategory } from 'src/app/shared/models/categories.model';
 

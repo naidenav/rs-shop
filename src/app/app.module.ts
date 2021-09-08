@@ -7,6 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CatalogModule } from './catalog/catalog.module';
 import { CoreModule } from './core/core.module';
 import { catalogReducer } from './redux/reducers/catalog.reducers';
 import { categoriesReducer } from './redux/reducers/categories.reducers';
@@ -19,6 +20,7 @@ import { userProfileReducer } from './redux/reducers/user-profile.reducers';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    CatalogModule,
     StoreModule.forRoot(
       {
         userProfileState: userProfileReducer,

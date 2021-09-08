@@ -1,0 +1,10 @@
+<app-header-nav-button
+  [icon]="(isCategoriesPanelOpened$ | async) ? 'cancel' : 'widgets'"
+  [title]="
+    (isCategoriesPanelOpened$ | async) ? 'Закрыть каталог' : 'Каталог товаров'
+  "
+  (click)="toggleCategoriesPanel()"
+></app-header-nav-button>
+<app-categories-panel
+  [class.catalog-opened]="isCategoriesPanelOpened$ | async"
+></app-categories-panel>

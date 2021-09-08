@@ -5,16 +5,22 @@ import { initialCatalogState } from '../state/catalog.state';
 
 export const catalogReducer = createReducer(
   initialCatalogState,
-  on(CatalogActions.changeActiveCategory, (state, { category }) => ({
+  on(CatalogActions.setSubCategoryName, (state, { name }) => ({
     ...state,
-    activeCategory: category,
+    subCategoryName: name,
   })),
-  on(CatalogActions.openCatalog, (state) => ({
+  on(CatalogActions.getGoods, (state) => ({
     ...state,
-    isCatalogOpened: true,
+    loading: true,
   })),
-  on(CatalogActions.closeCatalog, (state) => ({
+  on(CatalogActions.fetchedGoods, (state, { goods }) => ({
     ...state,
-    isCatalogOpened: false,
+    loading: false,
+    goods,
+  })),
+  on(CatalogActions.getGoodsFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
   }))
 );

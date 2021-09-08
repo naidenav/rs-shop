@@ -1,8 +1,0 @@
-<app-header-nav-button
-  [icon]="(isCatalogOpened$ | async) ? 'cancel' : 'widgets'"
-  [title]="(isCatalogOpened$ | async) ? 'Закрыть каталог' : 'Каталог товаров'"
-  (click)="toggleCatalog()"
-></app-header-nav-button>
-<app-catalog-panel
-  [class.catalog-opened]="isCatalogOpened$ | async"
-></app-catalog-panel>

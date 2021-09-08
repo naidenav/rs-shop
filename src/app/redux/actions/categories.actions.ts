@@ -13,3 +13,12 @@ export const getCategoriesFailed = createAction(
   'GET_CATEGORIES_FAILED',
   props<{ error: Error }>()
 );
+
+export const changeActiveCategory = createAction(
+  'CHANGE_ACTIVE_CATEGORY',
+  props<{ category: string }>()
+);
+
+export const openCategoriesPanel = createAction('OPEN_CATEGORIES_PANEL');
+
+export const closeCategoriesPanel = createAction('CLOSE_CATEGORIES_PANEL');

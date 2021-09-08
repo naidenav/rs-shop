@@ -8,12 +8,22 @@ export const catalogStateSelector = createFeatureSelector<
   ICatalogState
 >('catalogState');
 
-export const isCatalogOpenSelector = createSelector(
+export const subCategoryNameSelector = createSelector(
   catalogStateSelector,
-  (state) => state.isCatalogOpened
+  (state) => state.subCategoryName
 );
 
-export const activeCategorySelector = createSelector(
+export const goodsSelector = createSelector(
   catalogStateSelector,
-  (state) => state.activeCategory
+  (state) => state.goods
+);
+
+export const catalogLoadingSelector = createSelector(
+  catalogStateSelector,
+  (state) => state.loading
+);
+
+export const catalogErrorSelector = createSelector(
+  catalogStateSelector,
+  (state) => state.error
 );

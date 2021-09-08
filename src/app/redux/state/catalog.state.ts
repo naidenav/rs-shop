@@ -1,9 +1,15 @@
+import { IGoodsItem } from 'src/app/shared/models/goods.model';
+
 export interface ICatalogState {
-  isCatalogOpened: boolean;
-  activeCategory: string;
+  subCategoryName: string;
+  goods: IGoodsItem[];
+  loading: boolean;
+  error: string;
 }
 
 export const initialCatalogState: ICatalogState = {
-  isCatalogOpened: false,
-  activeCategory: 'appliances',
+  subCategoryName: '',
+  goods: [],
+  loading: false,
+  error: '',
 };

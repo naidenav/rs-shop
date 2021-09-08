@@ -1,10 +1,23 @@
 import { createAction, props } from '@ngrx/store';
 
-export const changeActiveCategory = createAction(
-  'CHANGE_ACTIVE_CATEGORY',
-  props<{ category: string }>()
+import { IGoodsItem } from 'src/app/shared/models/goods.model';
+
+export const setSubCategoryName = createAction(
+  'SET_SUBCATEGORY_NAME',
+  props<{ name: string }>()
 );
 
-export const openCatalog = createAction('OPEN_CATALOG');
+export const getGoods = createAction(
+  'GET_GOODS',
+  props<{ categoryId: string; subCategoryId: string }>()
+);
 
-export const closeCatalog = createAction('CLOSE_CATALOG');
+export const fetchedGoods = createAction(
+  'FETCHED_GOODS',
+  props<{ goods: IGoodsItem[] }>()
+);
+
+export const getGoodsFailed = createAction(
+  'GET_GOODS_FAILED',
+  props<{ error: Error }>()
+);

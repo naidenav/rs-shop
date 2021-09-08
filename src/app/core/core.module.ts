@@ -8,15 +8,20 @@ import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { AccountPanelComponent } from './components/header/account-panel/account-panel.component';
 import {
-    CatalogPanelComponent
-} from './components/header/catalog/catalog-panel/catalog-panel.component';
+    CategoriesBtnComponent
+} from './components/header/categories-btn/categories-btn.component';
+import {
+    CategoriesPanelComponent
+} from './components/header/categories-btn/categories-panel/categories-panel.component';
 import {
     CategoriesSidebarItemComponent
-} from './components/header/catalog/catalog-panel/categories-sidebar/categories-sidebar-item/categories-sidebar-item.component';
+} from './components/header/categories-btn/categories-panel/categories-sidebar/categories-sidebar-item/categories-sidebar-item.component';
 import {
     CategoriesSidebarComponent
-} from './components/header/catalog/catalog-panel/categories-sidebar/categories-sidebar.component';
-import { CatalogComponent } from './components/header/catalog/catalog.component';
+} from './components/header/categories-btn/categories-panel/categories-sidebar/categories-sidebar.component';
+import {
+    SubcategoryItemComponent
+} from './components/header/categories-btn/categories-panel/subcategory-item/subcategory-item.component';
 import {
     HeaderCategoriesComponent
 } from './components/header/header-categories/header-categories.component';
@@ -33,7 +38,6 @@ import {
     ModalLoginContentComponent
 } from './components/header/modals/modal-login-content/modal-login-content.component';
 import { SearchInputComponent } from './components/header/search-input/search-input.component';
-import { SubcategoryItemComponent } from './components/header/catalog/catalog-panel/subcategory-item/subcategory-item.component';
 
 @NgModule({
   declarations: [
@@ -47,10 +51,10 @@ import { SubcategoryItemComponent } from './components/header/catalog/catalog-pa
     AccountPanelComponent,
     ModalLoginContentComponent,
     FooterComponent,
-    CatalogPanelComponent,
+    CategoriesPanelComponent,
     CategoriesSidebarComponent,
     CategoriesSidebarItemComponent,
-    CatalogComponent,
+    CategoriesBtnComponent,
     SubcategoryItemComponent,
   ],
   imports: [

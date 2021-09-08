@@ -5,3 +5,7 @@ export const PATH = {
   categories: '/categories',
   category: '/goods/category',
 };
+
+export const ROUTES = {
+  catalog: '/catalog',
+};

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/services/http.service';
-import { activeCategorySelector } from 'src/app/redux/selectors/catalog.selectors';
+import { activeCategorySelector } from 'src/app/redux/selectors/categories.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { ISubCategory } from 'src/app/shared/models/categories.model';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';

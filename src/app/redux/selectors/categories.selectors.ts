@@ -12,3 +12,13 @@ export const categoriesSelector = createSelector(
   categoriesStateSelector,
   (state) => state.categories
 );
+
+export const isCategoriesPanelOpenSelector = createSelector(
+  categoriesStateSelector,
+  (state) => state.isCatalogOpened
+);
+
+export const activeCategorySelector = createSelector(
+  categoriesStateSelector,
+  (state) => state.activeCategory
+);

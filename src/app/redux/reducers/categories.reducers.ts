@@ -18,5 +18,17 @@ export const categoriesReducer = createReducer(
     ...state,
     error,
     loading: false,
+  })),
+  on(CategoriesActions.changeActiveCategory, (state, { category }) => ({
+    ...state,
+    activeCategory: category,
+  })),
+  on(CategoriesActions.openCategoriesPanel, (state) => ({
+    ...state,
+    isCatalogOpened: true,
+  })),
+  on(CategoriesActions.closeCategoriesPanel, (state) => ({
+    ...state,
+    isCatalogOpened: false,
   }))
 );

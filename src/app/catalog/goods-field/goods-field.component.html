@@ -1,0 +1,4 @@
+<h2 class="goods-field__title">{{ subcategoryTitle$ | async }}</h2>
+<ul>
+  <li *ngFor="let item of goods$ | async">{{ item.name }}</li>
+</ul>
