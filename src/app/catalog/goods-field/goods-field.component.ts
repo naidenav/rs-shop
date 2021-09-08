@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { getGoods } from 'src/app/redux/actions/catalog.actions';
 import { goodsSelector } from 'src/app/redux/selectors/catalog.selectors';
@@ -16,17 +16,17 @@ import { IGoodsItem } from 'src/app/shared/models/goods.model';
   styleUrls: ['./goods-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GoodsFieldComponent implements OnInit {
-  public categoryId!: string;
-
-  public subcategoryTitle$!: Observable<string | undefined>;
+export class GoodsFieldComponent implements OnInit, OnDestroy {
+  public subCategoryTitle$!: Observable<string | undefined>;
 
   public goods$!: Observable<IGoodsItem[]>;
 
+  private paramsSub: Subscription = new Subscription();
+
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.subcategoryTitle$ = this.route.params.pipe(
+  public ngOnInit(): void {
+    this.subCategoryTitle$ = this.route.params.pipe(
       switchMap((params) =>
         this.store
           .select(categoriesSelector)
@@ -42,7 +42,8 @@ export class GoodsFieldComponent implements OnInit {
           )
       )
     );
-    this.route.params.subscribe((params) =>
+
+    this.paramsSub = this.route.params.subscribe((params) =>
       this.store.dispatch(
         getGoods({
           categoryId: params.categoryId,
@@ -50,6 +51,11 @@ export class GoodsFieldComponent implements OnInit {
         })
       )
     );
+
     this.goods$ = this.store.select(goodsSelector);
+  }
+
+  public ngOnDestroy(): void {
+    this.paramsSub.unsubscribe();
   }
 }

@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { AvailabilityComponent } from './components/availability/availability.component';
+import { RaitingComponent } from './components/raiting/raiting.component';
 import { MaterialModule } from './material/material.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [AvailabilityComponent, RaitingComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,6 +22,8 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     ReactiveFormsModule,
     RouterModule,
+    AvailabilityComponent,
+    RaitingComponent,
   ],
 })
 export class SharedModule {}

@@ -1,16 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+
+import { IGoodsItem } from 'src/app/shared/models/goods.model';
 
 @Component({
   selector: 'app-goods-item',
   templateUrl: './goods-item.component.html',
   styleUrls: ['./goods-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoodsItemComponent implements OnInit {
+  @Input() public goodsItem!: IGoodsItem;
 
-  constructor() { }
+  @Input() public categoryId!: string;
 
-  ngOnInit(): void {
-  }
+  @Input() public subCategoryId!: string;
 
+  constructor() {}
+
+  ngOnInit(): void {}
 }

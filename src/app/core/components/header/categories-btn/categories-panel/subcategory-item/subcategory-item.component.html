@@ -1,8 +1,13 @@
-<a class="subcategory-link">
+<a
+  [routerLink]="['/catalog', categoryId, subCategory.id]"
+  class="subcategory-link"
+  (click)="closeCategoriesPanel()"
+>
   <div class="subcategory-image">
     <img
       [src]="(imageUrl$ | async) || '../../../../../../../assets/white.png'"
+      alt="preview"
     />
   </div>
-  <p class="subcategory-title">{{ subcategory.name }}</p>
+  <p class="subcategory-title">{{ subCategory.name }}</p>
 </a>

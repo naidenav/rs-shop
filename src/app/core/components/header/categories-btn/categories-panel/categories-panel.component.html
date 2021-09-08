@@ -6,11 +6,12 @@
     <h2 class="subcategories__title">{{ (activeCategory | async)?.name }}</h2>
     <ul class="subcategories__list">
       <li
-        *ngFor="let subcategory of (activeCategory | async)?.subCategories"
+        *ngFor="let subCategory of (activeCategory | async)?.subCategories"
         class="subcategories__item"
       >
         <app-subcategory-item
-          [subcategory]="subcategory"
+          [subCategory]="subCategory"
+          [categoryId]="(activeCategory | async)?.id || ''"
         ></app-subcategory-item>
         <!-- <a class="subcategories__link">{{ subcategory.name }}</a> -->
       </li>

@@ -1,1 +1,14 @@
-<p>goods-item works!</p>
+<div class="image">
+  <img
+    [src]="goodsItem.imageUrls[0] || '../../../../assets/logo.png'"
+    alt="preview"
+  />
+</div>
+<a class="title" [routerLink]="['/goods', goodsItem.id]">{{
+  goodsItem.name
+}}</a>
+<app-availability
+  [availableAmount]="goodsItem.availableAmount"
+></app-availability>
+<p class="price">{{ goodsItem.price }} <span class="currency">р.</span></p>
+<app-raiting [rating]="goodsItem.rating"></app-raiting>
