@@ -21,3 +21,15 @@ export const getGoodsFailed = createAction(
   'GET_GOODS_FAILED',
   props<{ error: Error }>()
 );
+
+export const setSortingDirection = createAction(
+  'SET_SORTING_DIRECTION',
+  props<{ direction: string }>()
+);
+
+export const setSortingCriterion = createAction(
+  'SET_SORTING_CRITERION',
+  props<{ criterion: string }>()
+);
+
+export const resetSorting = createAction('RESET_SORTING');

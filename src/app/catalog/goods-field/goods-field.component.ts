@@ -5,7 +5,9 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { getGoods } from 'src/app/redux/actions/catalog.actions';
-import { goodsSelector } from 'src/app/redux/selectors/catalog.selectors';
+import {
+    goodsSelector, sortingCriterion, sortingDirection
+} from 'src/app/redux/selectors/catalog.selectors';
 import { categoriesSelector } from 'src/app/redux/selectors/categories.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
@@ -20,6 +22,9 @@ export class GoodsFieldComponent implements OnInit, OnDestroy {
   public subCategoryTitle$!: Observable<string | undefined>;
 
   public goods$!: Observable<IGoodsItem[]>;
+
+  public sortingDirection$!: Observable<string>;
+  public sortingCriterion$!: Observable<string>;
 
   private paramsSub: Subscription = new Subscription();
 
@@ -53,6 +58,9 @@ export class GoodsFieldComponent implements OnInit, OnDestroy {
     );
 
     this.goods$ = this.store.select(goodsSelector);
+
+    this.sortingDirection$ = this.store.select(sortingDirection);
+    this.sortingCriterion$ = this.store.select(sortingCriterion);
   }
 
   public ngOnDestroy(): void {

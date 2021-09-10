@@ -7,11 +7,13 @@ import { AvailabilityComponent } from './components/availability/availability.co
 import { FavoritesBtnComponent } from './components/favorites-btn/favorites-btn.component';
 import { NavigationChainComponent } from './components/navigation-chain/navigation-chain.component';
 import { RaitingComponent } from './components/raiting/raiting.component';
+import { SortingPanelComponent } from './components/sorting-panel/sorting-panel.component';
 import { ToBasketBtnComponent } from './components/to-basket-btn/to-basket-btn.component';
 import {
     AvailableAmountHighlightingDirective
 } from './directives/available-amount-highlighting.directive';
 import { MaterialModule } from './material/material.module';
+import { SortingPipe } from './pipes/sorting.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { MaterialModule } from './material/material.module';
     FavoritesBtnComponent,
     AvailableAmountHighlightingDirective,
     NavigationChainComponent,
+    SortingPanelComponent,
+    SortingPipe,
   ],
   imports: [
     CommonModule,
@@ -41,6 +45,8 @@ import { MaterialModule } from './material/material.module';
     FavoritesBtnComponent,
     AvailableAmountHighlightingDirective,
     NavigationChainComponent,
+    SortingPanelComponent,
+    SortingPipe,
   ],
 })
 export class SharedModule {}

@@ -1,9 +1,15 @@
 <div class="wrapper">
   <app-navigation-chain></app-navigation-chain>
   <h2 class="title">{{ subCategoryTitle$ | async }}</h2>
+  <app-sorting-panel></app-sorting-panel>
   <div class="goods-field">
     <app-goods-item
-      *ngFor="let item of goods$ | async"
+      *ngFor="
+        let item of (goods$ | async) || []
+          | sorting
+            : (sortingCriterion$ | async) || ''
+            : (sortingDirection$ | async) || ''
+      "
       [goodsItem]="item"
     ></app-goods-item>
   </div>

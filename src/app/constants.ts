@@ -11,3 +11,13 @@ export const PATH = {
 export const ROUTES = {
   catalog: '/catalog',
 };
+
+export const SORTING_DIRECTION = {
+  asc: 'asc',
+  desc: 'desc',
+};
+
+export const SORTING_CRITERION = {
+  price: 'price',
+  rating: 'rating',
+};

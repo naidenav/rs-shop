@@ -22,5 +22,18 @@ export const catalogReducer = createReducer(
     ...state,
     loading: false,
     error: error.message,
+  })),
+  on(CatalogActions.setSortingDirection, (state, { direction }) => ({
+    ...state,
+    sortingDirection: direction,
+  })),
+  on(CatalogActions.setSortingCriterion, (state, { criterion }) => ({
+    ...state,
+    sortingCriterion: criterion,
+  })),
+  on(CatalogActions.resetSorting, (state) => ({
+    ...state,
+    sortingDirection: '',
+    sortingCriterion: '',
   }))
 );

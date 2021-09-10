@@ -27,3 +27,13 @@ export const catalogErrorSelector = createSelector(
   catalogStateSelector,
   (state) => state.error
 );
+
+export const sortingDirection = createSelector(
+  catalogStateSelector,
+  (state) => state.sortingDirection
+);
+
+export const sortingCriterion = createSelector(
+  catalogStateSelector,
+  (state) => state.sortingCriterion
+);

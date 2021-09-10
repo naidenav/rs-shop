@@ -5,6 +5,8 @@ export interface ICatalogState {
   goods: IGoodsItem[];
   loading: boolean;
   error: string;
+  sortingDirection: string;
+  sortingCriterion: string;
 }
 
 export const initialCatalogState: ICatalogState = {
@@ -12,4 +14,6 @@ export const initialCatalogState: ICatalogState = {
   goods: [],
   loading: false,
   error: '',
+  sortingDirection: '',
+  sortingCriterion: '',
 };
