@@ -23,6 +23,9 @@
     align-items: flex-start;
     justify-content: space-between;
   }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .categories-nav {

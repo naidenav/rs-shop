@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -38,6 +38,8 @@ import {
     ModalLoginContentComponent
 } from './components/header/modals/modal-login-content/modal-login-content.component';
 import { SearchInputComponent } from './components/header/search-input/search-input.component';
+import { ApiTokenInterceptor } from './interceptors/api-token.interceptor';
+import { BaseApiUrlInterceptor } from './interceptors/base-api-url.interceptor';
 
 @NgModule({
   declarations: [
@@ -63,5 +65,17 @@ import { SearchInputComponent } from './components/header/search-input/search-in
     EffectsModule.forFeature([UserProfileEffects, CategoriesEffects]),
   ],
   exports: [HeaderComponent, FooterComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseApiUrlInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiTokenInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class CoreModule {}

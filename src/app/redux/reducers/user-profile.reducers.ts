@@ -47,5 +47,65 @@ export const userProfileReducer = createReducer(
     ...state,
     ...initialUserProfileState,
     isLogged: false,
+  })),
+  on(UserProfileActions.moveToBasket, (state, { goodsItemId }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(UserProfileActions.addedToBasket, (state, { goodsItemId }) => ({
+    ...state,
+    loading: false,
+    cart: [...state.cart, goodsItemId],
+    error: '',
+  })),
+  on(UserProfileActions.moveToBasketFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
+  })),
+  on(UserProfileActions.removeFromBasket, (state, { goodsItemId }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(UserProfileActions.removedFromBasket, (state, { goodsItemId }) => ({
+    ...state,
+    loading: false,
+    cart: state.cart.filter((id) => id !== goodsItemId),
+    error: '',
+  })),
+  on(UserProfileActions.removeFromBasketFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
+  })),
+  on(UserProfileActions.moveToFavorites, (state, { goodsItemId }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(UserProfileActions.addedToFavorites, (state, { goodsItemId }) => ({
+    ...state,
+    loading: false,
+    favorites: [...state.favorites, goodsItemId],
+    error: '',
+  })),
+  on(UserProfileActions.moveToFavoritesFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
+  })),
+  on(UserProfileActions.removeFromFavorites, (state, { goodsItemId }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(UserProfileActions.removedFromFavorites, (state, { goodsItemId }) => ({
+    ...state,
+    loading: false,
+    favorites: state.favorites.filter((id) => id !== goodsItemId),
+    error: '',
+  })),
+  on(UserProfileActions.removeFromFavoritesFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
   }))
 );

@@ -27,3 +27,13 @@ export const errorSelector = createSelector(
   userProfileStateSelector,
   (state) => state.error
 );
+
+export const basketSelector = createSelector(
+  userProfileStateSelector,
+  (state) => state.cart
+);
+
+export const favoritesSelector = createSelector(
+  userProfileStateSelector,
+  (state) => state.favorites
+);

@@ -8,7 +8,12 @@
   goodsItem.name
 }}</a>
 <app-availability
+  [appAvailableAmountHighlighting]="goodsItem.availableAmount"
   [availableAmount]="goodsItem.availableAmount"
 ></app-availability>
-<p class="price">{{ goodsItem.price }} <span class="currency">р.</span></p>
+<p class="price">
+  {{ goodsItem.price | number: "1.2-2" }} <span class="currency">р.</span>
+</p>
 <app-raiting [rating]="goodsItem.rating"></app-raiting>
+<app-basket-btn [goodsItemId]="goodsItem.id"></app-basket-btn>
+<app-favorites-btn [goodsItemId]="goodsItem.id"></app-favorites-btn>

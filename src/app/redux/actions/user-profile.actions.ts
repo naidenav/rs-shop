@@ -49,6 +49,8 @@ export const fetchedUserInfo = createAction(
   props<{ userInfo: IUserProfile }>()
 );
 
+export const userInfoSaved = createAction('USER_INFO_SAVED');
+
 export const getUserInfoFailed = createAction(
   'GET_USER_INFO_FAILED',
   props<{ error: Error }>()
@@ -60,3 +62,63 @@ export const setUserInfo = createAction(
 );
 
 export const clearUserInfo = createAction('CLEAR_USER_INFO');
+
+export const moveToBasket = createAction(
+  'MOVE_TO_BASKET',
+  props<{ goodsItemId: string }>()
+);
+
+export const addedToBasket = createAction(
+  'ADDED_TO_BASKET',
+  props<{ goodsItemId: string }>()
+);
+
+export const moveToBasketFailed = createAction(
+  'MOVE_TO_BASKET_FAILED',
+  props<{ error: Error }>()
+);
+
+export const removeFromBasket = createAction(
+  'REMOVE_FROM_BASKET',
+  props<{ goodsItemId: string }>()
+);
+
+export const removedFromBasket = createAction(
+  'REMOVED_FROM_BASKET',
+  props<{ goodsItemId: string }>()
+);
+
+export const removeFromBasketFailed = createAction(
+  'REMOVE_FROM_BASKET_FAILED',
+  props<{ error: Error }>()
+);
+
+export const moveToFavorites = createAction(
+  'MOVE_TO_FAVORITES',
+  props<{ goodsItemId: string }>()
+);
+
+export const addedToFavorites = createAction(
+  'ADDED_TO_FAVORITES',
+  props<{ goodsItemId: string }>()
+);
+
+export const moveToFavoritesFailed = createAction(
+  'MOVE_TO_FAVORITES_FAILED',
+  props<{ error: Error }>()
+);
+
+export const removeFromFavorites = createAction(
+  'REMOVE_FROM_FAVORITES',
+  props<{ goodsItemId: string }>()
+);
+
+export const removedFromFavorites = createAction(
+  'REMOVED_FROM_FAVORITES',
+  props<{ goodsItemId: string }>()
+);
+
+export const removeFromFavoritesFailed = createAction(
+  'REMOVE_FROM_FAVORITES_FAILED',
+  props<{ error: Error }>()
+);

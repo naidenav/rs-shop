@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { getUserInfo, setToken } from 'src/app/redux/actions/user-profile.actions';
+import { isCategoriesPanelOpenSelector } from 'src/app/redux/selectors/categories.selectors';
 import { errorSelector, tokenSelector } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 
@@ -30,5 +31,12 @@ export class HeaderComponent implements OnInit {
     this.store.select(errorSelector).subscribe((error) => {
       if (error !== '') this.notificationService.showNotification(error);
     });
+    this.store
+      .select(isCategoriesPanelOpenSelector)
+      .subscribe((open) =>
+        open
+          ? document.body.classList.add('no-scrollable')
+          : document.body.classList.remove('no-scrollable')
+      );
   }
 }

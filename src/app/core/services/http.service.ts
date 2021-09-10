@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { PATH } from 'src/app/constants';
 import { ICategory } from 'src/app/shared/models/categories.model';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
@@ -20,7 +20,7 @@ export class HttpService {
     login: string;
     password: string;
   }) {
-    return this.http.post<{ token: string }>(`${PATH.register}`, user).pipe(
+    return this.http.post<{ token: string }>(PATH.register, user).pipe(
       catchError((error) => {
         return this.handleError(error);
       })
@@ -28,7 +28,7 @@ export class HttpService {
   }
 
   public loginUser(user: { login: string; password: string }) {
-    return this.http.post<{ token: string }>(`${PATH.login}`, user).pipe(
+    return this.http.post<{ token: string }>(PATH.login, user).pipe(
       catchError((error) => {
         return this.handleError(error);
       })
@@ -39,7 +39,7 @@ export class HttpService {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
     return this.http
-      .get<IUserProfile>(`${PATH.userInfo}`, {
+      .get<IUserProfile>(PATH.userInfo, {
         headers,
       })
       .pipe(
@@ -50,7 +50,7 @@ export class HttpService {
   }
 
   public getCategories() {
-    return this.http.get<ICategory[]>(`${PATH.categories}`).pipe(
+    return this.http.get<ICategory[]>(PATH.categories).pipe(
       catchError((error) => {
         return this.handleError(error);
       })
@@ -67,17 +67,38 @@ export class HttpService {
       );
   }
 
-  // public moveToBasket(goodsItemId: string) {
-  //   return this.http
-  //     .get<IGoodsItem[]>(
-  //       `${environment.SERVER_URL}${PATH.category}/${categoryId}/${subcategoryId}`
-  //     )
-  //     .pipe(
-  //       catchError((error) => {
-  //         return this.handleError(error);
-  //       })
-  //     );
-  // }
+  public moveToBasket(goodsItemId: string) {
+    return this.http.post(PATH.basket, { id: goodsItemId }).pipe(
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
+  public removeFromBasket(goodsItemId: string) {
+    return this.http.delete<string>(`${PATH.basket}?id=${goodsItemId}`).pipe(
+      map(() => of('d')),
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
+  public moveToFavorites(goodsItemId: string) {
+    return this.http.post<void>(PATH.favorites, { id: goodsItemId }).pipe(
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
+  public removeFromFavorites(goodsItemId: string) {
+    return this.http.delete<void>(`${PATH.favorites}?id=${goodsItemId}`).pipe(
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
 
   private handleError(err: HttpErrorResponse) {
     if (err.error instanceof Error) {

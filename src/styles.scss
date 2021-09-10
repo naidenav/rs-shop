@@ -34,18 +34,22 @@ body {
   color: var(--theme-color);
 }
 
+.no-scrollable {
+  overflow: hidden;
+}
+
 ::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+}
+::-webkit-scrollbar-button:vertical:start:decrement {
   display: none;
 }
-// ::-webkit-scrollbar-thumb {
-//   background-color: var(--bg-sidebar);
-// }
-// ::-webkit-scrollbar-button:vertical:start:decrement {
-//   display: none;
-// }
-// ::-webkit-scrollbar-button:vertical:end:increment {
-//   display: none;
-// }
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
 
 .mat-snack-bar-container {
   color: white;
@@ -55,7 +59,6 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-  user-select: none;
   &:focus {
     outline: none;
   }
@@ -67,7 +70,10 @@ a {
   }
 }
 
-button {
+button,
+a,
+.mat-icon,
+p {
   user-select: none;
 }
 

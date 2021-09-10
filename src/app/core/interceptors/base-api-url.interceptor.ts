@@ -12,7 +12,7 @@ export class BaseApiUrlInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (!request.url.includes('sypexgeo.net')) {
+    if (!request.url.includes('sypexgeo')) {
       return next.handle(
         request.clone({
           url: `${environment.SERVER_URL}${request.url}`,
