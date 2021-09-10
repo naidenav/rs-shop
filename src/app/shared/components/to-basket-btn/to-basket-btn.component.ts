@@ -8,12 +8,12 @@ import { basketSelector } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 
 @Component({
-  selector: 'app-basket-btn',
-  templateUrl: './basket-btn.component.html',
-  styleUrls: ['./basket-btn.component.scss'],
+  selector: 'app-to-basket-btn',
+  templateUrl: './to-basket-btn.component.html',
+  styleUrls: ['./to-basket-btn.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasketBtnComponent implements OnInit, OnDestroy {
+export class ToBasketBtnComponent implements OnInit, OnDestroy {
   @Input() public goodsItemId!: string;
 
   public inBasketSub: Subscription = new Subscription();

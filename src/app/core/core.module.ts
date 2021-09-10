@@ -40,6 +40,7 @@ import {
 import { SearchInputComponent } from './components/header/search-input/search-input.component';
 import { ApiTokenInterceptor } from './interceptors/api-token.interceptor';
 import { BaseApiUrlInterceptor } from './interceptors/base-api-url.interceptor';
+import { BasketBtnComponent } from './components/header/basket-btn/basket-btn.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { BaseApiUrlInterceptor } from './interceptors/base-api-url.interceptor';
     CategoriesSidebarItemComponent,
     CategoriesBtnComponent,
     SubcategoryItemComponent,
+    BasketBtnComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,28 @@
+:host {
+  position: relative;
+  &:hover {
+    .number-of-goods {
+      color: var(--color-4);
+      border-color: var(--color-4);
+    }
+  }
+}
+
+.number-of-goods {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  padding: 1px 6px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--theme-color);
+  border-radius: 12px;
+  border: 2px solid var(--theme-color);
+  background-color: white;
+  transition-duration: 0.1s;
+}

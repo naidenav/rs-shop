@@ -1,0 +1,17 @@
+<a class="navigation-chain-link" [routerLink]="['/']">Главная</a>
+<mat-icon>navigate_next</mat-icon>
+<a class="navigation-chain-link" (click)="openCategory()">{{
+  (category$ | async)?.name
+}}</a>
+<mat-icon *ngIf="urlSegments.length > 3">navigate_next</mat-icon>
+<a
+  *ngIf="urlSegments.length > 4"
+  class="navigation-chain-link"
+  [routerLink]="[
+    '/',
+    'catalog',
+    (category$ | async)?.id,
+    (subCategory$ | async)?.id
+  ]"
+  >{{ (subCategory$ | async)?.name }}</a
+>

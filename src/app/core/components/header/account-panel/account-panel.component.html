@@ -21,10 +21,18 @@
       {{ (userInfo$ | async)?.firstName }} {{ (userInfo$ | async)?.lastName }}
     </p>
     <a class="account-menu-link" mat-menu-item>
-      <mat-icon>shopping_cart</mat-icon>Корзина
+      <mat-icon>shopping_cart</mat-icon>
+      Корзина
+      <div *ngIf="(inBasket$ | async)?.length" class="number-of-goods">
+        {{ (inBasket$ | async)?.length }}
+      </div>
     </a>
     <a class="account-menu-link" mat-menu-item>
-      <mat-icon>favorite_border</mat-icon>Избранные товары
+      <mat-icon>favorite_border</mat-icon>
+      Избранные товары
+      <div *ngIf="(inFavorites$ | async)?.length" class="number-of-goods">
+        {{ (inFavorites$ | async)?.length }}
+      </div>
     </a>
     <a class="account-menu-link" mat-menu-item>
       <mat-icon>visibility</mat-icon>Просмотренные

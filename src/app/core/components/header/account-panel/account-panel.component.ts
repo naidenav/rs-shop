@@ -4,7 +4,9 @@ import { Store } from '@ngrx/store';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { clearUserInfo } from 'src/app/redux/actions/user-profile.actions';
-import { userProfileStateSelector } from 'src/app/redux/selectors/user-profile.selectors';
+import {
+    basketSelector, favoritesSelector, userProfileStateSelector
+} from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IUserProfileState } from 'src/app/redux/state/user-profile.state';
 
@@ -23,6 +25,10 @@ export class AccountPanelComponent implements OnInit {
 
   public userInfo$!: Observable<IUserProfileState>;
 
+  public inFavorites$!: Observable<string[]>;
+
+  public inBasket$!: Observable<string[]>;
+
   public icon$: BehaviorSubject<string> = new BehaviorSubject<string>('login');
 
   constructor(public modal: MatDialog, private store: Store<AppState>) {}
@@ -32,6 +38,8 @@ export class AccountPanelComponent implements OnInit {
     this.userInfo$.subscribe((userInfo) => {
       this.icon$.next(userInfo.isLogged ? 'person' : 'login');
     });
+    this.inBasket$ = this.store.select(basketSelector);
+    this.inFavorites$ = this.store.select(favoritesSelector);
   }
 
   public openModal() {

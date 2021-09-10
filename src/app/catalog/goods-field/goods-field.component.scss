@@ -1,4 +1,5 @@
 :host {
+  z-index: 0;
   padding: 40px 0;
   display: flex;
   flex-direction: column;
@@ -15,13 +16,14 @@
 }
 
 .title {
+  margin-top: 20px;
   font-size: 34px;
   font-weight: 500;
   color: #4f4f4f;
 }
 
 .goods-field {
-  margin-top: 20px;
+  margin-top: 30px;
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

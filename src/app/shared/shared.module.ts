@@ -4,9 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AvailabilityComponent } from './components/availability/availability.component';
-import { BasketBtnComponent } from './components/basket-btn/basket-btn.component';
 import { FavoritesBtnComponent } from './components/favorites-btn/favorites-btn.component';
+import { NavigationChainComponent } from './components/navigation-chain/navigation-chain.component';
 import { RaitingComponent } from './components/raiting/raiting.component';
+import { ToBasketBtnComponent } from './components/to-basket-btn/to-basket-btn.component';
 import {
     AvailableAmountHighlightingDirective
 } from './directives/available-amount-highlighting.directive';
@@ -16,9 +17,10 @@ import { MaterialModule } from './material/material.module';
   declarations: [
     AvailabilityComponent,
     RaitingComponent,
-    BasketBtnComponent,
+    ToBasketBtnComponent,
     FavoritesBtnComponent,
     AvailableAmountHighlightingDirective,
+    NavigationChainComponent,
   ],
   imports: [
     CommonModule,
@@ -35,9 +37,10 @@ import { MaterialModule } from './material/material.module';
     RouterModule,
     AvailabilityComponent,
     RaitingComponent,
-    BasketBtnComponent,
+    ToBasketBtnComponent,
     FavoritesBtnComponent,
     AvailableAmountHighlightingDirective,
+    NavigationChainComponent,
   ],
 })
 export class SharedModule {}

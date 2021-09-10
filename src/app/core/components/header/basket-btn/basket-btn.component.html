@@ -1,0 +1,7 @@
+<app-header-nav-button
+  icon="shopping_cart"
+  title="Корзина"
+></app-header-nav-button>
+<div *ngIf="(inBasket$ | async)?.length" class="number-of-goods">
+  {{ (inBasket$ | async)?.length }}
+</div>
