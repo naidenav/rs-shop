@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { Observable, Subscription } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { RESULTS_COUNT } from 'src/app/constants';
 import {
     getGoods, getMoreGoods, increasePaginationCoefficient, nullifyPaginationCoefficient
@@ -51,7 +51,6 @@ export class GoodsFieldComponent implements OnInit, OnDestroy {
 
     this.paginationCoefficient$ = this.store.select(paginationCoefficient);
     this.subCategoryTitle$ = this.route.params.pipe(
-      tap((params) => console.log(params)),
       switchMap((params) =>
         this.store
           .select(categoriesSelector)

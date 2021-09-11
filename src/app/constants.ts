@@ -6,6 +6,7 @@ export const PATH = {
   basket: '/users/cart',
   categories: '/categories',
   category: '/goods/category',
+  goodsItem: '/goods/item',
 };
 
 export const ROUTES = {

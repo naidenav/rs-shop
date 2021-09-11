@@ -54,6 +54,21 @@ export const getGoodsFailed = createAction(
   props<{ error: Error }>()
 );
 
+export const getGoodsItem = createAction(
+  'GET_GOODS_ITEM',
+  props<{ goodsItemId: string }>()
+);
+
+export const fetchedGoodsItem = createAction(
+  'FETCHED_GOODS_ITEM',
+  props<{ goodsItem: IGoodsItem }>()
+);
+
+export const getGoodsItemFailed = createAction(
+  'GET_GOODS_ITEM_FAILED',
+  props<{ error: Error }>()
+);
+
 export const increasePaginationCoefficient = createAction(
   'INCREASE_PAGINATIONCOEFFICIENT'
 );

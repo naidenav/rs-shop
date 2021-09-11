@@ -40,6 +40,20 @@ export const catalogReducer = createReducer(
     loading: false,
     error: error.message,
   })),
+  on(CatalogActions.getGoodsItem, (state) => ({
+    ...state,
+    loading: true,
+  })),
+  on(CatalogActions.fetchedGoodsItem, (state, { goodsItem }) => ({
+    ...state,
+    loading: false,
+    goodsItem,
+  })),
+  on(CatalogActions.getGoodsItemFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
+  })),
   on(CatalogActions.increasePaginationCoefficient, (state) => ({
     ...state,
     paginationCoefficient: state.paginationCoefficient + 1,

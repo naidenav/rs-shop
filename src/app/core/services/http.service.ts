@@ -77,6 +77,14 @@ export class HttpService {
       );
   }
 
+  public getGoodsItem(goodsItemId: string) {
+    return this.http.get<IGoodsItem>(`${PATH.goodsItem}/${goodsItemId}`).pipe(
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
   public moveToBasket(goodsItemId: string) {
     return this.http.post(PATH.basket, { id: goodsItemId }).pipe(
       catchError((error) => {

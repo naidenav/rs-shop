@@ -8,8 +8,8 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { IQueryParams } from 'src/app/shared/models/query-params.model';
 
 import {
-    fetchedGoods, fetchedMoreGoods, getGoods, getGoodsFailed, getMoreGoods, noMoreGoods,
-    thereAreMoreGoods
+    fetchedGoods, fetchedGoodsItem, fetchedMoreGoods, getGoods, getGoodsFailed, getGoodsItem,
+    getGoodsItemFailed, getMoreGoods, noMoreGoods, thereAreMoreGoods
 } from '../actions/catalog.actions';
 
 @Injectable()
@@ -78,6 +78,18 @@ export class CatalogEffects {
             ),
             catchError((error) => of(getGoodsFailed({ error })))
           )
+      )
+    )
+  );
+
+  getGoodsItem: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getGoodsItem),
+      switchMap((props) =>
+        this.httpService.getGoodsItem(props.goodsItemId).pipe(
+          map((goodsItem) => fetchedGoodsItem({ goodsItem })),
+          catchError((error) => of(getGoodsItemFailed({ error })))
+        )
       )
     )
   );

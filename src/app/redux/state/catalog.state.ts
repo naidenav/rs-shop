@@ -5,6 +5,7 @@ export interface ICatalogState {
   goods: IGoodsItem[];
   areThereMoreGoods: boolean;
   paginationCoefficient: number;
+  goodsItem: IGoodsItem;
   loading: boolean;
   error: string;
   sortingDirection: string;
@@ -16,6 +17,7 @@ export const initialCatalogState: ICatalogState = {
   goods: [],
   areThereMoreGoods: true,
   paginationCoefficient: 0,
+  goodsItem: {} as IGoodsItem,
   loading: false,
   error: '',
   sortingDirection: '',

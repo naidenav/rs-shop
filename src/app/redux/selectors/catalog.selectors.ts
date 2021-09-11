@@ -47,3 +47,8 @@ export const areThereMoreGoods = createSelector(
   catalogStateSelector,
   (state) => state.areThereMoreGoods
 );
+
+export const goodsItem = createSelector(
+  catalogStateSelector,
+  (state) => state.goodsItem
+);

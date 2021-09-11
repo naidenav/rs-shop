@@ -6,6 +6,8 @@ export interface IGoodsItem {
   price: number;
   rating: number;
   description: number;
+  category?: string;
+  subCategory?: string;
 }
 
 export interface IGoodsResponse {

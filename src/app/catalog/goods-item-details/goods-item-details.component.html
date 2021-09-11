@@ -1,0 +1,5 @@
+<app-navigation-chain
+  [routeParams]="(routeParams$ | async) || []"
+  [goodsItem]="(goodsItem$ | async) || goodsItem"
+></app-navigation-chain>
+<h2 class="goods-item__title">{{ (goodsItem$ | async)?.name }}</h2>

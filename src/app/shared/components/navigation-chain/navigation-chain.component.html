@@ -3,9 +3,9 @@
 <a class="navigation-chain-link" (click)="openCategory()">{{
   (category$ | async)?.name
 }}</a>
-<mat-icon *ngIf="urlSegments.length > 3">navigate_next</mat-icon>
+<mat-icon *ngIf="routeParams.goodsItemId">navigate_next</mat-icon>
 <a
-  *ngIf="urlSegments.length > 4"
+  *ngIf="routeParams.goodsItemId"
   class="navigation-chain-link"
   [routerLink]="[
     '/',

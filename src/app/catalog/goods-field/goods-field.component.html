@@ -1,5 +1,7 @@
 <div class="wrapper">
-  <app-navigation-chain></app-navigation-chain>
+  <app-navigation-chain
+    [routeParams]="(params$ | async) || []"
+  ></app-navigation-chain>
   <h2 class="title">{{ subCategoryTitle$ | async }}</h2>
   <app-sorting-panel></app-sorting-panel>
   <div class="goods-field">
