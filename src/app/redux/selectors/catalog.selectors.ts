@@ -37,3 +37,13 @@ export const sortingCriterion = createSelector(
   catalogStateSelector,
   (state) => state.sortingCriterion
 );
+
+export const paginationCoefficient = createSelector(
+  catalogStateSelector,
+  (state) => state.paginationCoefficient
+);
+
+export const areThereMoreGoods = createSelector(
+  catalogStateSelector,
+  (state) => state.areThereMoreGoods
+);

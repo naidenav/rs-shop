@@ -1,16 +1,20 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { Observable, Subscription } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { getGoods } from 'src/app/redux/actions/catalog.actions';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { RESULTS_COUNT } from 'src/app/constants';
 import {
-    goodsSelector, sortingCriterion, sortingDirection
+    getGoods, getMoreGoods, increasePaginationCoefficient, nullifyPaginationCoefficient
+} from 'src/app/redux/actions/catalog.actions';
+import {
+    areThereMoreGoods, goodsSelector, paginationCoefficient, sortingCriterion, sortingDirection
 } from 'src/app/redux/selectors/catalog.selectors';
 import { categoriesSelector } from 'src/app/redux/selectors/categories.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
+import { IQueryParams } from 'src/app/shared/models/query-params.model';
 
 @Component({
   selector: 'app-goods-field',
@@ -19,19 +23,35 @@ import { IGoodsItem } from 'src/app/shared/models/goods.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoodsFieldComponent implements OnInit, OnDestroy {
+  public paramsSub: Subscription = new Subscription();
+  public params!: Params;
+  public params$!: Observable<Params>;
+
   public subCategoryTitle$!: Observable<string | undefined>;
-
+  public paginationCoefficient$!: Observable<number>;
   public goods$!: Observable<IGoodsItem[]>;
-
   public sortingDirection$!: Observable<string>;
   public sortingCriterion$!: Observable<string>;
+  public areThereMoreGoods$!: Observable<boolean>;
 
-  private paramsSub: Subscription = new Subscription();
+  private paginationCoefficient!: number;
+
+  private paginationCoefficientSub: Subscription = new Subscription();
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
+    this.params$ = this.route.params;
+    this.paramsSub = this.params$.subscribe((params) => {
+      this.store.dispatch(nullifyPaginationCoefficient());
+      this.params = params;
+    });
+
+    this.areThereMoreGoods$ = this.store.select(areThereMoreGoods);
+
+    this.paginationCoefficient$ = this.store.select(paginationCoefficient);
     this.subCategoryTitle$ = this.route.params.pipe(
+      tap((params) => console.log(params)),
       switchMap((params) =>
         this.store
           .select(categoriesSelector)
@@ -48,14 +68,30 @@ export class GoodsFieldComponent implements OnInit, OnDestroy {
       )
     );
 
-    this.paramsSub = this.route.params.subscribe((params) =>
+    this.paginationCoefficientSub = this.paginationCoefficient$.subscribe(
+      (coefficient) => (this.paginationCoefficient = coefficient)
+    );
+
+    this.paramsSub = this.route.params.subscribe((params) => {
+      const queryParams: IQueryParams[] = [
+        {
+          key: 'start',
+          value: '0',
+        },
+        {
+          key: 'count',
+          value: RESULTS_COUNT + '',
+        },
+      ];
       this.store.dispatch(
         getGoods({
           categoryId: params.categoryId,
           subCategoryId: params.subCategoryId,
+          queryParams,
         })
-      )
-    );
+      );
+      this.store.dispatch(increasePaginationCoefficient());
+    });
 
     this.goods$ = this.store.select(goodsSelector);
 
@@ -63,7 +99,30 @@ export class GoodsFieldComponent implements OnInit, OnDestroy {
     this.sortingCriterion$ = this.store.select(sortingCriterion);
   }
 
+  public showMore(): void {
+    const queryParams: IQueryParams[] = [
+      {
+        key: 'start',
+        value: RESULTS_COUNT * this.paginationCoefficient + '',
+      },
+      {
+        key: 'count',
+        value: RESULTS_COUNT + '',
+      },
+    ];
+
+    this.store.dispatch(
+      getMoreGoods({
+        categoryId: this.params.categoryId,
+        subCategoryId: this.params.subCategoryId,
+        queryParams,
+      })
+    );
+    this.store.dispatch(increasePaginationCoefficient());
+  }
+
   public ngOnDestroy(): void {
     this.paramsSub.unsubscribe();
+    this.paginationCoefficientSub.unsubscribe();
   }
 }

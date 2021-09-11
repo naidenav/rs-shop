@@ -21,3 +21,5 @@ export const SORTING_CRITERION = {
   price: 'price',
   rating: 'rating',
 };
+
+export const RESULTS_COUNT = 10;

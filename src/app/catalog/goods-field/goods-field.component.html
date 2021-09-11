@@ -13,4 +13,11 @@
       [goodsItem]="item"
     ></app-goods-item>
   </div>
+  <button
+    *ngIf="areThereMoreGoods$ | async"
+    class="more-btn"
+    (click)="showMore()"
+  >
+    Показать больше
+  </button>
 </div>

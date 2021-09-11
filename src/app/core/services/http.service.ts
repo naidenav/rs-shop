@@ -6,7 +6,9 @@ import { catchError, map } from 'rxjs/operators';
 import { PATH } from 'src/app/constants';
 import { ICategory } from 'src/app/shared/models/categories.model';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
+import { IQueryParams } from 'src/app/shared/models/query-params.model';
 import { IUserProfile } from 'src/app/shared/models/user-profile.model';
+import { getQueryParams } from 'src/app/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -57,9 +59,17 @@ export class HttpService {
     );
   }
 
-  public getGoods(categoryId: string, subcategoryId: string = '') {
+  public getGoods(
+    categoryId: string,
+    subcategoryId: string = '',
+    queryParams?: IQueryParams[]
+  ) {
+    const params = getQueryParams(queryParams);
+
     return this.http
-      .get<IGoodsItem[]>(`${PATH.category}/${categoryId}/${subcategoryId}`)
+      .get<IGoodsItem[]>(
+        `${PATH.category}/${categoryId}/${subcategoryId}${params}`
+      )
       .pipe(
         catchError((error) => {
           return this.handleError(error);
