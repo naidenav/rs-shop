@@ -1,0 +1,27 @@
+<div class="slider-preview">
+  <div
+    *ngFor="let imageUrl of options.imagesUrls; let index = index"
+    [class.preview_active]="options.activeSlide === index"
+    [class.disable]="!isEnable"
+    class="slider-preview__image"
+    (click)="slide(index)"
+  >
+    <img [src]="imageUrl" alt="preview" />
+  </div>
+</div>
+<div class="slider-image">
+  <div
+    *ngFor="let imageUrl of options.imagesUrls; let index = index"
+    class="slider-image__image-slide"
+    [class.next-slide]="options.nextSlide === index"
+    [class.prev-slide]="options.prevSlide === index"
+    [class.active-slide]="options.activeSlide === index"
+    [class.to-up]="options.toUp === index"
+    [class.to-down]="options.toDown === index"
+    [class.from-up]="options.fromUp === index"
+    [class.from-down]="options.fromDown === index"
+    (animationend)="checkClass($event, index)"
+  >
+    <img [src]="imageUrl" alt="image" />
+  </div>
+</div>

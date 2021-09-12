@@ -1,5 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
+import { IGoodsItem } from 'src/app/shared/models/goods.model';
+
 import * as CatalogActions from '../actions/catalog.actions';
 import { initialCatalogState } from '../state/catalog.state';
 
@@ -43,6 +45,10 @@ export const catalogReducer = createReducer(
   on(CatalogActions.getGoodsItem, (state) => ({
     ...state,
     loading: true,
+  })),
+  on(CatalogActions.removeGoodsItem, (state) => ({
+    ...state,
+    goodsItem: {} as IGoodsItem,
   })),
   on(CatalogActions.fetchedGoodsItem, (state, { goodsItem }) => ({
     ...state,

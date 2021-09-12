@@ -59,6 +59,8 @@ export const getGoodsItem = createAction(
   props<{ goodsItemId: string }>()
 );
 
+export const removeGoodsItem = createAction('REMOVE_GOODS_ITEM');
+
 export const fetchedGoodsItem = createAction(
   'FETCHED_GOODS_ITEM',
   props<{ goodsItem: IGoodsItem }>()

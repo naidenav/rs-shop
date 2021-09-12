@@ -1,5 +1,9 @@
-<app-navigation-chain
-  [routeParams]="(routeParams$ | async) || []"
-  [goodsItem]="(goodsItem$ | async) || goodsItem"
-></app-navigation-chain>
-<h2 class="goods-item__title">{{ (goodsItem$ | async)?.name }}</h2>
+<div class="wrapper">
+  <app-navigation-chain
+    [routeParams]="(routeParams$ | async) || []"
+  ></app-navigation-chain>
+  <h2 class="goods-item__title">{{ (goodsItem$ | async)?.name }}</h2>
+  <app-goods-image-slider
+    [imagesUrls]="(goodsItem$ | async)?.imageUrls || []"
+  ></app-goods-image-slider>
+</div>

@@ -1,3 +1,5 @@
+import { ISliderOptions } from './shared/models/slider-options.model';
+
 export const PATH = {
   register: '/users/register',
   login: '/users/login',
@@ -24,3 +26,14 @@ export const SORTING_CRITERION = {
 };
 
 export const RESULTS_COUNT = 10;
+
+export const DEFAULT_SLIDER_OPTIONS: ISliderOptions = {
+  imagesUrls: [],
+  activeSlide: 0,
+  toUp: null,
+  toDown: null,
+  fromUp: null,
+  fromDown: null,
+  nextSlide: null,
+  prevSlide: null,
+};

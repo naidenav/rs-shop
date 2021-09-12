@@ -8,8 +8,7 @@
   *ngIf="routeParams.goodsItemId"
   class="navigation-chain-link"
   [routerLink]="[
-    '/',
-    'catalog',
+    '/catalog',
     (category$ | async)?.id,
     (subCategory$ | async)?.id
   ]"

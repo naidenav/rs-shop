@@ -3,10 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import {
     changeActiveCategory, openCategoriesPanel
 } from 'src/app/redux/actions/categories.actions';
+import { goodsItem } from 'src/app/redux/selectors/catalog.selectors';
 import { categoriesSelector } from 'src/app/redux/selectors/categories.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 
@@ -21,27 +22,43 @@ import { IGoodsItem } from '../../models/goods.model';
 })
 export class NavigationChainComponent implements OnInit, OnDestroy {
   @Input() public routeParams!: Params;
-  @Input() public goodsItem!: IGoodsItem;
+  public goodsItem$!: Observable<IGoodsItem>;
   public category$!: Observable<ICategory | undefined>;
   public subCategory$!: Observable<ISubCategory | undefined>;
 
   private categories$!: Observable<ICategory[]>;
+  private category!: ICategory | undefined;
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.categories$ = this.store.select(categoriesSelector);
+    this.goodsItem$ = this.store.select(goodsItem);
 
-    this.category$ = this.categories$.pipe(
-      map((categories) =>
-        categories.find((item) => item.id === this.routeParams.categoryId)
+    this.category$ = this.goodsItem$.pipe(
+      switchMap((goodsItem) =>
+        this.categories$.pipe(
+          map((categories) =>
+            categories.find(
+              (item) =>
+                item.id === (this.routeParams.categoryId || goodsItem.category)
+            )
+          )
+        )
       )
     );
 
     this.subCategory$ = this.category$.pipe(
-      map((category) =>
-        category?.subCategories.find(
-          (item) => item.id === this.routeParams.subCategoryId
+      tap((category) => (this.category = category)),
+      switchMap((category) =>
+        this.goodsItem$.pipe(
+          map((item) =>
+            category?.subCategories.find(
+              (subCategory) =>
+                subCategory.id ===
+                (item.subCategory || this.routeParams.subCategoryId)
+            )
+          )
         )
       )
     );
@@ -49,9 +66,8 @@ export class NavigationChainComponent implements OnInit, OnDestroy {
 
   public openCategory(): void {
     this.store.dispatch(openCategoriesPanel());
-    this.store.dispatch(
-      changeActiveCategory({ category: this.routeParams.categoryId })
-    );
+    if (this.category)
+      this.store.dispatch(changeActiveCategory({ category: this.category.id }));
   }
 
   public ngOnDestroy(): void {}

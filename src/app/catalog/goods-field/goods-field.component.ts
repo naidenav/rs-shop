@@ -6,7 +6,8 @@ import { Observable, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { RESULTS_COUNT } from 'src/app/constants';
 import {
-    getGoods, getMoreGoods, increasePaginationCoefficient, nullifyPaginationCoefficient
+    getGoods, getMoreGoods, increasePaginationCoefficient, nullifyPaginationCoefficient,
+    removeGoodsItem
 } from 'src/app/redux/actions/catalog.actions';
 import {
     areThereMoreGoods, goodsSelector, paginationCoefficient, sortingCriterion, sortingDirection
@@ -41,6 +42,7 @@ export class GoodsFieldComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
+    this.store.dispatch(removeGoodsItem());
     this.params$ = this.route.params;
     this.paramsSub = this.params$.subscribe((params) => {
       this.store.dispatch(nullifyPaginationCoefficient());
