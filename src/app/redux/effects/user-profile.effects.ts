@@ -145,7 +145,7 @@ export class UserProfileEffects {
       }),
       switchMap((props) =>
         this.httpService.removeFromFavorites(props.goodsItemId).pipe(
-          map((id) => removedFromFavorites({ goodsItemId: props.goodsItemId })),
+          map(() => removedFromFavorites({ goodsItemId: props.goodsItemId })),
           catchError((error) => of(removeFromFavoritesFailed({ error })))
         )
       )

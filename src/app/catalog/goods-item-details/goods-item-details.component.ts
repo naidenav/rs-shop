@@ -15,15 +15,18 @@ import { IGoodsItem } from 'src/app/shared/models/goods.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoodsItemDetailsComponent implements OnInit, OnDestroy {
-  public goodsItem$!: Observable<IGoodsItem>;
+  public goodsItem!: IGoodsItem;
   public routeParams$!: Observable<Params>;
 
+  private goodsItemSub: Subscription = new Subscription();
   private routeParamsSub: Subscription = new Subscription();
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.goodsItem$ = this.store.select(goodsItem);
+    this.goodsItemSub = this.store
+      .select(goodsItem)
+      .subscribe((item) => (this.goodsItem = item));
     this.routeParams$ = this.route.params;
     this.routeParamsSub = this.route.params.subscribe((params: Params) =>
       this.store.dispatch(getGoodsItem({ goodsItemId: params.goodsItemId }))
@@ -31,6 +34,7 @@ export class GoodsItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
+    this.goodsItemSub.unsubscribe();
     this.routeParamsSub.unsubscribe();
   }
 }

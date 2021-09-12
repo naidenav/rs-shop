@@ -1,5 +1,5 @@
 :host {
-  padding-bottom: 40px;
+  padding-bottom: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +17,64 @@ app-navigation-chain {
   color: #4f4f4f;
 }
 
-app-goods-image-slider {
+.goods-item__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.goods-item__control {
   margin-top: 20px;
+  margin-left: 40px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border-left: 2px solid #888888;
+  .price {
+    font-size: 36px;
+    color: #333;
+  }
+  .currency {
+    font-size: 24px;
+    color: #333;
+  }
+  app-availability {
+    margin-top: 20px;
+  }
+  app-raiting {
+    margin-top: 5px;
+  }
+  app-to-basket-btn {
+    margin-top: 20px;
+  }
+  app-favorites-btn {
+    margin-top: 5px;
+  }
+}
+
+app-goods-image-slider {
+  margin-top: 40px;
+  width: 60%;
+}
+
+.goods-item__description {
+  margin-top: 60px;
+  width: 100%;
+  .description-title {
+    padding-bottom: 3px;
+    display: inline-block;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 1px solid #4f4f4f;
+  }
+  .description-content {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #4f4f4f;
+    text-align: justify;
+  }
 }

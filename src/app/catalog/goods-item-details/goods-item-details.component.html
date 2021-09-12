@@ -2,8 +2,26 @@
   <app-navigation-chain
     [routeParams]="(routeParams$ | async) || []"
   ></app-navigation-chain>
-  <h2 class="goods-item__title">{{ (goodsItem$ | async)?.name }}</h2>
-  <app-goods-image-slider
-    [imagesUrls]="(goodsItem$ | async)?.imageUrls || []"
-  ></app-goods-image-slider>
+  <h2 class="goods-item__title">{{ goodsItem.name }}</h2>
+  <div class="goods-item__wrapper">
+    <app-goods-image-slider
+      [imagesUrls]="goodsItem.imageUrls || []"
+    ></app-goods-image-slider>
+    <div class="goods-item__control">
+      <p class="price">
+        {{ goodsItem.price | number: "1.2-2" }} <span class="currency">р.</span>
+      </p>
+      <app-availability
+        [appAvailableAmountHighlighting]="goodsItem.availableAmount"
+        [availableAmount]="goodsItem.availableAmount"
+      ></app-availability>
+      <app-raiting [rating]="goodsItem.rating"></app-raiting>
+      <app-to-basket-btn [goodsItemId]="goodsItem.id"></app-to-basket-btn>
+      <app-favorites-btn [goodsItemId]="goodsItem.id"></app-favorites-btn>
+    </div>
+  </div>
+  <div class="goods-item__description">
+    <p class="description-title">Описание товара</p>
+    <p class="description-content">{{ goodsItem.description }}</p>
+  </div>
 </div>
