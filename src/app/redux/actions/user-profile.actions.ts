@@ -39,6 +39,10 @@ export const loginFalied = createAction(
   props<{ error: Error }>()
 );
 
+export const openLoginModal = createAction('OPEN_LOGIN_MODAL');
+
+export const closeLoginModal = createAction('CLOSE_LOGIN_MODAL');
+
 export const getUserInfo = createAction(
   'GET_USER_INFO',
   props<{ token: string }>()

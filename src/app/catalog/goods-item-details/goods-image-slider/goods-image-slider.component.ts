@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
 import { DEFAULT_SLIDER_OPTIONS } from 'src/app/constants';
@@ -8,15 +8,21 @@ import { ISliderOptions } from 'src/app/shared/models/slider-options.model';
   selector: 'app-goods-image-slider',
   templateUrl: './goods-image-slider.component.html',
   styleUrls: ['./goods-image-slider.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GoodsImageSliderComponent implements OnInit {
+  @Input() public isBestSeller!: boolean;
+  @Input() set imagesUrls(imagesUrls: string[]) {
+    this.options = {
+      ...DEFAULT_SLIDER_OPTIONS,
+      imagesUrls: imagesUrls.length
+        ? imagesUrls
+        : ['../../../../assets/logo.png'],
+    };
+  }
+
   public options!: ISliderOptions;
   public isEnable: boolean = true;
-
-  @Input() set imagesUrls(imagesUrls: string[]) {
-    this.options = { ...DEFAULT_SLIDER_OPTIONS, imagesUrls };
-  }
 
   public activeSlide$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 

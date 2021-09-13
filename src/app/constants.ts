@@ -1,6 +1,7 @@
 import { ISliderOptions } from './shared/models/slider-options.model';
 
 export const PATH = {
+  search: '/goods/search',
   register: '/users/register',
   login: '/users/login',
   userInfo: '/users/userInfo',

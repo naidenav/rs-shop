@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
-import { BehaviorSubject, Observable } from 'rxjs';
-import { clearUserInfo } from 'src/app/redux/actions/user-profile.actions';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { clearUserInfo, closeLoginModal } from 'src/app/redux/actions/user-profile.actions';
 import {
-    basketSelector, favoritesSelector, userProfileStateSelector
+    basketSelector, favoritesSelector, isLoggedSelector, isLoginModalOpened, userInfoSelector
 } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
-import { IUserProfileState } from 'src/app/redux/state/user-profile.state';
+import { IUserProfile } from 'src/app/shared/models/user-profile.model';
 
 import {
     ModalLoginContentComponent
@@ -23,7 +23,9 @@ import {
 export class AccountPanelComponent implements OnInit {
   @ViewChild('arrow', { read: ElementRef }) arrow?: ElementRef;
 
-  public userInfo$!: Observable<IUserProfileState>;
+  public userInfo$!: Observable<IUserProfile>;
+
+  public isLogged$!: Observable<boolean>;
 
   public inFavorites$!: Observable<string[]>;
 
@@ -31,21 +33,33 @@ export class AccountPanelComponent implements OnInit {
 
   public icon$: BehaviorSubject<string> = new BehaviorSubject<string>('login');
 
+  private isLoginModalOpenedSub: Subscription = new Subscription();
+
   constructor(public modal: MatDialog, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.userInfo$ = this.store.select(userProfileStateSelector);
-    this.userInfo$.subscribe((userInfo) => {
-      this.icon$.next(userInfo.isLogged ? 'person' : 'login');
+    this.userInfo$ = this.store.select(userInfoSelector);
+    this.isLogged$ = this.store.select(isLoggedSelector);
+    this.isLogged$.subscribe((isLogged) => {
+      this.icon$.next(isLogged ? 'person' : 'login');
     });
     this.inBasket$ = this.store.select(basketSelector);
     this.inFavorites$ = this.store.select(favoritesSelector);
+    this.isLoginModalOpenedSub = this.store
+      .select(isLoginModalOpened)
+      .subscribe((isOpened) => {
+        if (isOpened) this.openModal();
+      });
   }
 
   public openModal() {
     const modalRef = this.modal.open(ModalLoginContentComponent, {
       autoFocus: false,
     });
+
+    modalRef
+      .afterClosed()
+      .subscribe((result) => this.store.dispatch(closeLoginModal()));
   }
 
   public arrowUp() {

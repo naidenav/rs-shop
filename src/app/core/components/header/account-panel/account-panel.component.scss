@@ -9,6 +9,13 @@
   }
 }
 
+.avatar-icon {
+  position: relative;
+  margin-top: 20px;
+  height: 80px;
+  width: 80px;
+}
+
 .arrow {
   position: absolute;
   left: 125px;
@@ -48,8 +55,8 @@
 }
 
 .login-btn {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
   height: 40px;
   width: 100px;
   background-color: var(--theme-color);

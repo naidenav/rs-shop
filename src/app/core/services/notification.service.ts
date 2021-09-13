@@ -9,7 +9,7 @@ export class NotificationService {
 
   public showNotification(message: string): MatSnackBarRef<TextOnlySnackBar> {
     return this.notice.open(message, '', {
-      duration: 5000,
+      duration: 10000,
     });
   }
 }

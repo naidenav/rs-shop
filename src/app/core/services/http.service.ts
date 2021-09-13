@@ -16,6 +16,20 @@ import { getQueryParams } from 'src/app/utils';
 export class HttpService {
   constructor(private http: HttpClient) {}
 
+  public getSearchResults(text: string) {
+    const params = getQueryParams([
+      {
+        key: 'text',
+        value: text,
+      },
+    ]);
+    return this.http.get<IGoodsItem[]>(`${PATH.search}${params}`).pipe(
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
   public registerUser(user: {
     firstName: string;
     lastName: string;
@@ -127,6 +141,6 @@ export class HttpService {
       );
     }
 
-    return throwError('Something bad happened. Please try again later.');
+    return throwError(err);
   }
 }

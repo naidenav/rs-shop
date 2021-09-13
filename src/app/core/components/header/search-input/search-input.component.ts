@@ -1,4 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Event } from '@angular/router';
+
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { debounceTime, delay, filter, switchMap } from 'rxjs/operators';
+import { HttpService } from 'src/app/core/services/http.service';
+import { IGoodsItem } from 'src/app/shared/models/goods.model';
 
 @Component({
   selector: 'app-search-input',
@@ -8,10 +14,41 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class SearchInputComponent implements OnInit {
   public searchInput: string = '';
+  public isSearchVisible$!: Observable<boolean>;
+  public isSearchVisible$$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  public goodsResults$: BehaviorSubject<IGoodsItem[]> = new BehaviorSubject<
+    IGoodsItem[]
+  >([]);
 
-  constructor() {}
+  public listener!: Observable<Event>;
 
-  ngOnInit(): void {}
+  private searchInput$: Subject<string> = new Subject<string>();
 
-  public updateSearchRequest() {}
+  constructor(private http: HttpService, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.isSearchVisible$ = this.isSearchVisible$$
+      .asObservable()
+      .pipe(delay(200));
+    this.searchInput$
+      .pipe(
+        filter((value) => value.length > 2),
+        debounceTime(300),
+        switchMap((value) => this.http.getSearchResults(value))
+      )
+      .subscribe((result) => this.goodsResults$.next(result));
+  }
+
+  public showSearchResults() {
+    this.searchInput$.next(this.searchInput);
+  }
+
+  public showSearchPanel() {
+    this.isSearchVisible$$.next(true);
+  }
+
+  public hideSearchPanel() {
+    this.isSearchVisible$$.next(false);
+  }
 }

@@ -6,6 +6,7 @@
   <div class="goods-item__wrapper">
     <app-goods-image-slider
       [imagesUrls]="goodsItem.imageUrls || []"
+      [isBestSeller]="goodsItem.rating === 5"
     ></app-goods-image-slider>
     <div class="goods-item__control">
       <p class="price">

@@ -23,6 +23,18 @@ export const userProfileReducer = createReducer(
     error: error.message,
     loading: false,
   })),
+  on(UserProfileActions.loginFalied, (state, { error }) => ({
+    ...state,
+    error: error.message,
+  })),
+  on(UserProfileActions.openLoginModal, (state) => ({
+    ...state,
+    loginModalOpened: true,
+  })),
+  on(UserProfileActions.closeLoginModal, (state) => ({
+    ...state,
+    loginModalOpened: false,
+  })),
   on(UserProfileActions.getUserInfo, (state) => ({
     ...state,
     loading: true,

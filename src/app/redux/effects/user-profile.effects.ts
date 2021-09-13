@@ -5,7 +5,7 @@ import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/services/http.service';
-import { getUserInfoFromLocalStorage, setUserInfoToLocalStorage } from 'src/app/utils';
+import { setUserInfoToLocalStorage } from 'src/app/utils';
 
 import {
     addedToBasket, addedToFavorites, fetchedUserInfo, getUserInfo, getUserInfoFailed, loginFalied,
@@ -74,15 +74,11 @@ export class UserProfileEffects {
   moveToBasket: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(moveToBasket),
-      tap((props) => {
-        const userInfo = getUserInfoFromLocalStorage();
-        console.log(userInfo.cart, props.goodsItemId);
-
-        userInfo.cart.push(props.goodsItemId);
-        console.log(userInfo.cart, props.goodsItemId);
-
-        setUserInfoToLocalStorage(userInfo);
-      }),
+      // tap((props) => {
+      //   const userInfo = getUserInfoFromLocalStorage();
+      //   userInfo.cart.push(props.goodsItemId);
+      //   setUserInfoToLocalStorage(userInfo);
+      // }),
       switchMap((props) =>
         this.httpService.moveToBasket(props.goodsItemId).pipe(
           map(() => addedToBasket({ goodsItemId: props.goodsItemId })),
@@ -95,17 +91,13 @@ export class UserProfileEffects {
   removeFromBasket: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(removeFromBasket),
-      tap((props) => {
-        const userInfo = getUserInfoFromLocalStorage();
-        console.log(userInfo.cart);
-
-        userInfo.cart = [...userInfo.cart].filter(
-          (id) => id !== props.goodsItemId
-        );
-        console.log(userInfo.cart);
-
-        setUserInfoToLocalStorage(userInfo);
-      }),
+      // tap((props) => {
+      //   const userInfo = getUserInfoFromLocalStorage();
+      //   userInfo.cart = [...userInfo.cart].filter(
+      //     (id) => id !== props.goodsItemId
+      //   );
+      //   setUserInfoToLocalStorage(userInfo);
+      // }),
       switchMap((props) =>
         this.httpService.removeFromBasket(props.goodsItemId).pipe(
           tap((i) => console.log(i)),
@@ -119,11 +111,11 @@ export class UserProfileEffects {
   moveToFavorites: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(moveToFavorites),
-      tap((props) => {
-        const userInfo = getUserInfoFromLocalStorage();
-        userInfo.favorites.push(props.goodsItemId);
-        setUserInfoToLocalStorage(userInfo);
-      }),
+      // tap((props) => {
+      //   const userInfo = getUserInfoFromLocalStorage();
+      //   userInfo.favorites.push(props.goodsItemId);
+      //   setUserInfoToLocalStorage(userInfo);
+      // }),
       switchMap((props) =>
         this.httpService.moveToFavorites(props.goodsItemId).pipe(
           map(() => addedToFavorites({ goodsItemId: props.goodsItemId })),
@@ -136,13 +128,13 @@ export class UserProfileEffects {
   removeFromFavorites: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(removeFromFavorites),
-      tap((props) => {
-        const userInfo = getUserInfoFromLocalStorage();
-        userInfo.favorites = [...userInfo.favorites].filter(
-          (id) => id !== props.goodsItemId
-        );
-        setUserInfoToLocalStorage(userInfo);
-      }),
+      // tap((props) => {
+      //   const userInfo = getUserInfoFromLocalStorage();
+      //   userInfo.favorites = [...userInfo.favorites].filter(
+      //     (id) => id !== props.goodsItemId
+      //   );
+      //   setUserInfoToLocalStorage(userInfo);
+      // }),
       switchMap((props) =>
         this.httpService.removeFromFavorites(props.goodsItemId).pipe(
           map(() => removedFromFavorites({ goodsItemId: props.goodsItemId })),

@@ -3,8 +3,10 @@ import { Store } from '@ngrx/store';
 
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { moveToBasket, removeFromBasket } from 'src/app/redux/actions/user-profile.actions';
-import { basketSelector } from 'src/app/redux/selectors/user-profile.selectors';
+import {
+    moveToBasket, openLoginModal, removeFromBasket
+} from 'src/app/redux/actions/user-profile.actions';
+import { basketSelector, isLoggedSelector } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 
 @Component({
@@ -22,9 +24,16 @@ export class ToBasketBtnComponent implements OnInit, OnDestroy {
 
   public inBasket$!: Observable<boolean>;
 
+  private isLogged!: boolean;
+
+  private isLoggedSub: Subscription = new Subscription();
+
   constructor(private store: Store<AppState>) {}
 
   public ngOnInit(): void {
+    this.isLoggedSub = this.store
+      .select(isLoggedSelector)
+      .subscribe((isLogged) => (this.isLogged = isLogged));
     this.inBasketSub = this.store
       .select(basketSelector)
       .pipe(
@@ -44,7 +53,10 @@ export class ToBasketBtnComponent implements OnInit, OnDestroy {
   }
 
   public basketHandler() {
-    console.log(this.inBasket);
+    if (!this.isLogged) {
+      this.store.dispatch(openLoginModal());
+      return;
+    }
     if (this.inBasket) {
       this.store.dispatch(removeFromBasket({ goodsItemId: this.goodsItemId }));
     } else {
@@ -54,5 +66,6 @@ export class ToBasketBtnComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.inBasketSub.unsubscribe();
+    this.isLoggedSub.unsubscribe();
   }
 }

@@ -23,6 +23,11 @@ export const isLoggedSelector = createSelector(
   (state) => state.isLogged
 );
 
+export const isLoginModalOpened = createSelector(
+  userProfileStateSelector,
+  (state) => state.loginModalOpened
+);
+
 export const errorSelector = createSelector(
   userProfileStateSelector,
   (state) => state.error

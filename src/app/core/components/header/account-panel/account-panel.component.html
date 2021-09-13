@@ -8,8 +8,11 @@
 <div class="arrow" #arrow></div>
 <mat-menu #accountMenu="matMenu" xPosition="before">
   <div class="mat-menu-wrapper">
+    <div class="avatar-icon" *ngIf="!(isLogged$ | async)">
+      <img src="../../../../../assets/icons/user.svg" alt="avatar" />
+    </div>
     <button
-      *ngIf="!(userInfo$ | async)?.isLogged"
+      *ngIf="!(isLogged$ | async)"
       mat-raised-button
       color="primary"
       class="login-btn"
@@ -17,31 +20,31 @@
     >
       Войти
     </button>
-    <p *ngIf="(userInfo$ | async)?.isLogged" class="user-name">
+    <p *ngIf="isLogged$ | async" class="user-name">
       {{ (userInfo$ | async)?.firstName }} {{ (userInfo$ | async)?.lastName }}
     </p>
-    <a class="account-menu-link" mat-menu-item>
+    <a class="account-menu-link" mat-menu-item *ngIf="isLogged$ | async">
       <mat-icon>shopping_cart</mat-icon>
       Корзина
       <div *ngIf="(inBasket$ | async)?.length" class="number-of-goods">
         {{ (inBasket$ | async)?.length }}
       </div>
     </a>
-    <a class="account-menu-link" mat-menu-item>
+    <a class="account-menu-link" mat-menu-item *ngIf="isLogged$ | async">
       <mat-icon>favorite_border</mat-icon>
       Избранные товары
       <div *ngIf="(inFavorites$ | async)?.length" class="number-of-goods">
         {{ (inFavorites$ | async)?.length }}
       </div>
     </a>
-    <a class="account-menu-link" mat-menu-item>
+    <!-- <a class="account-menu-link" mat-menu-item>
       <mat-icon>visibility</mat-icon>Просмотренные
     </a>
     <a class="account-menu-link" mat-menu-item>
       <mat-icon>hourglass_bottom</mat-icon>Лист ожидания
-    </a>
+    </a> -->
     <button
-      *ngIf="(userInfo$ | async)?.isLogged"
+      *ngIf="isLogged$ | async"
       class="logout-btn"
       mat-menu-item
       (click)="logout()"
