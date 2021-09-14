@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Event } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { debounceTime, delay, filter, switchMap } from 'rxjs/operators';
@@ -21,19 +21,19 @@ export class SearchInputComponent implements OnInit {
     IGoodsItem[]
   >([]);
 
-  public listener!: Observable<Event>;
-
   private searchInput$: Subject<string> = new Subject<string>();
 
-  constructor(private http: HttpService, private route: ActivatedRoute) {}
+  constructor(private http: HttpService, private router: Router) {}
 
   ngOnInit(): void {
+    this.router.events.subscribe(() => (this.searchInput = ''));
+
     this.isSearchVisible$ = this.isSearchVisible$$
       .asObservable()
       .pipe(delay(200));
     this.searchInput$
       .pipe(
-        filter((value) => value.length > 2),
+        filter((value) => value.length > 1),
         debounceTime(300),
         switchMap((value) => this.http.getSearchResults(value))
       )

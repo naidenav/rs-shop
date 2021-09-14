@@ -12,7 +12,10 @@ export class BaseApiUrlInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (!request.url.includes('ipinfo')) {
+    if (
+      !request.url.includes('ipinfo') &&
+      !request.url.includes('opencagedata')
+    ) {
       return next.handle(
         request.clone({
           url: `${environment.SERVER_URL}${request.url}`,

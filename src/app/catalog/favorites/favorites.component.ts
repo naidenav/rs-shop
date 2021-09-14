@@ -27,6 +27,5 @@ export class FavoritesComponent implements OnInit {
           forkJoin(items.map((item) => this.http.getGoodsItem(item)))
         )
       );
-    this.favoritesItems$.subscribe((items) => console.log(items));
   }
 }

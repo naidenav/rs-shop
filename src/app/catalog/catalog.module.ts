@@ -9,9 +9,12 @@ import { GoodsItemDetailsComponent } from './goods-item-details/goods-item-detai
 import { GoodsImageSliderComponent } from './goods-item-details/goods-image-slider/goods-image-slider.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { FavoritesItemComponent } from './favorites/favorites-item/favorites-item.component';
+import { BasketComponent } from './basket/basket.component';
+import { BasketItemComponent } from './basket/basket-item/basket-item.component';
+import { ItemCounterComponent } from './basket/item-counter/item-counter.component';
 
 @NgModule({
-  declarations: [GoodsFieldComponent, GoodsItemComponent, GoodsItemDetailsComponent, GoodsImageSliderComponent, FavoritesComponent, FavoritesItemComponent],
+  declarations: [GoodsFieldComponent, GoodsItemComponent, GoodsItemDetailsComponent, GoodsImageSliderComponent, FavoritesComponent, FavoritesItemComponent, BasketComponent, BasketItemComponent, ItemCounterComponent],
   imports: [SharedModule, EffectsModule.forFeature([CatalogEffects])],
 })
 export class CatalogModule {}

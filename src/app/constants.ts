@@ -13,7 +13,11 @@ export const PATH = {
 };
 
 export const ROUTES = {
+  main: '/',
   catalog: '/catalog',
+  favorites: '/favorites',
+  basket: '/basket',
+  waitingLisy: '/waitingList',
 };
 
 export const SORTING_DIRECTION = {

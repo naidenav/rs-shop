@@ -1,4 +1,4 @@
-export interface ILocationResponse {
+export interface IIpLocationResponse {
   city: string;
   country: string;
   hostname: string;
@@ -10,26 +10,15 @@ export interface ILocationResponse {
   timezone: string;
 }
 
-// export interface ILocationResponse {
-//   ip: string;
-//   city: {
-//     name_ru: string;
-//     name_en: string;
-//   };
-//   region: {
-//     name_ru: string;
-//     name_en: string;
-//     timezone: string;
-//   };
-//   country: {
-//     iso: string;
-//     name_ru: string;
-//     name_en: string;
-//     timezone: string;
-//     phone: string;
-//   };
-//   error: string;
-//   request: number;
-//   created: string;
-//   timestamp: number;
-// }
+export interface ILocationResponse {
+  results: [
+    {
+      components: {
+        city: string;
+        town: string;
+        village: string;
+        country: string;
+      };
+    }
+  ];
+}

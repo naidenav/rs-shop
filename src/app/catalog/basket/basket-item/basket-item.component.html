@@ -1,0 +1,29 @@
+<button class="remove-btn" (click)="remove()">
+  <mat-icon>delete_forever</mat-icon>
+  Удалить
+</button>
+<div class="product">
+  <div class="image">
+    <img
+      [src]="goodsItem.imageUrls[0] || '../../../../assets/logo.png'"
+      alt="preview"
+    />
+  </div>
+  <div class="info">
+    <a class="title" [routerLink]="['/catalog', goodsItem.id]">{{
+      goodsItem.name
+    }}</a>
+    <p class="price">
+      {{ goodsItem.price | number: "1.2-2" }} <span class="currency">р.</span>
+    </p>
+    <app-favorites-btn [goodsItemId]="goodsItem.id"></app-favorites-btn>
+  </div>
+</div>
+<div class="item-counter-container">
+  <app-item-counter
+    [goodsItemId]="goodsItem.id"
+    (amount)="changeAmount($event)"
+  ></app-item-counter>
+</div>
+<div class="delivery-info"></div>
+<div class="total-cost"></div>

@@ -1,4 +1,5 @@
 :host {
+  z-index: 3;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -111,5 +112,6 @@
 .search-result__price {
   margin-top: 5px;
   font-size: 20px;
+  font-weight: 500;
   color: #333;
 }

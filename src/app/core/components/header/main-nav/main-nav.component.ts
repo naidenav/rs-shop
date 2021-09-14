@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ROUTES } from 'src/app/constants';
 
 @Component({
   selector: 'app-main-nav',
@@ -7,7 +10,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainNavComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  public toBasket() {
+    this.router.navigate([ROUTES.basket]);
+  }
 }

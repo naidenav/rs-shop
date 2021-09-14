@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
-import { ILocationResponse } from 'src/app/core/models/location-response.model';
+import { switchMap } from 'rxjs/operators';
+import {
+    IIpLocationResponse, ILocationResponse
+} from 'src/app/core/models/location-response.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,9 +23,24 @@ export class LocationComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<ILocationResponse>(environment.GEO_API)
-      .subscribe((response) => {
-        this.location.next(response.city);
+      .get<IIpLocationResponse>(environment.GEO_IP_API)
+      .pipe(
+        switchMap((res: IIpLocationResponse) =>
+          this.http.get<ILocationResponse>(
+            `${environment.GEO_API}&q=${res.loc}`
+          )
+        )
+      )
+      .subscribe((res) => {
+        const response = res.results.find((obj) => obj.components.city);
+        if (response) {
+          return this.location.next(
+            response.components.village ||
+              response.components.town ||
+              response.components.city ||
+              'Город не определен'
+          );
+        }
       });
   }
 }

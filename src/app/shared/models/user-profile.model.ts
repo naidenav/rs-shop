@@ -14,7 +14,7 @@ export interface IOrderDetailes {
 export interface IOrder {
   items: IOrderItem[];
   details: IOrderDetailes;
-  is: string;
+  id?: string;
 }
 export interface IUserProfile {
   firstName: string;

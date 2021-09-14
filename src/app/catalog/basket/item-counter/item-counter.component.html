@@ -1,0 +1,7 @@
+<button class="counter-button" (click)="decrease()" [disabled]="counter === 1">
+  <mat-icon>remove</mat-icon>
+</button>
+<p class="scoreboard">{{ counter }}</p>
+<button class="counter-button" (click)="increase()">
+  <mat-icon>add</mat-icon>
+</button>

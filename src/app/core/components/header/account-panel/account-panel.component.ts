@@ -1,8 +1,12 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { ROUTES } from 'src/app/constants';
 import { clearUserInfo, closeLoginModal } from 'src/app/redux/actions/user-profile.actions';
 import {
     basketSelector, favoritesSelector, isLoggedSelector, isLoginModalOpened, userInfoSelector
@@ -20,7 +24,7 @@ import {
   styleUrls: ['./account-panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountPanelComponent implements OnInit {
+export class AccountPanelComponent implements OnInit, OnDestroy {
   @ViewChild('arrow', { read: ElementRef }) arrow?: ElementRef;
 
   public userInfo$!: Observable<IUserProfile>;
@@ -35,9 +39,13 @@ export class AccountPanelComponent implements OnInit {
 
   private isLoginModalOpenedSub: Subscription = new Subscription();
 
-  constructor(public modal: MatDialog, private store: Store<AppState>) {}
+  constructor(
+    public modal: MatDialog,
+    private store: Store<AppState>,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.userInfo$ = this.store.select(userInfoSelector);
     this.isLogged$ = this.store.select(isLoggedSelector);
     this.isLogged$.subscribe((isLogged) => {
@@ -52,7 +60,7 @@ export class AccountPanelComponent implements OnInit {
       });
   }
 
-  public openModal() {
+  public openModal(): void {
     const modalRef = this.modal.open(ModalLoginContentComponent, {
       autoFocus: false,
     });
@@ -62,16 +70,24 @@ export class AccountPanelComponent implements OnInit {
       .subscribe((result) => this.store.dispatch(closeLoginModal()));
   }
 
-  public arrowUp() {
+  public arrowUp(): void {
     this.arrow?.nativeElement.classList.add('arrow-up');
   }
 
-  public arrowDown() {
+  public arrowDown(): void {
     this.arrow?.nativeElement.classList.remove('arrow-up');
   }
 
-  public logout() {
+  public logout(): void {
     setTimeout(() => this.store.dispatch(clearUserInfo()), 300);
     localStorage.removeItem('token');
+  }
+
+  public toBasket(): void {
+    this.router.navigate([ROUTES.basket]);
+  }
+
+  public ngOnDestroy(): void {
+    this.isLoginModalOpenedSub.unsubscribe();
   }
 }
