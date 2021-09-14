@@ -1,0 +1,79 @@
+:host {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ebebeb;
+  box-shadow: 1px 2px 10px #dbdbdb;
+  app-to-basket-btn {
+    margin-top: 5px;
+    height: 40px;
+    width: 160px;
+    font-size: 16px;
+  }
+  app-rating {
+    font-size: 20px;
+  }
+}
+
+.image {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  img {
+    object-fit: contain;
+  }
+}
+
+.info {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  font-size: 16px;
+  color: var(--theme-color);
+  text-align: center;
+  &:hover {
+    color: #ffa825;
+  }
+}
+
+.price {
+  margin-right: -10px;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #4f4f4f;
+}
+
+.currency {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+
+.remove-btn {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--theme-color);
+  border: none;
+  background-color: transparent;
+  transition-duration: 0.1s;
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AvailabilityComponent } from './components/availability/availability.component';
 import { FavoritesBtnComponent } from './components/favorites-btn/favorites-btn.component';
 import { NavigationChainComponent } from './components/navigation-chain/navigation-chain.component';
-import { RaitingComponent } from './components/raiting/raiting.component';
+import { RatingComponent } from './components/rating/rating.component';
 import { SortingPanelComponent } from './components/sorting-panel/sorting-panel.component';
 import { ToBasketBtnComponent } from './components/to-basket-btn/to-basket-btn.component';
 import {
@@ -18,7 +18,7 @@ import { SortingPipe } from './pipes/sorting.pipe';
 @NgModule({
   declarations: [
     AvailabilityComponent,
-    RaitingComponent,
+    RatingComponent,
     ToBasketBtnComponent,
     FavoritesBtnComponent,
     AvailableAmountHighlightingDirective,
@@ -40,7 +40,7 @@ import { SortingPipe } from './pipes/sorting.pipe';
     ReactiveFormsModule,
     RouterModule,
     AvailabilityComponent,
-    RaitingComponent,
+    RatingComponent,
     ToBasketBtnComponent,
     FavoritesBtnComponent,
     AvailableAmountHighlightingDirective,

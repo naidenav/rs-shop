@@ -22,7 +22,7 @@ export class LocationComponent implements OnInit {
     this.http
       .get<ILocationResponse>(environment.GEO_API)
       .subscribe((response) => {
-        this.location.next(response.city.name_ru);
+        this.location.next(response.city);
       });
   }
 }

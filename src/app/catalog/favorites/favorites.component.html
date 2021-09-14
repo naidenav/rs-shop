@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <h2 class="title">Избранные товары</h2>
+  <div class="goods-field">
+    <app-favorites-item
+      *ngFor="let item of favoritesItems$ | async"
+      [goodsItem]="item"
+    ></app-favorites-item>
+  </div>
+</div>

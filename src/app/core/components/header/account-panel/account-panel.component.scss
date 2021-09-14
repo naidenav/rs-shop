@@ -35,15 +35,15 @@
   color: #333333;
 }
 
-.mat-menu-item:nth-child(2):after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 17px;
-  width: 85%;
-  height: 1px;
-  background-color: #ddd;
-}
+// .mat-menu-item:nth-child(2):after {
+//   content: "";
+//   position: absolute;
+//   bottom: 0;
+//   left: 17px;
+//   width: 85%;
+//   height: 1px;
+//   background-color: #ddd;
+// }
 
 .mat-menu-wrapper {
   margin-bottom: -8px;

@@ -8,7 +8,7 @@
 <div class="arrow" #arrow></div>
 <mat-menu #accountMenu="matMenu" xPosition="before">
   <div class="mat-menu-wrapper">
-    <div class="avatar-icon" *ngIf="!(isLogged$ | async)">
+    <div class="avatar-icon">
       <img src="../../../../../assets/icons/user.svg" alt="avatar" />
     </div>
     <button
@@ -30,7 +30,12 @@
         {{ (inBasket$ | async)?.length }}
       </div>
     </a>
-    <a class="account-menu-link" mat-menu-item *ngIf="isLogged$ | async">
+    <a
+      class="account-menu-link"
+      mat-menu-item
+      *ngIf="isLogged$ | async"
+      [routerLink]="['/favorites']"
+    >
       <mat-icon>favorite_border</mat-icon>
       Избранные товары
       <div *ngIf="(inFavorites$ | async)?.length" class="number-of-goods">

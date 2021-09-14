@@ -10,11 +10,6 @@ import { IGoodsItem } from 'src/app/shared/models/goods.model';
 })
 export class GoodsItemComponent implements OnInit {
   @Input() public goodsItem!: IGoodsItem;
-
-  @Input() public categoryId!: string;
-
-  @Input() public subCategoryId!: string;
-
   constructor() {}
 
   ngOnInit(): void {}

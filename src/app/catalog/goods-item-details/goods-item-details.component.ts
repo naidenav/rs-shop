@@ -24,13 +24,14 @@ export class GoodsItemDetailsComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.goodsItemSub = this.store
-      .select(goodsItem)
-      .subscribe((item) => (this.goodsItem = item));
     this.routeParams$ = this.route.params;
     this.routeParamsSub = this.route.params.subscribe((params: Params) =>
       this.store.dispatch(getGoodsItem({ goodsItemId: params.goodsItemId }))
     );
+
+    this.goodsItemSub = this.store
+      .select(goodsItem)
+      .subscribe((item) => (this.goodsItem = item));
   }
 
   public ngOnDestroy(): void {
