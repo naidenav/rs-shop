@@ -9,8 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CatalogModule } from './catalog/catalog.module';
 import { CoreModule } from './core/core.module';
+import { CatalogEffects } from './redux/effects/catalog.effects';
+import { CategoriesEffects } from './redux/effects/categories.effects';
+import { OrderEffects } from './redux/effects/order.effects';
+import { UserProfileEffects } from './redux/effects/user-profile.effects';
 import { catalogReducer } from './redux/reducers/catalog.reducers';
 import { categoriesReducer } from './redux/reducers/categories.reducers';
+import { orderReducer } from './redux/reducers/order.reducers';
 import { userProfileReducer } from './redux/reducers/user-profile.reducers';
 
 @NgModule({
@@ -26,6 +31,7 @@ import { userProfileReducer } from './redux/reducers/user-profile.reducers';
         userProfileState: userProfileReducer,
         categoriesState: categoriesReducer,
         catalogState: catalogReducer,
+        orderState: orderReducer,
       },
       {
         runtimeChecks: {
@@ -38,7 +44,12 @@ import { userProfileReducer } from './redux/reducers/user-profile.reducers';
         },
       }
     ),
-    EffectsModule.forRoot(),
+    EffectsModule.forRoot([
+      CatalogEffects,
+      CategoriesEffects,
+      OrderEffects,
+      UserProfileEffects,
+    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),

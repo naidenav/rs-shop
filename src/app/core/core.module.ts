@@ -1,12 +1,10 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { EffectsModule } from '@ngrx/effects';
 
-import { CategoriesEffects } from '../redux/effects/categories.effect';
-import { UserProfileEffects } from '../redux/effects/user-profile.effects';
 import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { AccountPanelComponent } from './components/header/account-panel/account-panel.component';
+import { BasketBtnComponent } from './components/header/basket-btn/basket-btn.component';
 import {
     CategoriesBtnComponent
 } from './components/header/categories-btn/categories-btn.component';
@@ -40,7 +38,6 @@ import {
 import { SearchInputComponent } from './components/header/search-input/search-input.component';
 import { ApiTokenInterceptor } from './interceptors/api-token.interceptor';
 import { BaseApiUrlInterceptor } from './interceptors/base-api-url.interceptor';
-import { BasketBtnComponent } from './components/header/basket-btn/basket-btn.component';
 
 @NgModule({
   declarations: [
@@ -61,11 +58,7 @@ import { BasketBtnComponent } from './components/header/basket-btn/basket-btn.co
     SubcategoryItemComponent,
     BasketBtnComponent,
   ],
-  imports: [
-    HttpClientModule,
-    SharedModule,
-    EffectsModule.forFeature([UserProfileEffects, CategoriesEffects]),
-  ],
+  imports: [HttpClientModule, SharedModule],
   exports: [HeaderComponent, FooterComponent],
   providers: [
     {

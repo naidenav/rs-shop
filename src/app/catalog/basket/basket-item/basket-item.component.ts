@@ -1,12 +1,12 @@
-import {
-    ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { removeFromBasket } from 'src/app/redux/actions/user-profile.actions';
+import { orderItemsSelector } from 'src/app/redux/selectors/order.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
-import { IOrderItem } from 'src/app/shared/models/user-profile.model';
 
 @Component({
   selector: 'app-basket-item',
@@ -17,17 +17,22 @@ import { IOrderItem } from 'src/app/shared/models/user-profile.model';
 export class BasketItemComponent implements OnInit {
   @Input() public goodsItem!: IGoodsItem;
 
-  @Output() public amount = new EventEmitter<IOrderItem>();
+  public totalCost$!: Observable<number | null>;
 
   constructor(private store: Store<AppState>) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.totalCost$ = this.store.select(orderItemsSelector).pipe(
+      map((items) => {
+        const amount = items.find(
+          (item) => item.id === this.goodsItem.id
+        )?.amount;
+        return amount ? amount * Number(this.goodsItem.price) : null;
+      })
+    );
+  }
 
   public remove(): void {
     this.store.dispatch(removeFromBasket({ goodsItemId: this.goodsItem.id }));
-  }
-
-  public changeAmount(amount: number) {
-    this.amount.emit({ id: this.goodsItem.id, amount });
   }
 }

@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { forkJoin, Observable, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/services/http.service';
+import { orderStateSelector } from 'src/app/redux/selectors/order.selectors';
 import { basketSelector } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
-import { IOrder, IOrderItem } from 'src/app/shared/models/user-profile.model';
+import { IOrder } from 'src/app/shared/models/user-profile.model';
 
 @Component({
   selector: 'app-basket',
@@ -16,23 +17,16 @@ import { IOrder, IOrderItem } from 'src/app/shared/models/user-profile.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasketComponent implements OnInit {
-  public order: IOrder = {
-    items: [],
-    details: {
-      name: '',
-      address: '',
-      phone: '',
-      timeToDeliver: '',
-      comment: '',
-    },
-  };
+  public order!: IOrder;
+  public order$!: Observable<IOrder>;
   public basketItems$!: Observable<IGoodsItem[]>;
-
-  private basketItemsSub: Subscription = new Subscription();
+  public basketItemsLength$!: Observable<number>;
 
   constructor(private store: Store<AppState>, private http: HttpService) {}
 
   ngOnInit(): void {
+    this.order$ = this.store.select(orderStateSelector);
+    this.order$.subscribe((order) => (this.order = order));
     this.basketItems$ = this.store
       .select(basketSelector)
       .pipe(
@@ -40,18 +34,8 @@ export class BasketComponent implements OnInit {
           forkJoin(items.map((item) => this.http.getGoodsItem(item)))
         )
       );
-    this.basketItemsSub = this.basketItems$.subscribe((items) => {
-      items.forEach((item) =>
-        this.order.items.push({
-          id: item.id,
-          amount: 1,
-        })
-      );
-      console.log(this.order);
-    });
-  }
-
-  public changeAmount(orderItem: IOrderItem) {
-    this.order.items.push(orderItem);
+    this.basketItemsLength$ = this.store
+      .select(basketSelector)
+      .pipe(map((items) => items.length));
   }
 }

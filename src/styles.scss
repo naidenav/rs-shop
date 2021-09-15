@@ -8,7 +8,7 @@
   --color-3: #fcf491;
   --color-4: #faba62;
   --color-5: #caddec;
-  --color-6: #de425b;
+  --color-6: #e97f1b;
   --bg-color: #f7f8fa;
 }
 
@@ -32,6 +32,11 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: var(--theme-color);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .no-scrollable {

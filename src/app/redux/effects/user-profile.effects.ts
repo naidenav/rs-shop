@@ -100,8 +100,7 @@ export class UserProfileEffects {
       // }),
       switchMap((props) =>
         this.httpService.removeFromBasket(props.goodsItemId).pipe(
-          tap((i) => console.log(i)),
-          map((id) => removedFromBasket({ goodsItemId: props.goodsItemId })),
+          map(() => removedFromBasket({ goodsItemId: props.goodsItemId })),
           catchError((error) => of(removeFromBasketFailed({ error })))
         )
       )

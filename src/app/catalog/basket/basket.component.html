@@ -1,16 +1,15 @@
 <div class="wrapper">
   <h2 class="title">Оформление заказа</h2>
-  <div class="basket-header">
+  <div class="basket-header" *ngIf="basketItemsLength$ | async">
     <p class="basket-header__goods-info">Товар</p>
     <p class="basket-header__item-counter">Количество</p>
     <p class="basket-header__delivery-info">Доставка</p>
     <p class="basket-header__price">Стоимость</p>
   </div>
-  <div class="goods-field">
+  <div class="goods-field" *ngIf="basketItemsLength$ | async">
     <app-basket-item
       *ngFor="let item of basketItems$ | async"
       [goodsItem]="item"
-      (amount)="changeAmount($event)"
     ></app-basket-item>
   </div>
 </div>

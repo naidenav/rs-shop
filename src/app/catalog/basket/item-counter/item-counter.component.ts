@@ -1,6 +1,13 @@
 import {
-    ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
+    ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild
 } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { changeAmount } from 'src/app/redux/actions/order.actions';
+import { orderItemsSelector } from 'src/app/redux/selectors/order.selectors';
+import { AppState } from 'src/app/redux/state/app.state';
 
 @Component({
   selector: 'app-item-counter',
@@ -11,23 +18,45 @@ import {
 export class ItemCounterComponent implements OnInit {
   @Input() goodsItemId!: string;
 
-  @Output() amount = new EventEmitter<number>();
+  @ViewChild('counterInput') counterInput!: ElementRef;
 
-  public isEnable: boolean = true;
+  public counter!: number;
 
-  public counter: number = 1;
+  public counter$!: Observable<number | undefined>;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.counter$ = this.store
+      .select(orderItemsSelector)
+      .pipe(
+        map(
+          (items) => items.find((item) => item.id === this.goodsItemId)?.amount
+        )
+      );
+  }
+
+  public changeAmount(): void {
+    this.store.dispatch(
+      changeAmount({
+        id: this.goodsItemId,
+        amount: this.counterInput.nativeElement.value,
+      })
+    );
+  }
 
   public increase(): void {
-    this.counter++;
-    this.amount.emit(this.counter);
+    this.counterInput.nativeElement.value++;
+    this.changeAmount();
   }
 
   public decrease(): void {
-    this.counter--;
-    this.amount.emit(this.counter);
+    this.counterInput.nativeElement.value--;
+    this.changeAmount();
+  }
+
+  public testForEmptiness(): void {
+    this.counterInput.nativeElement.value =
+      this.counterInput.nativeElement.value || 1;
   }
 }

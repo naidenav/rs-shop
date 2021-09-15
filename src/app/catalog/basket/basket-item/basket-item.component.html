@@ -20,10 +20,12 @@
   </div>
 </div>
 <div class="item-counter-container">
-  <app-item-counter
-    [goodsItemId]="goodsItem.id"
-    (amount)="changeAmount($event)"
-  ></app-item-counter>
+  <app-item-counter [goodsItemId]="goodsItem.id"></app-item-counter>
 </div>
-<div class="delivery-info"></div>
-<div class="total-cost"></div>
+<div class="delivery-info">
+  <p>Курьером: завтра</p>
+  <p>Самовывоз: завтра</p>
+</div>
+<div class="total-cost-container">
+  <span class="total-cost">{{ totalCost$ | async | number: "1.2-2" }} р.</span>
+</div>

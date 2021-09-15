@@ -1,7 +1,20 @@
-<button class="counter-button" (click)="decrease()" [disabled]="counter === 1">
+<button
+  class="counter-button"
+  (click)="decrease()"
+  [disabled]="(counter$ | async) === 1"
+>
   <mat-icon>remove</mat-icon>
 </button>
-<p class="scoreboard">{{ counter }}</p>
+<input
+  type="number"
+  [value]="counter$ | async"
+  min="1"
+  max="999"
+  class="scoreboard"
+  (blur)="testForEmptiness()"
+  (change)="changeAmount()"
+  #counterInput
+/>
 <button class="counter-button" (click)="increase()">
   <mat-icon>add</mat-icon>
 </button>
