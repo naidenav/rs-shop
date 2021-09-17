@@ -1,7 +1,7 @@
 <button
   class="counter-button"
   (click)="decrease()"
-  [disabled]="(counter$ | async) === 1"
+  [disabled]="counterInput.value === '1' || (counter$ | async) === 1"
 >
   <mat-icon>remove</mat-icon>
 </button>

@@ -7,6 +7,7 @@ export const PATH = {
   userInfo: '/users/userInfo',
   favorites: '/users/favorites',
   basket: '/users/cart',
+  order: '/users/order',
   categories: '/categories',
   category: '/goods/category',
   goodsItem: '/goods/item',

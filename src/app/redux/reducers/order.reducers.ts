@@ -17,6 +17,23 @@ export const orderReducer = createReducer(
     ...state,
     items: [...state.items, item],
   })),
+  on(OrderActions.createOrder, (state, { order }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(OrderActions.createOrder, (state, { order }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(OrderActions.orderCreated, (state, { order }) => ({
+    ...state,
+    loading: false,
+  })),
+  on(OrderActions.createOrderFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
+  })),
   on(OrderActions.putGoodsToOrder, (state, { goods }) => ({
     ...state,
     items: [...goods],

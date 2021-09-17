@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h2 class="title">Избранные товары</h2>
-  <div class="goods-field">
+  <div class="goods-field" *ngIf="favoritesItemsLength$ | async">
     <app-favorites-item
       *ngFor="let item of favoritesItems$ | async"
       [goodsItem]="item"

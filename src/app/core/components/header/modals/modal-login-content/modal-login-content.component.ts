@@ -33,8 +33,6 @@ export class ModalLoginContentComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {}
-
   loginSubmit() {
     const user = {
       login: this.loginForm.get('login')?.value,

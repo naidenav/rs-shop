@@ -7,12 +7,13 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { HttpService } from 'src/app/core/services/http.service';
 import { setUserInfoToLocalStorage } from 'src/app/utils';
 
+import { orderCreated } from '../actions/order.actions';
 import {
     addedToBasket, addedToFavorites, fetchedUserInfo, getUserInfo, getUserInfoFailed, loginFalied,
     loginSuccessful, loginUser, moveToBasket, moveToBasketFailed, moveToFavorites,
     moveToFavoritesFailed, registerUser, registrationFailed, registrationSuccessful,
     removedFromBasket, removedFromFavorites, removeFromBasket, removeFromBasketFailed,
-    removeFromFavorites, removeFromFavoritesFailed, userInfoSaved
+    removeFromFavorites, removeFromFavoritesFailed, updateOrderList, userInfoSaved
 } from '../actions/user-profile.actions';
 
 @Injectable()
@@ -140,6 +141,13 @@ export class UserProfileEffects {
           catchError((error) => of(removeFromFavoritesFailed({ error })))
         )
       )
+    )
+  );
+
+  updateOrderList: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(orderCreated),
+      map((props) => updateOrderList({ order: props.order }))
     )
   );
 }

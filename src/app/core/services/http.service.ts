@@ -7,7 +7,7 @@ import { PATH } from 'src/app/constants';
 import { ICategory } from 'src/app/shared/models/categories.model';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
 import { IQueryParams } from 'src/app/shared/models/query-params.model';
-import { IUserProfile } from 'src/app/shared/models/user-profile.model';
+import { IOrder, IUserProfile } from 'src/app/shared/models/user-profile.model';
 import { getQueryParams } from 'src/app/utils';
 
 @Injectable({
@@ -126,6 +126,14 @@ export class HttpService {
 
   public removeFromFavorites(goodsItemId: string) {
     return this.http.delete<void>(`${PATH.favorites}?id=${goodsItemId}`).pipe(
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
+  public createOrder(order: IOrder) {
+    return this.http.post<IOrder>(PATH.order, order).pipe(
       catchError((error) => {
         return this.handleError(error);
       })

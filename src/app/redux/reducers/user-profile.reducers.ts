@@ -119,5 +119,10 @@ export const userProfileReducer = createReducer(
     ...state,
     loading: false,
     error: error.message,
+  })),
+  on(UserProfileActions.updateOrderList, (state, { order }) => ({
+    ...state,
+    loading: false,
+    orders: [...state.orders, order],
   }))
 );

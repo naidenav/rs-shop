@@ -56,7 +56,10 @@ export class ItemCounterComponent implements OnInit {
   }
 
   public testForEmptiness(): void {
-    this.counterInput.nativeElement.value =
-      this.counterInput.nativeElement.value || 1;
+    const countValue = this.counterInput.nativeElement.value;
+    if (!countValue || countValue < 1) {
+      this.counterInput.nativeElement.value = 1;
+      this.changeAmount();
+    }
   }
 }

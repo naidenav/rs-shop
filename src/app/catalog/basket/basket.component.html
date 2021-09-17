@@ -12,4 +12,19 @@
       [goodsItem]="item"
     ></app-basket-item>
   </div>
+  <div class="total-order-cost" *ngIf="basketItemsLength$ | async">
+    <span class="total-order-cost__title">Общая стоимость:</span>
+    <p class="total-order-cost__cost">
+      {{ totalCost$ | async | number: "1.2-2" }} р.
+    </p>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    class="ordering-btn"
+    *ngIf="basketItemsLength$ | async"
+    (click)="showOrderForm()"
+  >
+    Оформить заказ
+  </button>
 </div>

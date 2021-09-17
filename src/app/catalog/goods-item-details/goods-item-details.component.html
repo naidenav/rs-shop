@@ -12,10 +12,9 @@
       <p class="price">
         {{ goodsItem.price | number: "1.2-2" }} <span class="currency">р.</span>
       </p>
-      <app-availability
-        [appAvailableAmountHighlighting]="goodsItem.availableAmount"
-        [availableAmount]="goodsItem.availableAmount"
-      ></app-availability>
+      <p class="availability">
+        В наличии {{ goodsItem.availableAmount }} единиц
+      </p>
       <app-rating [rating]="goodsItem.rating"></app-rating>
       <app-to-basket-btn [goodsItemId]="goodsItem.id"></app-to-basket-btn>
       <app-favorites-btn [goodsItemId]="goodsItem.id"></app-favorites-btn>

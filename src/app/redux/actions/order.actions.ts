@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { IOrderDetailes, IOrderItem } from 'src/app/shared/models/user-profile.model';
+import { IOrder, IOrderDetailes, IOrderItem } from 'src/app/shared/models/user-profile.model';
 
 export const setDefaultOrder = createAction('SET_DEFAULT_ORDER');
 
@@ -12,6 +12,21 @@ export const setDefaultDetails = createAction(
 export const addItemToOrder = createAction(
   'ADD_ITEM_TO_ORDER',
   props<{ item: IOrderItem }>()
+);
+
+export const createOrder = createAction(
+  'CREATE_ORDER',
+  props<{ order: IOrder }>()
+);
+
+export const orderCreated = createAction(
+  'ORDER_CREATED',
+  props<{ order: IOrder }>()
+);
+
+export const createOrderFailed = createAction(
+  'CREATE_ORDER_FAILED',
+  props<{ error: Error }>()
 );
 
 export const putGoodsToOrder = createAction(

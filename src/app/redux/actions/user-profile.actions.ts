@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { IUserProfile } from 'src/app/shared/models/user-profile.model';
+import { IOrder, IUserProfile } from 'src/app/shared/models/user-profile.model';
 
 export const setToken = createAction('SET_TOKEN', props<{ token: string }>());
 
@@ -125,4 +125,14 @@ export const removedFromFavorites = createAction(
 export const removeFromFavoritesFailed = createAction(
   'REMOVE_FROM_FAVORITES_FAILED',
   props<{ error: Error }>()
+);
+
+export const clearBasket = createAction(
+  'CLEAR_BASKET',
+  props<{ goodsItemsId: string[] }>()
+);
+
+export const updateOrderList = createAction(
+  'UPDATE_ORDER_LIST',
+  props<{ order: IOrder }>()
 );
