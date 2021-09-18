@@ -15,6 +15,13 @@ import {
     GoodsImageSliderComponent
 } from './goods-item-details/goods-image-slider/goods-image-slider.component';
 import { GoodsItemDetailsComponent } from './goods-item-details/goods-item-details.component';
+import {
+    CancelOrderModalContentComponent
+} from './waiting-list/cancel-order-modal-content/cancel-order-modal-content.component';
+import {
+    WaitingListItemComponent
+} from './waiting-list/waiting-list-item/waiting-list-item.component';
+import { WaitingListComponent } from './waiting-list/waiting-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +35,9 @@ import { GoodsItemDetailsComponent } from './goods-item-details/goods-item-detai
     BasketItemComponent,
     ItemCounterComponent,
     OrderingModalContentComponent,
+    WaitingListComponent,
+    WaitingListItemComponent,
+    CancelOrderModalContentComponent,
   ],
   imports: [SharedModule],
 })

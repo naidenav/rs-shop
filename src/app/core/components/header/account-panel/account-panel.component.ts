@@ -9,10 +9,11 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ROUTES } from 'src/app/constants';
 import { clearUserInfo, closeLoginModal } from 'src/app/redux/actions/user-profile.actions';
 import {
-    basketSelector, favoritesSelector, isLoggedSelector, isLoginModalOpened, userInfoSelector
+    basketSelector, favoritesSelector, isLoggedSelector, isLoginModalOpened, ordersSelector,
+    userInfoSelector
 } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
-import { IUserProfile } from 'src/app/shared/models/user-profile.model';
+import { IOrder, IUserProfile } from 'src/app/shared/models/user-profile.model';
 
 import {
     ModalLoginContentComponent
@@ -32,6 +33,8 @@ export class AccountPanelComponent implements OnInit, OnDestroy {
   public isLogged$!: Observable<boolean>;
 
   public inFavorites$!: Observable<string[]>;
+
+  public orders$!: Observable<IOrder[]>;
 
   public inBasket$!: Observable<string[]>;
 
@@ -53,6 +56,7 @@ export class AccountPanelComponent implements OnInit, OnDestroy {
     });
     this.inBasket$ = this.store.select(basketSelector);
     this.inFavorites$ = this.store.select(favoritesSelector);
+    this.orders$ = this.store.select(ordersSelector);
     this.isLoginModalOpenedSub = this.store
       .select(isLoginModalOpened)
       .subscribe((isOpened) => {

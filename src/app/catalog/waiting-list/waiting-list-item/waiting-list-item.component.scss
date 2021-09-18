@@ -1,0 +1,55 @@
+:host {
+  mat-panel-description {
+    margin: 0;
+    width: 18%;
+    justify-content: center;
+    flex-grow: unset;
+    font-size: 16px;
+    color: #4f4f4f;
+  }
+  mat-panel-description:first-child {
+    width: 20px;
+  }
+  mat-expansion-panel-header {
+    border-bottom: 1px solid #ddd;
+  }
+  mat-expansion-panel {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.order-item {
+  &__cancel-btn {
+    margin-right: 20px;
+    font-size: 16px;
+    color: var(--theme-color);
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    &:hover {
+      color: var(--color-6);
+    }
+  }
+  &__image {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    img {
+      object-fit: contain;
+    }
+  }
+  &__title {
+    margin-left: 20px;
+    font-weight: 500;
+  }
+}
+
+.cancel-btn {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+
+  font-size: 16px;
+  font-weight: 400;
+  color: #4f4f4f;
+}

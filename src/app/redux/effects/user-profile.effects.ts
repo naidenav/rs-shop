@@ -9,9 +9,9 @@ import { setUserInfoToLocalStorage } from 'src/app/utils';
 
 import { orderCreated } from '../actions/order.actions';
 import {
-    addedToBasket, addedToFavorites, fetchedUserInfo, getUserInfo, getUserInfoFailed, loginFalied,
-    loginSuccessful, loginUser, moveToBasket, moveToBasketFailed, moveToFavorites,
-    moveToFavoritesFailed, registerUser, registrationFailed, registrationSuccessful,
+    addedToBasket, addedToFavorites, deleteOrder, fetchedUserInfo, getUserInfo, getUserInfoFailed,
+    loginFalied, loginSuccessful, loginUser, moveToBasket, moveToBasketFailed, moveToFavorites,
+    moveToFavoritesFailed, orderDeleted, registerUser, registrationFailed, registrationSuccessful,
     removedFromBasket, removedFromFavorites, removeFromBasket, removeFromBasketFailed,
     removeFromFavorites, removeFromFavoritesFailed, updateOrderList, userInfoSaved
 } from '../actions/user-profile.actions';
@@ -148,6 +148,18 @@ export class UserProfileEffects {
     this.actions$.pipe(
       ofType(orderCreated),
       map((props) => updateOrderList({ order: props.order }))
+    )
+  );
+
+  deleteOrder: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteOrder),
+      switchMap((props) =>
+        this.httpService.deleteOrder(props.id).pipe(
+          map(() => orderDeleted({ id: props.id })),
+          catchError((error) => of(removeFromFavoritesFailed({ error })))
+        )
+      )
     )
   );
 }

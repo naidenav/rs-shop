@@ -124,5 +124,19 @@ export const userProfileReducer = createReducer(
     ...state,
     loading: false,
     orders: [...state.orders, order],
+  })),
+  on(UserProfileActions.deleteOrder, (state, { id }) => ({
+    ...state,
+    loading: true,
+  })),
+  on(UserProfileActions.orderDeleted, (state, { id }) => ({
+    ...state,
+    loading: false,
+    orders: state.orders.filter((order) => order.id !== id),
+  })),
+  on(UserProfileActions.deleteOrderFailed, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error: error.message,
   }))
 );

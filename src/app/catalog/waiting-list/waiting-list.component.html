@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <h2 class="title">Лист ожидания</h2>
+  <div class="orders-empty" *ngIf="!(orders$ | async)?.length">
+    Здесь пока ничего нет
+  </div>
+  <div class="waiting-list-header" *ngIf="(orders$ | async)?.length">
+    <p class="waiting-list-header__id">Номер заказа</p>
+    <p class="waiting-list-header__delivery-date">Дата доставки</p>
+    <p class="waiting-list-header__amount">Количество позиций</p>
+    <p class="waiting-list-header__price">Стоимость заказа</p>
+  </div>
+
+  <mat-accordion class="orders-field" *ngIf="(orders$ | async)?.length">
+    <app-waiting-list-item
+      *ngFor="let order of orders$ | async; index as i"
+      [order]="order"
+      [index]="i"
+    ></app-waiting-list-item>
+  </mat-accordion>
+</div>

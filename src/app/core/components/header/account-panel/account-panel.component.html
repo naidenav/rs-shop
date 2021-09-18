@@ -49,10 +49,14 @@
     </a>
     <!-- <a class="account-menu-link" mat-menu-item>
       <mat-icon>visibility</mat-icon>Просмотренные
-    </a>
-    <a class="account-menu-link" mat-menu-item>
-      <mat-icon>hourglass_bottom</mat-icon>Лист ожидания
     </a> -->
+    <a class="account-menu-link" mat-menu-item [routerLink]="['/waitingList']">
+      <mat-icon>hourglass_bottom</mat-icon>
+      Лист ожидания
+      <div *ngIf="(orders$ | async)?.length" class="number-of-goods">
+        {{ (orders$ | async)?.length }}
+      </div>
+    </a>
     <button
       *ngIf="isLogged$ | async"
       class="logout-btn"

@@ -42,3 +42,8 @@ export const favoritesSelector = createSelector(
   userProfileStateSelector,
   (state) => state.favorites
 );
+
+export const ordersSelector = createSelector(
+  userProfileStateSelector,
+  (state) => state.orders
+);

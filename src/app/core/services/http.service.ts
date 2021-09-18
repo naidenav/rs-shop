@@ -140,6 +140,14 @@ export class HttpService {
     );
   }
 
+  public deleteOrder(orderId: string) {
+    return this.http.delete<void>(`${PATH.order}?id=${orderId}`).pipe(
+      catchError((error) => {
+        return this.handleError(error);
+      })
+    );
+  }
+
   private handleError(err: HttpErrorResponse) {
     if (err.error instanceof Error) {
       console.error('An error occurred: ', err.error.message);

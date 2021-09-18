@@ -136,3 +136,18 @@ export const updateOrderList = createAction(
   'UPDATE_ORDER_LIST',
   props<{ order: IOrder }>()
 );
+
+export const deleteOrder = createAction(
+  'DELETE_ORDER_BY_ID',
+  props<{ id: string }>()
+);
+
+export const orderDeleted = createAction(
+  'ORDER_DELETED',
+  props<{ id: string }>()
+);
+
+export const deleteOrderFailed = createAction(
+  'DELETE_ORDER_FAILED',
+  props<{ error: Error }>()
+);

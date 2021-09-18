@@ -7,6 +7,7 @@ import { GoodsFieldComponent } from './catalog/goods-field/goods-field.component
 import {
     GoodsItemDetailsComponent
 } from './catalog/goods-item-details/goods-item-details.component';
+import { WaitingListComponent } from './catalog/waiting-list/waiting-list.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'basket',
     component: BasketComponent,
+  },
+  {
+    path: 'waitingList',
+    component: WaitingListComponent,
   },
 ];
 
