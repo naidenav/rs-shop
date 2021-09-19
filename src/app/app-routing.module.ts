@@ -7,9 +7,14 @@ import { GoodsFieldComponent } from './catalog/goods-field/goods-field.component
 import {
     GoodsItemDetailsComponent
 } from './catalog/goods-item-details/goods-item-details.component';
+import { MainComponent } from './catalog/main/main.component';
 import { WaitingListComponent } from './catalog/waiting-list/waiting-list.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: MainComponent,
+  },
   {
     path: 'catalog/:categoryId/:subCategoryId',
     component: GoodsFieldComponent,

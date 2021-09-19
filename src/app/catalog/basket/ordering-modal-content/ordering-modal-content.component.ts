@@ -112,4 +112,10 @@ export class OrderingModalContentComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.orderItemsSub.unsubscribe();
   }
+
+  public fromTomorrowFilter(d: Date | null): boolean {
+    const day = (d || new Date()).getTime();
+    const today = new Date().getTime();
+    return day > today && day < today + 10 * 24 * 3600 * 1000;
+  }
 }

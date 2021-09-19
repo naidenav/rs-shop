@@ -138,5 +138,9 @@ export const userProfileReducer = createReducer(
     ...state,
     loading: false,
     error: error.message,
+  })),
+  on(UserProfileActions.clearErrorField, (state) => ({
+    ...state,
+    error: '',
   }))
 );

@@ -42,7 +42,12 @@
   <div class="delivery-date-wrapper">
     <mat-form-field class="order-form__input-field" appearance="fill">
       <mat-label>Дата доставки</mat-label>
-      <input matInput [matDatepicker]="picker" [formControl]="deliveryDate" />
+      <input
+        matInput
+        [matDatepickerFilter]="fromTomorrowFilter"
+        [matDatepicker]="picker"
+        [formControl]="deliveryDate"
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="deliveryDate.hasError('required')">

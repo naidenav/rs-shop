@@ -151,3 +151,5 @@ export const deleteOrderFailed = createAction(
   'DELETE_ORDER_FAILED',
   props<{ error: Error }>()
 );
+
+export const clearErrorField = createAction('CLEAR_ERROR_FIELD');

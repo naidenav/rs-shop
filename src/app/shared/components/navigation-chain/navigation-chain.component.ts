@@ -35,21 +35,38 @@ export class NavigationChainComponent implements OnInit, OnDestroy {
     this.categories$ = this.store.select(categoriesSelector);
     this.goodsItem$ = this.store.select(goodsItem);
 
-    this.category$ = this.goodsItem$.pipe(
-      switchMap((goodsItem) =>
-        this.categories$.pipe(
-          map((categories) =>
-            categories.find(
-              (item) =>
-                item.id === (this.routeParams.categoryId || goodsItem.category)
+    this.category$ = this.route.params.pipe(
+      switchMap((params) =>
+        this.goodsItem$.pipe(
+          switchMap((goodsItem) =>
+            this.categories$.pipe(
+              map((categories) =>
+                categories.find(
+                  (item) =>
+                    item.id === (params.categoryId || goodsItem.category)
+                )
+              ),
+              tap((category) => (this.category = category))
             )
           )
         )
       )
     );
 
+    // this.category$ = this.goodsItem$.pipe(
+    //   switchMap((goodsItem) =>
+    //     this.categories$.pipe(
+    //       map((categories) =>
+    //         categories.find(
+    //           (item) =>
+    //             item.id === (this.routeParams.categoryId || goodsItem.category)
+    //         )
+    //       )
+    //     )
+    //   )
+    // );
+
     this.subCategory$ = this.category$.pipe(
-      tap((category) => (this.category = category)),
       switchMap((category) =>
         this.goodsItem$.pipe(
           map((item) =>

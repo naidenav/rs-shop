@@ -7,14 +7,17 @@ import { Store } from '@ngrx/store';
 
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ROUTES } from 'src/app/constants';
-import { clearUserInfo, closeLoginModal } from 'src/app/redux/actions/user-profile.actions';
 import {
-    basketSelector, favoritesSelector, isLoggedSelector, isLoginModalOpened, ordersSelector,
-    userInfoSelector
+    clearUserInfo, closeLoginModal, getUserInfo, setToken
+} from 'src/app/redux/actions/user-profile.actions';
+import {
+    basketSelector, errorSelector, favoritesSelector, isLoggedSelector, isLoginModalOpened,
+    ordersSelector, tokenSelector, userInfoSelector
 } from 'src/app/redux/selectors/user-profile.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IOrder, IUserProfile } from 'src/app/shared/models/user-profile.model';
 
+import { NotificationService } from '../../../services/notification.service';
 import {
     ModalLoginContentComponent
 } from '../modals/modal-login-content/modal-login-content.component';
@@ -45,10 +48,22 @@ export class AccountPanelComponent implements OnInit, OnDestroy {
   constructor(
     public modal: MatDialog,
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   public ngOnInit(): void {
+    const userToken = localStorage.getItem('token');
+    if (userToken) {
+      this.store.dispatch(setToken({ token: userToken }));
+    }
+    this.store.select(tokenSelector).subscribe((token) => {
+      if (token) this.store.dispatch(getUserInfo({ token }));
+    });
+    this.store.select(errorSelector).subscribe((error) => {
+      if (error !== '') this.notificationService.showNotification(error);
+    });
+
     this.userInfo$ = this.store.select(userInfoSelector);
     this.isLogged$ = this.store.select(isLoggedSelector);
     this.isLogged$.subscribe((isLogged) => {

@@ -1,0 +1,22 @@
+<swiper
+  class="swiper main-swiper"
+  [config]="config"
+  (swiper)="onSwiper($event)"
+  (slideChange)="onSlideChange()"
+  #swiper
+>
+  <ng-template
+    class="swiper-slide"
+    swiperSlide
+    *ngFor="let item of goodsItems$ | async"
+  >
+    <a class="swiper-slide__link" [routerLink]="['/catalog', item.id]">
+      <img
+        [src]="item.imageUrls[0] || '../../../../assets/logo.png'"
+        alt="image"
+      />
+      <p class="swiper-slide__title">{{ item.name }}</p>
+    </a>
+  </ng-template>
+  <div class="swiper-pagination"></div>
+</swiper>

@@ -1,0 +1,31 @@
+.main-swiper {
+  padding: 40px;
+
+  height: 400px;
+  width: 800px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.2s;
+  &:hover {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.swiper-slide {
+  &__link {
+    img {
+      object-fit: contain;
+    }
+  }
+  &__title {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 40px;
+    font-weight: 500;
+    text-align: right;
+    color: var(--bg-color);
+    text-shadow: 1px 1px 4px #333;
+  }
+}

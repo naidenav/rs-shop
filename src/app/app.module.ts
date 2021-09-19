@@ -5,6 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { SwiperModule } from 'swiper/angular';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CatalogModule } from './catalog/catalog.module';
@@ -25,6 +27,7 @@ import { userProfileReducer } from './redux/reducers/user-profile.reducers';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    SwiperModule,
     CatalogModule,
     StoreModule.forRoot(
       {
