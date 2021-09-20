@@ -10,6 +10,6 @@ export const environment = {
     '612e05c531108228add087c7',
     '612d4365c25f4a69576c90da',
     '612e09de47c8d3ccab7c4ba4',
-    '613466ec6a9ac7b4a759f98e',
+    '612d297e4c7be56241fafb0b',
   ],
 };
