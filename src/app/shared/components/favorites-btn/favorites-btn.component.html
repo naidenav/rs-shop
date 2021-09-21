@@ -1,0 +1,10 @@
+<button
+  class="favorites-btn"
+  (click)="favoritesHandler()"
+  [class.in-favorites]="inFavorites$ | async"
+>
+  <mat-icon>{{ inFavorites ? "favorite" : "favorite_border" }}</mat-icon>
+  <p class="favorites-btn__title">
+    {{ (inFavorites$ | async) ? "У вас в избранном" : "Добавить в избранное" }}
+  </p>
+</button>

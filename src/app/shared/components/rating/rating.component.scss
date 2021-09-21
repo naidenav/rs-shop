@@ -1,0 +1,18 @@
+:host {
+  margin-top: 5px;
+  font-size: 24px;
+  .mat-icon {
+    font-size: inherit;
+  }
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-rating {
+  color: #bdbdbd;
+}

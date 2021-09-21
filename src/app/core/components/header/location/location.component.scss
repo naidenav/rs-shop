@@ -1,0 +1,11 @@
+:host {
+  justify-self: flex-start;
+  margin-right: auto;
+}
+
+.city-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

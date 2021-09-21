@@ -1,0 +1,134 @@
+<form
+  *ngIf="isLoginForm"
+  class="auth-form"
+  [formGroup]="loginForm"
+  (ngSubmit)="loginSubmit()"
+>
+  <p class="auth-form__title">Вход</p>
+  <p class="auth-form__subtitle">Логин</p>
+  <input class="auth-form__input" type="text" formControlName="login" />
+  <div class="error-validation">
+    <p
+      *ngIf="
+        loginForm.get('login')?.errors?.required &&
+        loginForm.get('login')?.touched
+      "
+      class="error-validation-message"
+    >
+      Пожалуйста, введите логин!
+    </p>
+  </div>
+  <p class="auth-form__subtitle">Пароль</p>
+  <input class="auth-form__input" type="password" formControlName="password" />
+  <div class="error-validation">
+    <p
+      *ngIf="
+        loginForm.get('password')?.errors?.required &&
+        loginForm.get('password')?.touched
+      "
+      class="error-validation-message"
+    >
+      Пожалуйста, введите пароль!
+    </p>
+  </div>
+  <div class="auth-form__buttons-wrapper">
+    <button
+      mat-flat-button
+      class="auth-form__registration-button"
+      (click)="toRegistrationForm()"
+      type="reset"
+    >
+      Регистрация
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="auth-form__submit-button"
+      type="submit"
+      [disabled]="loginForm.invalid"
+      mat-dialog-close
+    >
+      Войти
+    </button>
+  </div>
+  <button class="auth-form__close-btn" mat-icon-button matDialogClose>
+    <mat-icon>close</mat-icon>
+  </button>
+</form>
+<form
+  *ngIf="!isLoginForm"
+  class="auth-form"
+  [formGroup]="registrationForm"
+  (ngSubmit)="registrationSubmit()"
+>
+  <p class="auth-form__title">Регистрация</p>
+  <p class="auth-form__subtitle">Имя</p>
+  <input class="auth-form__input" type="text" formControlName="firstName" />
+  <div class="error-validation">
+    <p
+      *ngIf="
+        registrationForm.get('firstName')?.errors?.required &&
+        registrationForm.get('firstName')?.touched
+      "
+      class="error-validation-message"
+    >
+      Пожалуйста, введите имя!
+    </p>
+  </div>
+  <p class="auth-form__subtitle">Фамалия</p>
+  <input class="auth-form__input" type="text" formControlName="lastName" />
+  <div class="error-validation">
+    <p
+      *ngIf="
+        registrationForm.get('lastName')?.errors?.required &&
+        registrationForm.get('lastName')?.touched
+      "
+      class="error-validation-message"
+    >
+      Пожалуйста, введите фамилию!
+    </p>
+  </div>
+  <p class="auth-form__subtitle">Новый логин</p>
+  <input class="auth-form__input" type="text" formControlName="newLogin" />
+  <div class="error-validation">
+    <p
+      *ngIf="
+        registrationForm.get('newLogin')?.errors?.required &&
+        registrationForm.get('newLogin')?.touched
+      "
+      class="error-validation-message"
+    >
+      Пожалуйста, введите логин!
+    </p>
+  </div>
+  <p class="auth-form__subtitle">Новый пароль</p>
+  <input
+    class="auth-form__input"
+    type="password"
+    formControlName="newPassword"
+  />
+  <div class="error-validation">
+    <p
+      *ngIf="
+        registrationForm.get('newPassword')?.errors?.required &&
+        registrationForm.get('newPassword')?.touched
+      "
+      class="error-validation-message"
+    >
+      Пожалуйста, введите пароль!
+    </p>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    class="auth-form__submit-button"
+    type="submit"
+    [disabled]="registrationForm.invalid"
+    mat-dialog-close
+  >
+    Зарегистрироваться
+  </button>
+  <button class="auth-form__back-btn" mat-mini-fab (click)="toLoginForm()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</form>

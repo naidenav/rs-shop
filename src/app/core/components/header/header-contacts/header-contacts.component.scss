@@ -1,0 +1,63 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mat-button::after {
+  content: "";
+  position: absolute;
+  left: 90px;
+  bottom: 11px;
+  border: 5px solid transparent;
+  border-top-color: var(--theme-color);
+}
+
+.arrow-up.mat-button::after {
+  bottom: 16px;
+  border-bottom-color: var(--theme-color);
+  border-top-color: transparent;
+}
+
+.mat-button {
+  margin-right: 30px;
+  padding-right: 30px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.mat-menu-item {
+  height: 32px;
+  &:hover {
+    background-color: #edf8f2;
+  }
+}
+
+.mat-menu-item,
+.contacts-list__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  color: #4f4f4f;
+  &:hover {
+    color: var(--theme-color);
+  }
+}
+
+.mat-menu__icon {
+  margin-right: 7px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  height: 20px;
+  width: 20px;
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,32 @@
+:host {
+  padding: 5px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+}
+
+.text {
+  text-align: justify;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4f4f4f;
+  line-height: 1.5em;
+}
+.button-wrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+.button {
+  margin: 10px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: var(--theme-color);
+  color: white;
+}

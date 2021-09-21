@@ -1,0 +1,21 @@
+<p class="sorting-panel__title">Сортировать по:</p>
+<button
+  class="sorting-panel__option"
+  [class.option-active]="(criterion$ | async) === 'rating'"
+  (click)="sort('rating')"
+>
+  <mat-icon *ngIf="(criterion$ | async) === 'rating'">{{
+    (direction$ | async) === "asc" ? "north" : "south"
+  }}</mat-icon>
+  популярности
+</button>
+<button
+  class="sorting-panel__option"
+  [class.option-active]="(criterion$ | async) === 'price'"
+  (click)="sort('price')"
+>
+  <mat-icon *ngIf="(criterion$ | async) === 'price'">{{
+    (direction$ | async) === "asc" ? "north" : "south"
+  }}</mat-icon>
+  цене
+</button>

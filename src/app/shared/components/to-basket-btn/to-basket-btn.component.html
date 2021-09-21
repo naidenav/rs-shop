@@ -1,0 +1,9 @@
+<button
+  class="to-basket-btn"
+  (click)="basketHandler()"
+  [class.in-basket]="inBasket$ | async"
+>
+  <p class="to-basket-btn__title">
+    {{ (inBasket$ | async) ? "Товар в корзине" : "В корзину" }}
+  </p>
+</button>

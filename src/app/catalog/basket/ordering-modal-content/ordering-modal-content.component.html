@@ -1,0 +1,90 @@
+<form class="order-form" [formGroup]="orderForm" (ngSubmit)="submit()">
+  <p class="order-form__title">Данные о заказе</p>
+
+  <mat-form-field class="order-form__input-field" appearance="fill">
+    <mat-label>ФИО покупателя</mat-label>
+    <input type="text" matInput [formControl]="customerName" maxlength="50" />
+    <mat-error
+      *ngIf="
+        !customerName.hasError('minLength') &&
+        !customerName.hasError('required')
+      "
+    >
+      Минимальная длина имени - 3 символа
+    </mat-error>
+    <mat-error *ngIf="customerName.hasError('required')">
+      Введите, пожалуйста, имя
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="order-form__input-field" appearance="fill">
+    <mat-label>Адрес доставки</mat-label>
+    <input type="text" matInput [formControl]="address" maxlength="250" />
+    <mat-error
+      *ngIf="address.hasError('minLength') && !address.hasError('required')"
+    >
+      Минимальная длина имени - 3 символа
+    </mat-error>
+    <mat-error *ngIf="address.hasError('required')">
+      Введите, пожалуйста, адрес доставки
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="order-form__input-field" appearance="fill">
+    <mat-label>Телефон</mat-label>
+    <input type="tel" matInput [formControl]="phone" />
+    <mat-error *ngIf="phone.hasError('pattern') && !phone.hasError('required')">
+      Телефон должен начинаться с символа "+" и состоять из цифр
+    </mat-error>
+    <mat-error *ngIf="phone.hasError('required')">
+      Введите, пожалуйста, телефон
+    </mat-error>
+  </mat-form-field>
+
+  <div class="delivery-date-wrapper">
+    <mat-form-field class="order-form__input-field" appearance="fill">
+      <mat-label>Дата доставки</mat-label>
+      <input
+        matInput
+        [matDatepickerFilter]="fromTomorrowFilter"
+        [matDatepicker]="picker"
+        [formControl]="deliveryDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="deliveryDate.hasError('required')">
+        Введите, пожалуйста, дату доставки
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="order-form__input-field" appearance="fill">
+      <mat-label>Время доставки</mat-label>
+      <mat-select [formControl]="deliveryTime">
+        <mat-option *ngFor="let time of deliveryTimeArray" [value]="time">
+          {{ time }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="deliveryTime.hasError('required')"
+        >ВЫберите время доставки</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="order-form__input-field" appearance="fill">
+    <mat-label>Оставить комментарий</mat-label>
+    <textarea matInput [formControl]="comment" maxlength="250"></textarea>
+  </mat-form-field>
+
+  <button class="order-form__close-btn" mat-icon-button matDialogClose>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="order-form__submit-button"
+    type="submit"
+    [disabled]="orderForm.invalid"
+    mat-dialog-close
+  >
+    Подтвердить заказ
+  </button>
+</form>

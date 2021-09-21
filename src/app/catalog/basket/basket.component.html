@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <h2 class="title">Оформление заказа</h2>
+  <div class="basket-empty" *ngIf="(basketItemsLength$ | async) === 0">
+    Здесь пока ничего нет
+  </div>
+  <div class="basket-header" *ngIf="basketItemsLength$ | async">
+    <p class="basket-header__goods-info">Товар</p>
+    <p class="basket-header__item-counter">Количество</p>
+    <p class="basket-header__delivery-info">Доставка</p>
+    <p class="basket-header__price">Стоимость</p>
+  </div>
+  <div class="goods-field" *ngIf="basketItemsLength$ | async">
+    <app-basket-item
+      *ngFor="let item of basketItems$ | async"
+      [goodsItem]="item"
+    ></app-basket-item>
+  </div>
+  <div class="total-order-cost" *ngIf="basketItemsLength$ | async">
+    <span class="total-order-cost__title">Общая стоимость:</span>
+    <p class="total-order-cost__cost">
+      {{ totalCost$ | async | number: "1.2-2" }} р.
+    </p>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    class="ordering-btn"
+    *ngIf="basketItemsLength$ | async"
+    (click)="showOrderForm()"
+  >
+    Оформить заказ
+  </button>
+</div>

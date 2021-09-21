@@ -1,0 +1,91 @@
+<button
+  (menuOpened)="arrowUp()"
+  (menuClosed)="arrowDown()"
+  mat-button
+  [matMenuTriggerFor]="contactsMenu"
+  #elseBtn
+>
+  Контакты
+</button>
+<mat-menu #contactsMenu="matMenu" xPosition="before">
+  <a href="tel:+375290000000" mat-menu-item>
+    <div class="mat-menu__icon">
+      <svg>
+        <use xlink:href="../../../../assets/icons/sprite.svg#a1-icon"></use>
+      </svg>
+    </div>
+    +375290000000
+  </a>
+  <a href="tel:+375290000000" mat-menu-item>
+    <div class="mat-menu__icon">
+      <svg>
+        <use xlink:href="../../../../assets/icons/sprite.svg#life-icon"></use>
+      </svg>
+    </div>
+    +375290000000
+  </a>
+  <a href="tel:+375290000000" mat-menu-item>
+    <div class="mat-menu__icon">
+      <svg>
+        <use
+          xlink:href="../../../../assets/icons/sprite.svg#telephone-icon"
+        ></use>
+      </svg>
+    </div>
+    +375290000000
+  </a>
+  <a
+    href="https://t.me/"
+    target="_blank"
+    rel="noopener noreferer"
+    mat-menu-item
+  >
+    <div class="mat-menu__icon">
+      <svg>
+        <use
+          xlink:href="../../../../assets/icons/sprite.svg#telegram-icon"
+        ></use>
+      </svg>
+    </div>
+    Telegram
+  </a>
+  <a
+    href="https://chats.viber.com/"
+    target="_blank"
+    rel="noopener noreferer"
+    mat-menu-item
+  >
+    <div class="mat-menu__icon">
+      <svg>
+        <use xlink:href="../../../../assets/icons/sprite.svg#viber-icon"></use>
+      </svg>
+    </div>
+    Viber
+  </a>
+  <a href="mailto:example@mail.com" mat-menu-item>
+    <div class="mat-menu__icon">
+      <svg>
+        <use xlink:href="../../../../assets/icons/sprite.svg#email-icon"></use>
+      </svg>
+    </div>
+    Почта
+  </a>
+  <button mat-menu-item>
+    <div class="mat-menu__icon">
+      <svg>
+        <use xlink:href="../../../../assets/icons/sprite.svg#call-icon"></use>
+      </svg>
+    </div>
+    Заказать звонок
+  </button>
+  <button mat-menu-item>
+    <div class="mat-menu__icon">
+      <svg>
+        <use
+          xlink:href="../../../../assets/icons/sprite.svg#message-icon"
+        ></use>
+      </svg>
+    </div>
+    Написать нам
+  </button>
+</mat-menu>

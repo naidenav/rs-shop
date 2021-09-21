@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <app-navigation-chain
+    [routeParams]="(routeParams$ | async) || []"
+  ></app-navigation-chain>
+  <h2 class="goods-item__title">{{ goodsItem.name }}</h2>
+  <div class="goods-item__wrapper">
+    <app-goods-image-slider
+      [imagesUrls]="goodsItem.imageUrls || []"
+      [isBestSeller]="goodsItem.rating === 5"
+    ></app-goods-image-slider>
+    <div class="goods-item__control">
+      <p class="price">
+        {{ goodsItem.price | number: "1.2-2" }} <span class="currency">р.</span>
+      </p>
+      <p class="availability" *ngIf="!goodsItem.availableAmount">
+        Нет в наличии
+      </p>
+      <p class="availability" *ngIf="goodsItem.availableAmount">
+        В наличии {{ goodsItem.availableAmount }} шт.
+      </p>
+      <app-rating [rating]="goodsItem.rating"></app-rating>
+      <app-to-basket-btn [goodsItemId]="goodsItem.id"></app-to-basket-btn>
+      <app-favorites-btn [goodsItemId]="goodsItem.id"></app-favorites-btn>
+    </div>
+  </div>
+  <div class="goods-item__description">
+    <p class="description-title">Описание товара</p>
+    <p class="description-content">{{ goodsItem.description }}</p>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 400px;
+  width: 100%;
+}
+
+.slider-preview {
+  overflow: hidden;
+  position: relative;
+  padding-right: 10px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-right: 1px solid #ccc;
+  &__image {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 90%;
+    width: 100%;
+    height: 0;
+    border: 3px solid transparent;
+    border-radius: 3px;
+    &:hover {
+      border-color: #ccc;
+    }
+    img {
+      object-fit: contain;
+    }
+  }
+}
+
+.disable {
+  pointer-events: none;
+}
+
+.preview_active {
+  border-color: var(--theme-color);
+  &:hover {
+    border-color: var(--theme-color);
+  }
+}
+
+.slider-image {
+  overflow: hidden;
+  margin-left: 40px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &__image-slide {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    img {
+      object-fit: contain;
+    }
+  }
+}
+
+.best-logo {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  height: 60px;
+  width: 60px;
+  img {
+    object-fit: contain;
+  }
+}
+
+.active-slide,
+.next-slide,
+.prev-slide {
+  display: block;
+}
+
+.next-slide {
+  position: absolute;
+  top: 100%;
+}
+
+.prev-slide {
+  position: absolute;
+  top: -100%;
+}
+
+.to-down {
+  animation: toDown 0.5s;
+}
+
+.to-up {
+  animation: toUp 0.5s;
+}
+
+.from-down {
+  animation: fromDown 0.5s;
+}
+
+.from-up {
+  animation: fromUp 0.5s;
+}
+
+@keyframes toDown {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+@keyframes fromDown {
+  from {
+    top: 100%;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes toUp {
+  from {
+    top: 0;
+  }
+  to {
+    top: -100%;
+  }
+}
+
+@keyframes fromUp {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 0;
+  }
+}

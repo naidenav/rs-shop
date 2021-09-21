@@ -1,0 +1,55 @@
+.main-swiper {
+  z-index: 0;
+  padding: 40px;
+
+  height: 250px;
+  width: 450px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.2s;
+  &:hover {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+  }
+  @media screen and (min-width: 700px) {
+    height: 300px;
+    width: 550px;
+  }
+  @media screen and (min-width: 900px) {
+    height: 350px;
+    width: 700px;
+  }
+  @media screen and (min-width: 1300px) {
+    height: 400px;
+    width: 800px;
+  }
+}
+
+.swiper-slide {
+  &__link {
+    img {
+      object-fit: contain;
+      object-position: left;
+    }
+  }
+  &__title {
+    position: absolute;
+    padding: 15px;
+    bottom: 20px;
+    right: 20px;
+    display: block;
+    width: 50%;
+
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--bg-color);
+    // text-shadow: 1px 1px 4px #333;
+    background-color: var(--theme-color);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.35);
+    border-radius: 3px;
+    @media screen and (max-width: 700px) {
+      font-size: 20px;
+    }
+  }
+}

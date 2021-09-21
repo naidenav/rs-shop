@@ -1,0 +1,37 @@
+<input
+  class="search-input"
+  type="text"
+  placeholder="Поиск товаров"
+  [(ngModel)]="searchInput"
+  (input)="showSearchResults()"
+  (focus)="showSearchPanel()"
+  (blur)="hideSearchPanel()"
+/>
+<mat-icon>search</mat-icon>
+<ul
+  class="search-result__list"
+  *ngIf="(goodsResults$ | async)?.length !== 0"
+  [class.results-list_hidden]="isSearchVisible$ | async"
+>
+  <li
+    class="search-result__item"
+    *ngFor="let goodsItem of goodsResults$ | async"
+  >
+    <a class="search-result__link" [routerLink]="['/catalog', goodsItem.id]">
+      <div class="search-result__wrapper">
+        <div class="search-result__image">
+          <img
+            [src]="goodsItem.imageUrls[0] || '../../../../../assets/logo.png'"
+            alt="preview"
+          />
+        </div>
+        <div class="search-result__info">
+          <p class="search-result__title">{{ goodsItem.name }}</p>
+          <p class="search-result__price">
+            {{ goodsItem.price | number: "1.2-2" }} р.
+          </p>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>

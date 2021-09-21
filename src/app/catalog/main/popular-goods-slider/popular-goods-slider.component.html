@@ -1,0 +1,37 @@
+<swiper
+  class="swiper main-swiper"
+  [config]="config"
+  (swiper)="onSwiper($event)"
+  (slideChange)="onSlideChange()"
+  #swiper
+>
+  <ng-template
+    class="swiper-slide"
+    swiperSlide
+    *ngFor="let group of goodsItems$ | async"
+  >
+    <div class="slide-group-wrapper">
+      <div class="slide-group-item" *ngFor="let item of group">
+        <div class="slide-group-item__image">
+          <img
+            [src]="item.imageUrls[0] || '../../../../assets/logo.png'"
+            alt="image"
+          />
+        </div>
+        <div class="slide-group-item__info">
+          <a
+            class="slide-group-item__title"
+            [routerLink]="['/catalog', item.id]"
+          >
+            {{ item.name }}
+          </a>
+          <app-rating [rating]="item.rating"></app-rating>
+          <p class="slide-group-item__price">
+            {{ item.price | number: "1.2-2" }} р.
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div class="swiper-pagination"></div>
+</swiper>

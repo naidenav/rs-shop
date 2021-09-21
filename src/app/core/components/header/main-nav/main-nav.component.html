@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <a class="logo-link" routerLink="/">
+    <div class="logo-link__icon">
+      <svg>
+        <use xlink:href="../../../../assets/icons/sprite.svg#logo-icon"></use>
+      </svg>
+    </div>
+    <h1 class="logo-link__title">store house</h1>
+  </a>
+  <app-categories-btn></app-categories-btn>
+  <app-search-input></app-search-input>
+  <app-account-panel></app-account-panel>
+  <app-basket-btn (click)="toBasket()"></app-basket-btn>
+</div>

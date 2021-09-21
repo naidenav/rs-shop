@@ -1,0 +1,120 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(./reset.css);
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+@import "swiper/scss/effect-fade";
+
+:root {
+  --theme-color: #009688;
+  --color-1: #53aeb5;
+  --color-2: #91c5d6;
+  --color-3: #fcf491;
+  --color-4: #faba62;
+  --color-5: #caddec;
+  --color-6: #e97f1b;
+  --bg-color: #f7f8fa;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--theme-color);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.no-scrollable {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+}
+::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: none;
+}
+
+.mat-snack-bar-container {
+  color: white;
+  background-color: var(--theme-color);
+  span {
+    justify-self: center;
+    margin: 0 auto;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: var(--theme-color);
+  }
+  &:hover .mat-icon {
+    color: var(--theme-color);
+  }
+}
+
+button,
+a,
+.mat-icon,
+p {
+  user-select: none;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 95%;
+  @media screen and (min-width: 600px) {
+    width: 90%;
+  }
+  @media screen and (min-width: 1920px) {
+    width: 1400px;
+  }
+}

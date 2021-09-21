@@ -1,0 +1,136 @@
+:host {
+  position: relative;
+  color: var(--theme-color);
+  &:hover {
+    color: white;
+  }
+  app-header-nav-button {
+    @media screen and (min-width: 900px) {
+      padding-right: 35px;
+    }
+  }
+}
+
+.avatar-icon {
+  position: relative;
+  margin-top: 20px;
+  height: 80px;
+  width: 80px;
+}
+
+.arrow {
+  position: absolute;
+  left: 125px;
+  bottom: 13px;
+  display: none;
+  border: 5px solid transparent;
+  border-top-color: currentColor;
+  transition-duration: 0.1s;
+  pointer-events: none;
+  @media screen and (min-width: 900px) {
+    display: block;
+  }
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+  bottom: 18px;
+}
+
+.mat-menu-item {
+  color: #333333;
+}
+
+// .mat-menu-item:nth-child(2):after {
+//   content: "";
+//   position: absolute;
+//   bottom: 0;
+//   left: 17px;
+//   width: 85%;
+//   height: 1px;
+//   background-color: #ddd;
+// }
+
+.mat-menu-wrapper {
+  margin-bottom: -8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 250px;
+}
+
+.login-btn {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  height: 40px;
+  width: 100px;
+  background-color: var(--theme-color);
+  font-weight: normal;
+  color: white;
+}
+
+.user-name {
+  margin: 20px 0;
+  width: 90%;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2em;
+  text-align: center;
+}
+
+.account-menu-link {
+  position: relative;
+  width: 100%;
+}
+
+.number-of-goods {
+  position: absolute;
+  top: calc(50% - 13px);
+  right: 20px;
+  padding: 1px 8px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  border-radius: 12px;
+  background-color: var(--theme-color);
+}
+
+.logout-btn {
+  position: relative;
+  &:hover {
+    color: var(--theme-color);
+  }
+  &:hover .mat-icon {
+    color: var(--theme-color);
+  }
+}
+
+.logout-btn::before {
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.logout-btn::after {
+  transition-duration: 0.5s;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--theme-color);
+}
+
+.logout-btn:hover::after {
+  left: 0;
+  width: 100%;
+}

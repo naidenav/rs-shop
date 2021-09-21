@@ -1,0 +1,35 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-description class="index">{{ index + 1 }}</mat-panel-description>
+    <mat-panel-description> {{ order.id }} </mat-panel-description>
+    <mat-panel-description>
+      {{ order.details.timeToDeliver.split(",")[0] | date: "dd.MM.yyyy" }}
+    </mat-panel-description>
+    <mat-panel-description>
+      {{ order.items.length }}
+    </mat-panel-description>
+    <mat-panel-description>
+      {{ orderCost$ | async | number: "1.2-2" }} р.
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-list>
+    <mat-list-item class="order-item" *ngFor="let item of orderItems$ | async">
+      <div class="order-item__image">
+        <img
+          [src]="item.imageUrls[0] || '../../../../assets/logo.png'"
+          alt="preview"
+        />
+      </div>
+      <p class="order-item__title">
+        {{ item.name }} - {{ item.price | number: "1.2-2" }} р. ({{
+          getItemAmount(item.id)
+        }}
+        шт.)
+      </p>
+    </mat-list-item>
+  </mat-list>
+  <button class="cancel-btn" mat-button (click)="cancelOrder()">
+    Отменить заказ
+  </button>
+</mat-expansion-panel>
