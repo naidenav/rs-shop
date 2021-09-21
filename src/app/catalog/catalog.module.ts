@@ -27,6 +27,7 @@ import {
 import { WaitingListComponent } from './waiting-list/waiting-list.component';
 import { PromotionalGoodsSliderComponent } from './main/promotional-goods-slider/promotional-goods-slider.component';
 import { PopularGoodsSliderComponent } from './main/popular-goods-slider/popular-goods-slider.component';
+import { OrderingSuccessfulModalContentComponent } from './basket/ordering-successful-modal-content/ordering-successful-modal-content.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PopularGoodsSliderComponent } from './main/popular-goods-slider/popular
     MainComponent,
     PromotionalGoodsSliderComponent,
     PopularGoodsSliderComponent,
+    OrderingSuccessfulModalContentComponent,
   ],
   imports: [SharedModule, SwiperModule],
 })

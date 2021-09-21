@@ -1,0 +1,26 @@
+:host {
+  position: relative;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 500px;
+  .text {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 24px;
+    color: #4f4f4f;
+    text-align: center;
+  }
+  .ok-button {
+    margin-top: 15px;
+    padding: 0 30px;
+    min-width: 120px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: var(--theme-color);
+  }
+}

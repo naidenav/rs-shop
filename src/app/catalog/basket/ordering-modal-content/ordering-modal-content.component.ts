@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
 import { Subscription } from 'rxjs';
@@ -8,6 +9,10 @@ import { getUserInfo } from 'src/app/redux/actions/user-profile.actions';
 import { orderItemsSelector } from 'src/app/redux/selectors/order.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IOrder, IOrderDetailes, IOrderItem } from 'src/app/shared/models/user-profile.model';
+
+import {
+    OrderingSuccessfulModalContentComponent
+} from '../ordering-successful-modal-content/ordering-successful-modal-content.component';
 
 @Component({
   selector: 'app-ordering-modal-content',
@@ -50,7 +55,7 @@ export class OrderingModalContentComponent implements OnInit, OnDestroy {
   private orderItems!: IOrderItem[];
   private orderItemsSub: Subscription = new Subscription();
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private modal: MatDialog) {}
 
   ngOnInit(): void {
     this.orderItemsSub = this.store
@@ -110,15 +115,26 @@ export class OrderingModalContentComponent implements OnInit, OnDestroy {
     this.store.dispatch(createOrder({ order }));
     const token = localStorage.getItem('token');
     if (token) this.store.dispatch(getUserInfo({ token }));
-  }
-
-  public ngOnDestroy(): void {
-    this.orderItemsSub.unsubscribe();
+    this.showSuccessModal(this.orderForm.get('deliveryDate')?.value);
   }
 
   public fromTomorrowFilter(d: Date | null): boolean {
     const day = (d || new Date()).getTime();
     const today = new Date().getTime();
     return day > today && day < today + 10 * 24 * 3600 * 1000;
+  }
+
+  public showSuccessModal(date: string): void {
+    const orderModal = this.modal.open(
+      OrderingSuccessfulModalContentComponent,
+      {
+        autoFocus: false,
+        data: date,
+      }
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this.orderItemsSub.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
@@ -21,7 +21,7 @@ import {
   styleUrls: ['./basket.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasketComponent implements OnInit {
+export class BasketComponent implements OnInit, OnDestroy {
   public order!: IOrder;
   public order$!: Observable<IOrder>;
   public totalCost$!: Observable<number | undefined>;
@@ -71,4 +71,6 @@ export class BasketComponent implements OnInit {
       autoFocus: false,
     });
   }
+
+  public ngOnDestroy(): void {}
 }

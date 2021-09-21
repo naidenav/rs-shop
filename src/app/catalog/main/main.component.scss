@@ -98,3 +98,14 @@
     // text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.15);
   }
 }
+
+.demo-video {
+  overflow: hidden;
+  margin-top: 40px;
+  border: 1px solid #ccc;
+}
+
+iframe {
+  margin-right: -2px;
+  margin-bottom: -3px;
+}

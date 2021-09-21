@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,6 +21,8 @@ import { catalogReducer } from './redux/reducers/catalog.reducers';
 import { categoriesReducer } from './redux/reducers/categories.reducers';
 import { orderReducer } from './redux/reducers/order.reducers';
 import { userProfileReducer } from './redux/reducers/user-profile.reducers';
+
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [AppComponent],
@@ -57,7 +61,7 @@ import { userProfileReducer } from './redux/reducers/user-profile.reducers';
       maxAge: 25,
     }),
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'ru' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
