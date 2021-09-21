@@ -5,8 +5,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 47%;
+  width: 67%;
   user-select: none;
+
+  @media screen and (min-width: 900px) {
+    width: 47%;
+  }
 
   .mat-icon {
     z-index: 1;

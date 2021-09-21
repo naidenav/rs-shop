@@ -34,10 +34,14 @@
     justify-content: center;
     height: 100%;
     width: 100%;
+    text-align: center;
     transition-duration: 0.2s;
     &:hover {
       color: unset;
       background-color: opacify($color: rgba(0, 0, 0, 0.1), $amount: 0.1);
+    }
+    @media screen and (max-width: 699px) {
+      font-size: 14px;
     }
   }
 }

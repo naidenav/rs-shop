@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Subscription } from 'rxjs';
 import { createOrder } from 'src/app/redux/actions/order.actions';
+import { getUserInfo } from 'src/app/redux/actions/user-profile.actions';
 import { orderItemsSelector } from 'src/app/redux/selectors/order.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IOrder, IOrderDetailes, IOrderItem } from 'src/app/shared/models/user-profile.model';
@@ -107,6 +108,8 @@ export class OrderingModalContentComponent implements OnInit, OnDestroy {
     console.log(order);
 
     this.store.dispatch(createOrder({ order }));
+    const token = localStorage.getItem('token');
+    if (token) this.store.dispatch(getUserInfo({ token }));
   }
 
   public ngOnDestroy(): void {

@@ -5,7 +5,9 @@
     color: white;
   }
   app-header-nav-button {
-    padding-right: 35px;
+    @media screen and (min-width: 900px) {
+      padding-right: 35px;
+    }
   }
 }
 
@@ -20,10 +22,14 @@
   position: absolute;
   left: 125px;
   bottom: 13px;
+  display: none;
   border: 5px solid transparent;
   border-top-color: currentColor;
   transition-duration: 0.1s;
   pointer-events: none;
+  @media screen and (min-width: 900px) {
+    display: block;
+  }
 }
 
 .arrow-up {

@@ -6,7 +6,7 @@
   [matMenuTriggerFor]="accountMenu"
 ></app-header-nav-button>
 <div class="arrow" #arrow></div>
-<mat-menu #accountMenu="matMenu" xPosition="before">
+<mat-menu #accountMenu xPosition="before">
   <div class="mat-menu-wrapper">
     <div class="avatar-icon">
       <img src="../../../../../assets/icons/user.svg" alt="avatar" />
@@ -47,9 +47,6 @@
         {{ (inFavorites$ | async)?.length }}
       </div>
     </a>
-    <!-- <a class="account-menu-link" mat-menu-item>
-      <mat-icon>visibility</mat-icon>Просмотренные
-    </a> -->
     <a
       class="account-menu-link"
       mat-menu-item

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { removeFromBasket } from 'src/app/redux/actions/user-profile.actions';
+import { getUserInfo, removeFromBasket } from 'src/app/redux/actions/user-profile.actions';
 import { orderItemsSelector } from 'src/app/redux/selectors/order.selectors';
 import { AppState } from 'src/app/redux/state/app.state';
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
@@ -34,5 +34,7 @@ export class BasketItemComponent implements OnInit {
 
   public remove(): void {
     this.store.dispatch(removeFromBasket({ goodsItemId: this.goodsItem.id }));
+    const token = localStorage.getItem('token');
+    if (token) this.store.dispatch(getUserInfo({ token }));
   }
 }
