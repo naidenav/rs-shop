@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-availability',
@@ -6,10 +6,8 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./availability.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AvailabilityComponent implements OnInit {
+export class AvailabilityComponent {
   @Input() public availableAmount!: number;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

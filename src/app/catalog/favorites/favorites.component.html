@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h2 class="title">Избранные товары</h2>
-  <div class="favorites-empty" *ngIf="!(favoritesItemsLength$ | async)">
+  <div class="favorites-empty" *ngIf="(favoritesItemsLength$ | async) === 0">
     Здесь пока ничего нет
   </div>
   <div class="goods-field" *ngIf="favoritesItemsLength$ | async">

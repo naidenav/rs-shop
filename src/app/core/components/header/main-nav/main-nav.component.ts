@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ROUTES } from 'src/app/constants';
@@ -9,10 +9,8 @@ import { ROUTES } from 'src/app/constants';
   styleUrls: ['./main-nav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainNavComponent implements OnInit {
+export class MainNavComponent {
   constructor(private router: Router) {}
-
-  ngOnInit(): void {}
 
   public toBasket() {
     this.router.navigate([ROUTES.basket]);

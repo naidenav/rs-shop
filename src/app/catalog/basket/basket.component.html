@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h2 class="title">Оформление заказа</h2>
-  <div class="basket-empty" *ngIf="!(basketItemsLength$ | async)">
+  <div class="basket-empty" *ngIf="(basketItemsLength$ | async) === 0">
     Здесь пока ничего нет
   </div>
   <div class="basket-header" *ngIf="basketItemsLength$ | async">

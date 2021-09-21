@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header-nav-button',
@@ -6,11 +6,9 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./header-nav-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderNavButtonComponent implements OnInit {
+export class HeaderNavButtonComponent {
   @Input() public icon: string = '';
   @Input() public title: string = '';
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

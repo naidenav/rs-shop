@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { IGoodsItem } from 'src/app/shared/models/goods.model';
 
@@ -8,9 +8,7 @@ import { IGoodsItem } from 'src/app/shared/models/goods.model';
   styleUrls: ['./goods-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GoodsItemComponent implements OnInit {
+export class GoodsItemComponent {
   @Input() public goodsItem!: IGoodsItem;
   constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -12,7 +12,7 @@
       <img src="../../../../../assets/icons/user.svg" alt="avatar" />
     </div>
     <button
-      *ngIf="!(isLogged$ | async)"
+      *ngIf="(isLogged$ | async) === false"
       mat-raised-button
       color="primary"
       class="login-btn"

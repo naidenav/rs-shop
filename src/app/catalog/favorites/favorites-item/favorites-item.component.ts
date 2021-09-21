@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { removeFromFavorites } from 'src/app/redux/actions/user-profile.actions';
@@ -11,12 +11,10 @@ import { IGoodsItem } from 'src/app/shared/models/goods.model';
   styleUrls: ['./favorites-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavoritesItemComponent implements OnInit {
+export class FavoritesItemComponent {
   @Input() public goodsItem!: IGoodsItem;
 
   constructor(private store: Store<AppState>) {}
-
-  ngOnInit(): void {}
 
   public remove() {
     this.store.dispatch(

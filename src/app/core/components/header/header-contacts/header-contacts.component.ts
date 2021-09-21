@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-header-contacts',
@@ -6,12 +6,10 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
   styleUrls: ['./header-contacts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderContactsComponent implements OnInit {
+export class HeaderContactsComponent {
   @ViewChild('elseBtn', { read: ElementRef }) elseBtn?: ElementRef;
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   public arrowUp() {
     this.elseBtn?.nativeElement.classList.add('arrow-up');

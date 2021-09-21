@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -20,7 +20,7 @@ import { IGoodsItem } from '../../models/goods.model';
   styleUrls: ['./navigation-chain.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavigationChainComponent implements OnInit, OnDestroy {
+export class NavigationChainComponent implements OnInit {
   @Input() public routeParams!: Params;
   public goodsItem$!: Observable<IGoodsItem>;
   public category$!: Observable<ICategory | undefined>;
@@ -53,19 +53,6 @@ export class NavigationChainComponent implements OnInit, OnDestroy {
       )
     );
 
-    // this.category$ = this.goodsItem$.pipe(
-    //   switchMap((goodsItem) =>
-    //     this.categories$.pipe(
-    //       map((categories) =>
-    //         categories.find(
-    //           (item) =>
-    //             item.id === (this.routeParams.categoryId || goodsItem.category)
-    //         )
-    //       )
-    //     )
-    //   )
-    // );
-
     this.subCategory$ = this.category$.pipe(
       switchMap((category) =>
         this.goodsItem$.pipe(
@@ -86,6 +73,4 @@ export class NavigationChainComponent implements OnInit, OnDestroy {
     if (this.category)
       this.store.dispatch(changeActiveCategory({ category: this.category.id }));
   }
-
-  public ngOnDestroy(): void {}
 }
